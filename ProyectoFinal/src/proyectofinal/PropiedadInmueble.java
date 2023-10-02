@@ -18,7 +18,7 @@ public class PropiedadInmueble {
     private int idLocal; 
     private Inquilino ocupante; 
     private float precioTazado;
-    private Inspector revisor;  
+  //  private Inspector revisor;  
     private int superficieMinima;
     private String tipoLocal;
     private String zona;
