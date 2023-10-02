@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyectofinal;
 
 /**
@@ -18,9 +14,10 @@ public class PropiedadInmueble {
     private int idLocal; 
     private Inquilino ocupante; 
     private float precioTazado;
-    private Inspector revisor;  
+   // private Inspector revisor;  
     private int superficieMinima;
     private String tipoLocal;
     private String zona;
 
+    
 }

@@ -1,5 +1,7 @@
 package proyectofinal;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author usuario
@@ -10,7 +12,7 @@ public class Inquilino {
     private int DNI;
     private int Id_Inquilino; 
     private String Nombre; 
-   // private ArrayList <Propiedad Inmueble> propiedades;  
+    private ArrayList <PropiedadInmueble> propiedades;  
     private boolean Tipo; 
   
  
