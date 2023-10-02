@@ -14,18 +14,11 @@ public class PropiedadInmueble {
     private int idLocal; 
     private Inquilino ocupante; 
     private float precioTazado;
-<<<<<<< Updated upstream
-   // private Inspector revisor;  
-=======
-    //private Inspector revisor;  
->>>>>>> Stashed changes
+
     private int superficieMinima;
     private boolean tipoLocal;
     private String zona;
 
-<<<<<<< Updated upstream
-    
-=======
     public PropiedadInmueble() {
     }
 
@@ -121,5 +114,4 @@ public class PropiedadInmueble {
         this.tipoLocal = tipoLocal;
     }
 
->>>>>>> Stashed changes
 }
