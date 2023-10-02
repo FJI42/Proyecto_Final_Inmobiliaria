@@ -14,7 +14,7 @@ public class ContratoAlquiler {
     private LocalDate Fecha_Inicio; 
     private LocalDate FechaRealizacion; 
     private boolean Marca;
-    // private PropiedadInmueble propiedad; 
+    private PropiedadInmueble propiedad; 
     private String Vendedor;
 
     public ContratoAlquiler() {
