@@ -5,6 +5,9 @@
  */
 package proyectofinal;
 
+import acceso_a_Datos.Conexion;
+import java.sql.*;
+
 /**
  *
  * @author usuario
@@ -16,6 +19,7 @@ public class ProyectoFinal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+         Connection con = Conexion.getConexion();
     }
     
 }
