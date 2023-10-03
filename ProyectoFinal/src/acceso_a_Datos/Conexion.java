@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
      private static final String URL="jdbc:mariadb://localhost/";
-    private static final String DB="Inmobiliaria_pf";
+    private static final String DB="inmobiliaria_pf";
     private static final String USUARIO="root";
     private static final String PASSWORD="";
     private static Connection connection; 
@@ -31,7 +31,7 @@ public class Conexion {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 connection= DriverManager.getConnection(URL+DB,USUARIO,PASSWORD);
-                
+                JOptionPane.showMessageDialog(null,"Se conecto");
                 
                         
             } catch (ClassNotFoundException ex) {

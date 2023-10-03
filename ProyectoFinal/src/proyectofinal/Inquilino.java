@@ -13,8 +13,8 @@ public class Inquilino {
     private int Id_Inquilino; 
     private String Nombre; 
     private ArrayList <PropiedadInmueble> propiedades;  
-    private boolean Tipo; 
-  
+    private String Tipo; 
+    private boolean Estado;
  
     public Inquilino() {
     }
@@ -26,7 +26,7 @@ public class Inquilino {
         this.Nombre = Nombre;
     }
 
-    public Inquilino(int Id_Inquilino, boolean Tipo) {
+    public Inquilino(int Id_Inquilino, String Tipo) {
         this.Id_Inquilino = Id_Inquilino;
         this.Tipo = Tipo;
     }
@@ -71,13 +71,23 @@ public class Inquilino {
         this.Nombre = Nombre;
     }
 
-    public boolean isTipo() {
+    public String getTipo() {
         return Tipo;
     }
 
-    public void setTipo(boolean Tipo) {
+    public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
+
+    public boolean isEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
+    }
+
+   
     
     
     
