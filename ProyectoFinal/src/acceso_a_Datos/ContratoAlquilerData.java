@@ -12,7 +12,7 @@ public class ContratoAlquilerData {
     
     private Connection con= null;
     
-    public ContratoAlquilerData(){
+    public ContratoAlquilerData(){ 
         
         con= Conexion.getConexion();
         
