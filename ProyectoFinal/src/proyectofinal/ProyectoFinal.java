@@ -5,8 +5,9 @@
  */
 package proyectofinal;
 
-import acceso_a_Datos.Conexion;
-import acceso_a_Datos.InquilinoData;
+import proyectofinal.Entidades.Inquilino;
+import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.InquilinoData;
 import java.sql.*;
 
 /**

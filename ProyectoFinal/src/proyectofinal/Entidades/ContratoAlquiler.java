@@ -1,4 +1,4 @@
-package proyectofinal;
+package proyectofinal.Entidades;
 
 import java.time.LocalDate;
 
@@ -8,20 +8,20 @@ import java.time.LocalDate;
  */
 public class ContratoAlquiler {
      
-    private int codContrato; 
-    private Inquilino elInquilino; 
+    private int ID_Contrato; 
+    private Inquilino Inquilino; 
     private LocalDate Fecha_Final; 
     private LocalDate Fecha_Inicio; 
-    private LocalDate FechaRealizacion; 
+    private LocalDate Fecha_Realizacion; 
     private char Marca;
-    private PropiedadInmueble propiedad; 
+    private PropiedadInmueble Propiedad; 
     private String Vendedor;
 
     public ContratoAlquiler() {
     }
 
-    public ContratoAlquiler(PropiedadInmueble propiedad) {
-        this.propiedad = propiedad;
+    public ContratoAlquiler(PropiedadInmueble Propiedad) {
+        this.Propiedad = Propiedad;
     }
 
     public ContratoAlquiler(char Marca) {
@@ -30,12 +30,12 @@ public class ContratoAlquiler {
 
     
     
-    public ContratoAlquiler(int codContrato, Inquilino elInquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate FechaRealizacion, char Marca, String Vendedor) {
-        this.codContrato = codContrato;
-        this.elInquilino = elInquilino;
+    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, String Vendedor) {
+        this.ID_Contrato = ID_Contrato;
+        this.Inquilino = Inquilino;
         this.Fecha_Final = Fecha_Final;
         this.Fecha_Inicio = Fecha_Inicio;
-        this.FechaRealizacion = FechaRealizacion;
+        this.Fecha_Realizacion = Fecha_Realizacion;
         this.Marca = Marca;
         this.Vendedor = Vendedor;
     }
@@ -46,28 +46,28 @@ public class ContratoAlquiler {
     
 
     public PropiedadInmueble getPropiedad() {
-        return propiedad;
+        return Propiedad;
     }
 
-    public void setPropiedad(PropiedadInmueble propiedad) {
-        this.propiedad = propiedad;
+    public void setPropiedad(PropiedadInmueble Propiedad) {
+        this.Propiedad = Propiedad;
     }
 
     
-    public int getCodContrato() {
-        return codContrato;
+    public int getID_Contrato() {
+        return ID_Contrato;
     }
 
-    public void setCodContrato(int codContrato) {
-        this.codContrato = codContrato;
+    public void setID_Contrato(int ID_Contrato) {
+        this.ID_Contrato = ID_Contrato;
     }
 
-    public Inquilino getElInquilino() {
-        return elInquilino;
+    public Inquilino getInquilino() {
+        return Inquilino;
     }
 
-    public void setElInquilino(Inquilino elInquilino) {
-        this.elInquilino = elInquilino;
+    public void setInquilino(Inquilino Inquilino) {
+        this.Inquilino = Inquilino;
     }
 
     public LocalDate getFecha_Final() {
@@ -86,12 +86,12 @@ public class ContratoAlquiler {
         this.Fecha_Inicio = Fecha_Inicio;
     }
 
-    public LocalDate getFechaRealizacion() {
-        return FechaRealizacion;
+    public LocalDate getFecha_Realizacion() {
+        return Fecha_Realizacion;
     }
 
-    public void setFechaRealizacion(LocalDate FechaRealizacion) {
-        this.FechaRealizacion = FechaRealizacion;
+    public void setFecha_Realizacion(LocalDate Fecha_Realizacion) {
+        this.Fecha_Realizacion = Fecha_Realizacion;
     }
 
     public char isMarca() {

@@ -1,4 +1,4 @@
-package proyectofinal;
+package proyectofinal.Entidades;
 
 import java.util.ArrayList;
 

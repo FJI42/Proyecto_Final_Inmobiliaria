@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package acceso_a_Datos;
+package proyectofinal.accesoADatos;
 
+import proyectofinal.accesoADatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import proyectofinal.PropiedadInmueble;
+import proyectofinal.Entidades.PropiedadInmueble;
 
 /**
  *
