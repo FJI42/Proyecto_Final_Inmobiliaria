@@ -81,7 +81,7 @@ public class ContratoAlquilerData {
             ps.setString(5, String.valueOf(ca.getMarca())); 
             ps.setInt(5,(ca.getPropiedad()));
             ps.setString(6,ca.getVendedor());
-                        
+                         
             ps.executeUpdate();
             
             ResultSet rs= ps.getGeneratedKeys();
