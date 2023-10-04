@@ -11,8 +11,8 @@ package proyectofinal;
 public class PropiedadInmueble {
     private String accesibilidad ; 
     private String caracteristicas ; 
-    private String dirección ;
-    private Propietario dueño; 
+    private String direccion ;
+    private Propietario duenio; 
     private boolean estadoLocal;
     private String forma; 
     private int idLocal; 
@@ -20,20 +20,21 @@ public class PropiedadInmueble {
     private float precioTazado;
   //  private Inspector revisor;  
     private int superficieMinima;
-    private boolean tipoLocal;
+    private String tipoLocal;
     private String zona;
 
     public PropiedadInmueble() {
     }
 
-    public PropiedadInmueble(String accesibilidad, String caracteristicas, String dirección, String forma, int idLocal, float precioTazado, int superficieMinima, String zona) {
+    public PropiedadInmueble(String accesibilidad, String caracteristicas, String dirección, String forma, int idLocal, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
         this.accesibilidad = accesibilidad;
         this.caracteristicas = caracteristicas;
-        this.dirección = dirección;
+        this.direccion = dirección;
         this.forma = forma;
         this.idLocal = idLocal;
         this.precioTazado = precioTazado;
         this.superficieMinima = superficieMinima;
+        this.tipoLocal = tipoLocal;
         this.zona = zona;
     }
 
@@ -53,12 +54,12 @@ public class PropiedadInmueble {
         this.caracteristicas = caracteristicas;
     }
 
-    public String getDirección() {
-        return dirección;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setDirección(String dirección) {
-        this.dirección = dirección;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     
@@ -112,12 +113,14 @@ public class PropiedadInmueble {
         this.estadoLocal = estadoLocal;
     }
 
-    public boolean isTipoLocal() {
+    public String getTipoLocal() {
         return tipoLocal;
     }
 
-    public void setTipoLocal(boolean tipoLocal) {
+    public void setTipoLocal(String tipoLocal) {
         this.tipoLocal = tipoLocal;
     }
+
+
 
 }
