@@ -176,23 +176,26 @@ public class InquilinoData {
      
        public void modificarInquilino(Inquilino inquilino){
             
-            String sql="UPDATE `inquilino` SET `Apellido`=?,`Nombre`=?,`DNI`=?,`Detalles`=?,`Tipo`=?,`Estado`=?"
-                    + " WHERE `ID_Inquilino`=?";
+            String sql="UPDATE `inquilino` SET `Apellido`='?',`Nombre`='?',`DNI`='?',`Detalles`='?',`Tipo`=?,`Estado`='?' WHERE ID_Inquilino=?";
             
         try {
             PreparedStatement ps= con.prepareStatement(sql);
+            
             ps.setString(1,inquilino.getApellido());
             ps.setString(2,inquilino.getNombre());
             ps.setInt(3,inquilino.getDNI());
             ps.setString(4, inquilino.getDetalle());
             ps.setString(5, inquilino.getTipo());
             ps.setBoolean(6, inquilino.isEstado());
+            ps.setInt(7, 1);
+           
             int exito= ps.executeUpdate();
             
             if(exito==1){
+                 System.out.println("hasta aca funciona");
                 JOptionPane.showMessageDialog(null, "Inquilino modificado");
             }else{
-                 JOptionPane.showMessageDialog(null, "No se encontro el inquilino");
+                 JOptionPane.showMessageDialog(null, "No se encontro el inquilino que busca");
             }
             
                     

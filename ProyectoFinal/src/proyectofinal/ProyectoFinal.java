@@ -27,10 +27,10 @@ public class ProyectoFinal {
          InquilinoData inD = new InquilinoData();
 //         inD.AgregarInquilino(in);
 //         inD.BajaInquilino(4);
-//         Inquilino in = inD.BuscarInquilino(1);
-//          if(in!=null){
-//        System.out.println("dni "+ in.getDNI());
-//        System.out.println("apellido "+ in.getApellido());
+         Inquilino in = inD.BuscarInquilino(1);
+          if(in!=null){
+        System.out.println("dni "+ in.getDNI());
+        System.out.println("apellido "+ in.getApellido());}
 //        for(Inquilino in:inD.obtenerInquilinosdeBaja()){
 //        
 //        System.out.println(in.getDNI());
@@ -47,8 +47,8 @@ public class ProyectoFinal {
 //        System.out.println(in.getNombre());
 //        System.out.println(in.getTipo());
 //}
- Inquilino in = new Inquilino("Leiva Cheik Ali","Rodrigo", 12345678,"paga el alquiler a tiempo","Estudiante ", true);
-          inD.modificarInquilino(in);
+ Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Carlos", 12345679,"paga el alquiler a tiempo","Estudiante ", true);
+          inD.modificarInquilino(inquilino);
 
 
 
