@@ -12,6 +12,8 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.Month;
 import proyectofinal.Entidades.ContratoAlquiler;
+import proyectofinal.Entidades.PropiedadInmueble;
+import proyectofinal.Entidades.Propietario;
 import proyectofinal.accesoADatos.ContratoAlquilerData;
 
 /**
@@ -55,10 +57,15 @@ public class ProyectoFinal {
 //          inD.modificarInquilino(inquilino);
 
 
+     
+     // PropiedadInmueble mi = new PropiedadInmueble("Buena","Bien ubicado","Lamarca 123",);
+      
           
-    ContratoAlquiler ca= new ContratoAlquiler(4,in, LocalDate.of(2020,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'D',"Depa");
-    ContratoAlquilerData caD= new ContratoAlquilerData(); 
-    caD.crearContrato(ca);
+//    ContratoAlquiler ca= new ContratoAlquiler(4,in, LocalDate.of(2020,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'D',"Depa");
+//    ContratoAlquilerData caD= new ContratoAlquilerData(); 
+//    caD.crearContrato(ca);
+
+//Hay que agregar mas cosas, esta todo conectado 
 
      }
     }

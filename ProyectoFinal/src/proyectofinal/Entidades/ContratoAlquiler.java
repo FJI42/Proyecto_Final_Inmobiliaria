@@ -29,16 +29,18 @@ public class ContratoAlquiler {
     }
 
     
-    
-    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, String Vendedor) {
+
+    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor) {
         this.ID_Contrato = ID_Contrato;
         this.Inquilino = Inquilino;
         this.Fecha_Final = Fecha_Final;
         this.Fecha_Inicio = Fecha_Inicio;
         this.Fecha_Realizacion = Fecha_Realizacion;
         this.Marca = Marca;
+        this.Propiedad = Propiedad;
         this.Vendedor = Vendedor;
     }
+    
 
     public char getMarca() {
         return Marca;
