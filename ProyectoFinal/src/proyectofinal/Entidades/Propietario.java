@@ -9,26 +9,49 @@ package proyectofinal.Entidades;
  * @author MCali
  */
 public class Propietario {
+    private int idPropietario;
     private String apelidoPropietario; 
+    private String nombrePropietario;
     private int dni;
     private String domicilio;
-    private int idPropietario;
-    private String localesPropios;
-    private String nombrePropietario;
     private int telefono;
-
+    private boolean Estado;
+ 
+    
+    
     public Propietario() {
     }
 
-    public Propietario(String apelidoPropietario, int dni, String domicilio, String localesPropios, String nombrePropietario, int telefono) {
+    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono, boolean Estado) {
+        this.idPropietario = idPropietario;
         this.apelidoPropietario = apelidoPropietario;
+        this.nombrePropietario = nombrePropietario;
         this.dni = dni;
         this.domicilio = domicilio;
-        this.localesPropios = localesPropios;
-        this.nombrePropietario = nombrePropietario;
         this.telefono = telefono;
+        this.Estado = Estado;
     }
 
+    public Propietario(String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono, boolean Estado) {
+        this.apelidoPropietario = apelidoPropietario;
+        this.nombrePropietario = nombrePropietario;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+        this.Estado = Estado;
+    }
+
+  
+ 
+    
+     public boolean isEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
+    }
+    
     public Propietario(int idPropietario) {
         this.idPropietario = idPropietario;
     }
@@ -63,14 +86,6 @@ public class Propietario {
 
     public void setIdPropietario(int idPropietario) {
         this.idPropietario = idPropietario;
-    }
-
-    public String getLocalesPropios() {
-        return localesPropios;
-    }
-
-    public void setLocalesPropios(String localesPropios) {
-        this.localesPropios = localesPropios;
     }
 
     public String getNombrePropietario() {
