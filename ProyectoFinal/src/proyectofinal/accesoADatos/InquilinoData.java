@@ -187,7 +187,7 @@ public class InquilinoData {
             ps.setString(4, inquilino.getDetalle());
             ps.setString(5, inquilino.getTipo());
             ps.setBoolean(6, inquilino.isEstado());
-            ps.setInt(7, 1);
+            ps.setInt(7, inquilino.getId_Inquilino());
            
             int exito= ps.executeUpdate();
             

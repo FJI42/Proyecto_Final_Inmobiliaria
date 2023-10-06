@@ -36,7 +36,7 @@ public class ProyectoFinal {
 //         inD.AgregarInquilino(in);
         
 //         Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
-//         InquilinoData inD = new InquilinoData();
+//        InquilinoData inD = new InquilinoData();
 //         inD.AgregarInquilino(in);
 
 //         inD.BajaInquilino(4);
@@ -68,8 +68,13 @@ public class ProyectoFinal {
 // Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
 //          inD.modificarInquilino(inquilino);
 
+
 // Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Carlos", 87654321,"paga el alquiler a tiempo","Estudiante ", true);
 //          inD.modificarInquilino(inquilino);
+
+// Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Rodrigo", 12345678,"paga el alquiler a tiempo","Estudiante ", true);
+//          inD.modificarInquilino(inquilino);
+
 
 
      
