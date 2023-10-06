@@ -28,10 +28,11 @@ public class PropiedadInmueble {
     public PropiedadInmueble() {
     }
 
-    public PropiedadInmueble(String accesibilidad, String caracteristicas, String dirección, String forma, int idLocal, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+    public PropiedadInmueble(String accesibilidad, String caracteristicas, String dirección,boolean estadoLocal, String forma, int idLocal, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
         this.accesibilidad = accesibilidad;
         this.caracteristicas = caracteristicas;
         this.direccion = dirección;
+        this.estadoLocal = estadoLocal;
         this.forma = forma;
         this.idLocal = idLocal;
         this.precioTazado = precioTazado;
@@ -39,6 +40,22 @@ public class PropiedadInmueble {
         this.tipoLocal = tipoLocal;
         this.zona = zona;
     }
+
+    public PropiedadInmueble(String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+        this.accesibilidad = accesibilidad;
+        this.caracteristicas = caracteristicas;
+        this.direccion = direccion;
+        this.duenio = duenio;
+        this.estadoLocal = estadoLocal;
+        this.forma = forma;
+        this.idLocal = idLocal;
+        this.ocupante = ocupante;
+        this.precioTazado = precioTazado;
+        this.superficieMinima = superficieMinima;
+        this.tipoLocal = tipoLocal;
+        this.zona = zona;
+    }
+    
 
     public String getAccesibilidad() {
         return accesibilidad;

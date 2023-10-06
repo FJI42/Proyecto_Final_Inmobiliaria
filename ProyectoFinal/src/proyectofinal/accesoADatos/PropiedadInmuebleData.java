@@ -7,10 +7,10 @@ package proyectofinal.accesoADatos;
 import proyectofinal.accesoADatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import proyectofinal.Entidades.PropiedadInmueble;
 
 /**
@@ -49,11 +49,43 @@ public class PropiedadInmuebleData {
             ps.setString(11, propInmueble.getZona());
             
             ps.executeUpdate();
-
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            
+            if (rs.next()){
+                JOptionPane.showMessageDialog(null, "Propiedad Imnueble agregada exitosamente!");
+            }
+            
+            
         } catch (SQLException ex) {
-            Logger.getLogger(PropiedadInmuebleData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
         }
         
+        
+    }
+    
+    public void EliminarPropiedadInmueble(PropiedadInmueble propInmueble){
+        
+    }
+    
+    public void ModificarPropiedadInmueble(PropiedadInmueble propInmueble){
+        
+    }
+    
+    public PropiedadInmueble buscarPropInmueble(int codigo){
+        PropiedadInmueble prop = null;
+        return prop;    
+    }
+    
+    public void CompletarLocal(){
+        
+    }
+    
+    public void EnviarRequisitos(){
+        
+    }
+    
+    public void FijarPrecio(){
         
     }
 }
