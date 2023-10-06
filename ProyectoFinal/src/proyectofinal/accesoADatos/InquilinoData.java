@@ -58,11 +58,11 @@ public class InquilinoData {
                         JOptionPane.showMessageDialog(null, "Inquilino Guardado");
                     }
                 } catch (SQLException ex) {
-                   
+                   JOptionPane.showMessageDialog(null, "Error al guardar");
                 }
             }
         } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
+             JOptionPane.showMessageDialog(null, "Error en a la tabla Inquilino");
         }
     } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");

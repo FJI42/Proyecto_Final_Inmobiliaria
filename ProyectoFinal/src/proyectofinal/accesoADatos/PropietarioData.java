@@ -52,19 +52,21 @@ public class PropietarioData {
                     ResultSet rs = ps.getGeneratedKeys();
                     if (rs.next()) {
                         propietario1.setIdPropietario(rs.getInt(1));
-                        JOptionPane.showMessageDialog(null, "propietario Guardado");
+                        JOptionPane.showMessageDialog(null, "Propietario Guardado");
                     }
                 } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error al guardar");
 }   }
-            }
+            
         } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla propietario");
+             JOptionPane.showMessageDialog(null, "Error en la tabla Propietario");}
         }catch (SQLException e) {
-         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla propietario");
+         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
            
     
     }
   }
+}
 
     
     
