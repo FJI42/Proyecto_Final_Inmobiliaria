@@ -176,7 +176,7 @@ public class InquilinoData {
      
        public void modificarInquilino(Inquilino inquilino){
             
-            String sql="UPDATE `inquilino` SET `Apellido`='?',`Nombre`='?',`DNI`='?',`Detalles`='?',`Tipo`=?,`Estado`='?' WHERE ID_Inquilino=?";
+            String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,Detalles=?,Tipo=?,Estado=? WHERE ID_Inquilino=?";
             
         try {
             PreparedStatement ps= con.prepareStatement(sql);

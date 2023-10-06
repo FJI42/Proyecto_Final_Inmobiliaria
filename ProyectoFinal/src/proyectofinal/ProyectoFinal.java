@@ -29,9 +29,15 @@ public class ProyectoFinal {
         // TODO code application logic here
          Connection con = Conexion.getConexion();
          
+
          Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
          InquilinoData inD = new InquilinoData();
          inD.AgregarInquilino(in);
+
+//         Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
+//         InquilinoData inD = new InquilinoData();
+//         inD.AgregarInquilino(in);
+
 //         inD.BajaInquilino(4);
 //         Inquilino in = inD.BuscarInquilino(1);
 //          if(in!=null){
@@ -58,7 +64,7 @@ public class ProyectoFinal {
 //        System.out.println(in.getNombre());
 //        System.out.println(in.getTipo());
 //}
-// Inquilino inquilino = new Inquilino(7,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
+// Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
 //          inD.modificarInquilino(inquilino);
 
  Inquilino inquilino = new Inquilino(1,"Leiva Cheik Ali","Carlos", 87654321,"paga el alquiler a tiempo","Estudiante ", true);
