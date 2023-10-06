@@ -140,6 +140,14 @@ public class PropiedadInmueble {
         this.tipoLocal = tipoLocal;
     }
 
+    public int getDuenio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getOcupante() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 }
