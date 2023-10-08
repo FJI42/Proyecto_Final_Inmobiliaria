@@ -20,6 +20,8 @@ public class ContratoAlquiler {
     public ContratoAlquiler() {
     }
 
+    
+    
     public ContratoAlquiler(PropiedadInmueble Propiedad) {
         this.Propiedad = Propiedad;
     }
@@ -41,7 +43,9 @@ public class ContratoAlquiler {
         this.Vendedor = Vendedor;
     }
     
+    
 
+    
     public char getMarca() {
         return Marca;
     }

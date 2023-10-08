@@ -11,6 +11,7 @@ import proyectofinal.Entidades.Inquilino;
  * @author MCali
  */
 public class PropiedadInmueble {
+    private int ID_Local; 
     private String accesibilidad ; 
     private String caracteristicas ; 
     private String direccion ;
@@ -28,20 +29,8 @@ public class PropiedadInmueble {
     public PropiedadInmueble() {
     }
 
-    public PropiedadInmueble(String accesibilidad, String caracteristicas, String dirección,boolean estadoLocal, String forma, int idLocal, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
-        this.accesibilidad = accesibilidad;
-        this.caracteristicas = caracteristicas;
-        this.direccion = dirección;
-        this.estadoLocal = estadoLocal;
-        this.forma = forma;
-        this.idLocal = idLocal;
-        this.precioTazado = precioTazado;
-        this.superficieMinima = superficieMinima;
-        this.tipoLocal = tipoLocal;
-        this.zona = zona;
-    }
-
-    public PropiedadInmueble(String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+    public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+        this.ID_Local = ID_Local;
         this.accesibilidad = accesibilidad;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
@@ -55,7 +44,15 @@ public class PropiedadInmueble {
         this.tipoLocal = tipoLocal;
         this.zona = zona;
     }
+
     
+    public int getID_Local() {
+        return ID_Local;
+    }
+
+    public void setID_Local(int ID_Local) {
+        this.ID_Local = ID_Local;
+    }
 
     public String getAccesibilidad() {
         return accesibilidad;
@@ -140,13 +137,23 @@ public class PropiedadInmueble {
         this.tipoLocal = tipoLocal;
     }
 
-    public int getDuenio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Propietario getDuenio() {
+        return duenio;
     }
 
-    public int getOcupante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Inquilino getOcupante() {
+        return ocupante;
     }
+
+    public void setDuenio(Propietario duenio) {
+        this.duenio = duenio;
+    }
+
+    public void setOcupante(Inquilino ocupante) {
+        this.ocupante = ocupante;
+    }
+
+    
 
 
 

@@ -30,23 +30,22 @@ public class PropiedadInmuebleData {
     FijarPrecios(float)*/
     
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
-        String sql="INSERT INTO propiedad inmueble(Accesibilidad, Caracteristicas, Direccion, Dueño, EstadoLocal, Forma, Ocupante, PrecioTazado, SuperficieMin, TipoLocal, Zona) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO propiedadinmueble(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         
         try{
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-            ps.setString(1, propInmueble.getAccesibilidad());
-            ps.setString(2, propInmueble.getCaracteristicas());
-            ps.setString(3, propInmueble.getDireccion());
-            ps.setInt(4, propInmueble.getDuenio());
-            ps.setBoolean(5, propInmueble.isEstadoLocal());
-            ps.setString(6, propInmueble.getForma());
-            ps.setInt(7, propInmueble.getOcupante());
-            ps.setFloat(8, propInmueble.getPrecioTazado());
-            ps.setInt(9, propInmueble.getSuperficieMinima());
-            ps.setString(10, propInmueble.getTipoLocal());
-            ps.setString(11, propInmueble.getZona());
+            ps.setInt(1,propInmueble.getID_Local());
+            ps.setString(2, propInmueble.getAccesibilidad());
+            ps.setString(3, propInmueble.getCaracteristicas());
+            ps.setString(4, propInmueble.getDireccion());
+            ps.setInt(5, propInmueble.getDuenio().getIdPropietario());
+            ps.setBoolean(6, propInmueble.isEstadoLocal());
+            ps.setString(7, propInmueble.getForma());
+            ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
+            ps.setFloat(9, propInmueble.getPrecioTazado());
+            ps.setInt(10, propInmueble.getSuperficieMinima());
+            ps.setString(11, propInmueble.getTipoLocal());
+            ps.setString(12, propInmueble.getZona());
             
             ps.executeUpdate();
             
