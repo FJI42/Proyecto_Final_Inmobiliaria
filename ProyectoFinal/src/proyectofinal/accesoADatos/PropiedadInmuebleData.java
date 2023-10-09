@@ -4,12 +4,13 @@
  */
 package proyectofinal.accesoADatos;
 
-import proyectofinal.accesoADatos.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyectofinal.Entidades.PropiedadInmueble;
 
@@ -30,11 +31,13 @@ public class PropiedadInmuebleData {
     FijarPrecios(float)*/
     
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
-        String sql="INSERT INTO propiedadinmueble(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                
+        String sql="INSERT INTO `propiedad inmueble`(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         
         try{
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,propInmueble.getID_Local());
+            
+            ps.setInt(1, propInmueble.getIdLocal());
             ps.setString(2, propInmueble.getAccesibilidad());
             ps.setString(3, propInmueble.getCaracteristicas());
             ps.setString(4, propInmueble.getDireccion());
@@ -52,9 +55,10 @@ public class PropiedadInmuebleData {
             ResultSet rs = ps.getGeneratedKeys();
             
             if (rs.next()){
+                propInmueble.setIdLocal(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Propiedad Imnueble agregada exitosamente!");
             }
-            
+            ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
@@ -63,14 +67,54 @@ public class PropiedadInmuebleData {
         
     }
     
-    public void EliminarPropiedadInmueble(PropiedadInmueble propInmueble){
-        
+    public void EliminarPropiedadInmueble(int idLocal){
+       String sql="UPDATE `propiedad inmueble` SET Estado=0 WHERE ID_Local=? AND Estado= 1";  
+       
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, idLocal);
+            int filas=ps.executeUpdate();
+            if(filas==1){
+                JOptionPane.showMessageDialog(null, "Propiedad inmueble eliminada");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontro Propiedad Inmueble");
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+        }
     }
     
     public void ModificarPropiedadInmueble(PropiedadInmueble propInmueble){
-        
+        String sql="UPDATE `propiedad inmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+       
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(2, propInmueble.getAccesibilidad());
+            ps.setString(3, propInmueble.getCaracteristicas());
+            ps.setString(4, propInmueble.getDireccion());
+            ps.setInt(5, propInmueble.getDuenio().getIdPropietario());
+            ps.setBoolean(6, propInmueble.isEstadoLocal());
+            ps.setString(7, propInmueble.getForma());
+            ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
+            ps.setFloat(9, propInmueble.getPrecioTazado());
+            ps.setInt(10, propInmueble.getSuperficieMinima());
+            ps.setString(11, propInmueble.getTipoLocal());
+            ps.setString(12, propInmueble.getZona());
+            
+            int res=ps.executeUpdate();
+            
+            if (res>0){
+                JOptionPane.showMessageDialog(null, "Propiedad Imnueble modificada exitosamente!");
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo modificar Propiedad Imnueble");
+            }
+            ps.close();
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+        }
     }
-    
     public PropiedadInmueble buscarPropInmueble(int codigo){
         PropiedadInmueble prop = null;
         return prop;    
@@ -84,7 +128,25 @@ public class PropiedadInmuebleData {
         
     }
     
-    public void FijarPrecio(){
+    public float FijarPrecio(int idProp, Float nPrecio){
+        String sql="UPDATE `propiedad inmueble` SET nPrecio=? WHERE idProp = ?";
         
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setFloat(1, nPrecio);
+            ps.setInt(2, idProp);
+            
+            int res=ps.executeUpdate();
+            if(res>0){
+                JOptionPane.showMessageDialog(null, "precio actualizado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+        }
+        
+        
+        return nPrecio;
     }
 }

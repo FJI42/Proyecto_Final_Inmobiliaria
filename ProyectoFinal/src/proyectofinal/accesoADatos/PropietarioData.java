@@ -104,7 +104,7 @@ public class PropietarioData {
                 propietario.setDni(rs.getInt("Dni"));
                 propietario.setDomicilio(rs.getString("Domicilio"));
                 propietario.setTelefono(rs.getInt("Telefono"));
-//              propietario.setEstado(true); 
+              propietario.setEstado(true); 
                                    
              }else {                 
                 JOptionPane.showMessageDialog(null,"No existe ese Propietario");                

@@ -16,6 +16,7 @@ import proyectofinal.Entidades.ContratoAlquiler;
 import proyectofinal.Entidades.PropiedadInmueble;
 import proyectofinal.Entidades.Propietario;
 import proyectofinal.accesoADatos.ContratoAlquilerData;
+import proyectofinal.accesoADatos.PropiedadInmuebleData;
 import proyectofinal.accesoADatos.PropietarioData;
 
 /**
@@ -33,7 +34,7 @@ public class ProyectoFinal {
          
 //     
 //         Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
-         InquilinoData inD = new InquilinoData();
+      //   InquilinoData inD = new InquilinoData();
 //         inD.AgregarInquilino(in);
         
 //         Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
@@ -87,6 +88,8 @@ public class ProyectoFinal {
 //     Propietario prop = new Propietario (1,"Jimenez", "juansito", 12345678, "Lasheras", 123456, true);
 //     PropietarioData pd = new PropietarioData ();
 ////    pd.BajaPropietario(0);
+    // PropietarioData pd = new PropietarioData ();
+//    pd.BajaPropietario(0);
      
 //     for(Propietario in: pd.obtenerLosPropietarios()){
 //        
@@ -103,6 +106,12 @@ public class ProyectoFinal {
 //    }
 
 
+
+
+
+
+
+
 //        Propietario in = pd.BuscarPropietario(1);
 //          if(in!=null){
 //        System.out.println("dni "+ in.getDni());
@@ -111,23 +120,23 @@ public class ProyectoFinal {
 
     //ContratoAlquilerData
     
-        Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
+//        Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
+////         
+//        Propietario prop = new Propietario (1,"Jimenez", "juansito", 12345678, "Lasheras", 123456, true);
+//        //PropietarioData pd = new PropietarioData ();
+//
+//        PropiedadInmueble mi = new PropiedadInmueble(3,"Buena","Bien ubicado","Lamarca 123",prop,true,"Buena",1,inq,2300.0f,200,"Local","Urbano");
+//        //PropiedadInmuebleData piD= new PropiedadInmuebleData();
 //         
-        Propietario prop = new Propietario (1,"Jimenez", "juansito", 12345678, "Lasheras", 123456, true);
-        //PropietarioData pd = new PropietarioData ();
-
-        PropiedadInmueble mi = new PropiedadInmueble(3,"Buena","Bien ubicado","Lamarca 123",prop,true,"Buena",1,inq,2300.0f,200,"Local","Urbano");
-        //PropiedadInmuebleData piD= new PropiedadInmuebleData();
-         
-        
-        ContratoAlquiler ca= new ContratoAlquiler(4,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
-        ContratoAlquilerData caD= new ContratoAlquilerData(); 
-        //caD.crearContrato(ca); 
-        
-        Inquilino inquilino = new Inquilino(2,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
-        
-        ContratoAlquiler ca2= new ContratoAlquiler(4,inquilino, LocalDate.of(2100,8,8),LocalDate.of(2021,8,8),LocalDate.of(2022,8,8),'N',mi,"Josefina",true);       
-        //caD.renovacion(ca2); 
+//        
+//        ContratoAlquiler ca= new ContratoAlquiler(4,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
+//        ContratoAlquilerData caD= new ContratoAlquilerData(); 
+//        //caD.crearContrato(ca); 
+//        
+//        Inquilino inquilino = new Inquilino(2,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
+//        
+//        ContratoAlquiler ca2= new ContratoAlquiler(4,inquilino, LocalDate.of(2100,8,8),LocalDate.of(2021,8,8),LocalDate.of(2022,8,8),'N',mi,"Josefina",true);       
+//        //caD.renovacion(ca2); 
         
 //        ContratoAlquiler contrato = caD.buscarContrato(1);
 //            if (contrato != null) {
@@ -145,7 +154,35 @@ public class ProyectoFinal {
          
          //caD.cancelacion(1); 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
+
+         PropietarioData propD= new PropietarioData();
+         Propietario Cari=propD.BuscarPropietario(1);
+         
+         //InquilinoData inD= new InquilinoData();
+         Inquilino Ifran=inD.BuscarInquilino(1);
+         
+         PropiedadInmuebleData propInD = new PropiedadInmuebleData();
+         PropiedadInmueble propIn = new PropiedadInmueble("Accesible para discapacitados", "habitaciones,baño,garage,pileta","Belgrano 1002",Cari,true,"Rectangular",Ifran,1450000,30,"Residencial", "Suburbio residencial");
+         
+         propInD.AgregarPropiedadInmueble(propIn);
+        
+       
       }
     }
     

@@ -4,8 +4,6 @@
  */
 package proyectofinal.Entidades;
 
-import proyectofinal.Entidades.Inquilino;
-
 /**
  *
  * @author MCali
@@ -45,6 +43,19 @@ public class PropiedadInmueble {
         this.zona = zona;
     }
 
+    public PropiedadInmueble(String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+        this.accesibilidad = accesibilidad;
+        this.caracteristicas = caracteristicas;
+        this.direccion = direccion;
+        this.duenio = duenio;
+        this.estadoLocal = estadoLocal;
+        this.forma = forma;
+        this.ocupante = ocupante;
+        this.precioTazado = precioTazado;
+        this.superficieMinima = superficieMinima;
+        this.tipoLocal = tipoLocal;
+        this.zona = zona;
+    }
     
     public int getID_Local() {
         return ID_Local;
@@ -110,9 +121,7 @@ public class PropiedadInmueble {
     public void setSuperficieMinima(int superficieMinima) {
         this.superficieMinima = superficieMinima;
     }
-
     
-
     public String getZona() {
         return zona;
     }
@@ -152,9 +161,6 @@ public class PropiedadInmueble {
     public void setOcupante(Inquilino ocupante) {
         this.ocupante = ocupante;
     }
-
-    
-
 
 
 }
