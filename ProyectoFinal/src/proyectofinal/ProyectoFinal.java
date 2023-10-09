@@ -40,7 +40,7 @@ public class ProyectoFinal {
 //        InquilinoData inD = new InquilinoData();
 //         inD.AgregarInquilino(in);
 
-//         inD.BajaInquilino(4);
+//         inD.BajaInquilino(3);
 //         Inquilino in = inD.BuscarInquilino(1);
 //          if(in!=null){
 //        System.out.println("dni "+ in.getDNI());
@@ -109,30 +109,41 @@ public class ProyectoFinal {
 //        System.out.println("apellido "+ in.getApelidoPropietario());}
         
 
-    //crear contrato 
+    //ContratoAlquilerData
     
-        Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654324, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
+        Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
 //         
         Propietario prop = new Propietario (1,"Jimenez", "juansito", 12345678, "Lasheras", 123456, true);
         //PropietarioData pd = new PropietarioData ();
 
-        PropiedadInmueble mi = new PropiedadInmueble(2,"Buena","Bien ubicado","Lamarca 123",prop,true,"Buena",4,inq,2300.0f,200,"Local","Urbano");
+        PropiedadInmueble mi = new PropiedadInmueble(3,"Buena","Bien ubicado","Lamarca 123",prop,true,"Buena",1,inq,2300.0f,200,"Local","Urbano");
         //PropiedadInmuebleData piD= new PropiedadInmuebleData();
-        //piD.AgregarPropiedadInmueble(mi); No me funiona en la BD(Flor)
+         
         
-        //ContratoAlquiler ca= new ContratoAlquiler(2,inq, LocalDate.of(2020,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Jose");
+        ContratoAlquiler ca= new ContratoAlquiler(4,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
         ContratoAlquilerData caD= new ContratoAlquilerData(); 
-        //caD.crearContrato(ca);  
-//me da error "[ WARN] (main) Error: 1452-23000: Cannot add or update a child row: a foreign key constraint fails (`inmobiliaria_pf`.`contratoalquiler`, CONSTRAINT `c2` FOREIGN KEY (`Propiedad`) REFERENCES `propiedadinmueble` (`ID_Local`))"
-        Inquilino inquilino = new Inquilino(2,"Leiva Cheik Ali","Carlos", 87654321,"paga el alquiler a tiempo","Estudiante ", true);
- 
-        ContratoAlquiler ca2= new ContratoAlquiler(1,inquilino, LocalDate.of(2028,8,8),LocalDate.of(2021,8,8),LocalDate.of(2022,8,8),'A',mi,"Jose");       
-        caD.renovacion(ca2);
-//se conecta bien pero no me devuelve nada ni modifica la base de datos        
+        //caD.crearContrato(ca); 
         
+        Inquilino inquilino = new Inquilino(2,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
         
+        ContratoAlquiler ca2= new ContratoAlquiler(4,inquilino, LocalDate.of(2100,8,8),LocalDate.of(2021,8,8),LocalDate.of(2022,8,8),'N',mi,"Josefina",true);       
+        //caD.renovacion(ca2); 
         
-// Hay que agregar mas cosas, esta todo conectado 
+//        ContratoAlquiler contrato = caD.buscarContrato(1);
+//            if (contrato != null) {
+//            
+//             System.out.println("Inquilino: "+contrato.getInquilino());
+//             System.out.println("Fecha Final: "+contrato.getFecha_Final());
+//             System.out.println("Fecha Inicio: "+contrato.getFecha_Inicio());
+//             System.out.println("Fecha Realizacion: "+contrato.getFecha_Realizacion());
+//             System.out.println("Marca: "+contrato.getMarca());
+//             System.out.println("Propiedad: "+contrato.getPropiedad());
+//             System.out.println("Vendedor: "+contrato.getVendedor());
+//             
+//            
+//            } 
+         
+         //caD.cancelacion(1); 
     
         
       }

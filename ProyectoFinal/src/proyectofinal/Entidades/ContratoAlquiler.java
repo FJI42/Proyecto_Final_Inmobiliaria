@@ -16,23 +16,12 @@ public class ContratoAlquiler {
     private char Marca;
     private PropiedadInmueble Propiedad; 
     private String Vendedor;
+    private boolean Estado;
 
     public ContratoAlquiler() {
     }
 
-    
-    
-    public ContratoAlquiler(PropiedadInmueble Propiedad) {
-        this.Propiedad = Propiedad;
-    }
-
-    public ContratoAlquiler(char Marca) {
-        this.Marca = Marca;
-    }
-
-    
-
-    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor) {
+    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, boolean Estado) {
         this.ID_Contrato = ID_Contrato;
         this.Inquilino = Inquilino;
         this.Fecha_Final = Fecha_Final;
@@ -41,6 +30,26 @@ public class ContratoAlquiler {
         this.Marca = Marca;
         this.Propiedad = Propiedad;
         this.Vendedor = Vendedor;
+        this.Estado = Estado;
+    }
+
+    public boolean isEstado() {
+        return Estado;
+    }
+
+    public void setEstado(boolean Estado) {
+        this.Estado = Estado;
+    }
+
+    
+    
+    
+    public ContratoAlquiler(PropiedadInmueble Propiedad) {
+        this.Propiedad = Propiedad;
+    }
+
+    public ContratoAlquiler(char Marca) {
+        this.Marca = Marca;
     }
     
     
