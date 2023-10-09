@@ -171,18 +171,23 @@ public class ProyectoFinal {
 
         
 
-         PropietarioData propD= new PropietarioData();
-         Propietario Cari=propD.BuscarPropietario(1);
-         
-         //InquilinoData inD= new InquilinoData();
-         Inquilino Ifran=inD.BuscarInquilino(1);
-         
-         PropiedadInmuebleData propInD = new PropiedadInmuebleData();
-         PropiedadInmueble propIn = new PropiedadInmueble("Accesible para discapacitados", "habitaciones,baño,garage,pileta","Belgrano 1002",Cari,true,"Rectangular",Ifran,1450000,30,"Residencial", "Suburbio residencial");
-         
-         propInD.AgregarPropiedadInmueble(propIn);
-        
+//         PropietarioData propD= new PropietarioData();
+//         Propietario Cari=propD.BuscarPropietario(1);
+//         
+//         //InquilinoData inD= new InquilinoData();
+//         Inquilino Ifran=inD.BuscarInquilino(1);
+//         
+//         PropiedadInmuebleData propInD = new PropiedadInmuebleData();
+//         PropiedadInmueble propIn = new PropiedadInmueble("Accesible para discapacitados", "habitaciones,baño,garage,pileta","Belgrano 1002",Cari,true,"Rectangular",Ifran,1450000,30,"Residencial", "Suburbio residencial");
+//         
+//         propInD.AgregarPropiedadInmueble(propIn);
+//        
        
+//    Propietario prop = new Propietario(1,"C", "Francisco", 1304613, "av.Cabral", 34456780, true);
+//    PropietarioData pd = new PropietarioData();
+//////    pd.agregaPropietario(prop);
+////pd.modificarPropietario(prop);
+//pd.BajaPropietario(1);
       }
     }
     

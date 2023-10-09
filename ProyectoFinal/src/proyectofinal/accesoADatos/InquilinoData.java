@@ -32,13 +32,15 @@ public class InquilinoData {
     String consulta = "SELECT * FROM inquilino WHERE `DNI` = ? ";
 
     try {
+        try{
         PreparedStatement statement = con.prepareStatement(consulta);
         statement.setInt(1, inquilino.getDNI());
 
         try (ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
                 
-                System.out.println("El registro ya existe en la base de datos.");
+             
+                JOptionPane.showMessageDialog(null, "El registro ya existe en la base de datos.");
             } else {
                 
                 String sql = "INSERT INTO `inquilino`(`Apellido`, `Nombre`, `DNI`, `Detalles`, `Tipo`, `Estado`) VALUES (?,?,?,?,?,?)";
@@ -64,6 +66,10 @@ public class InquilinoData {
         } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Error en a la tabla Inquilino");
         }
+         }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
     } catch (SQLException e) {
              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
     
@@ -73,6 +79,7 @@ public class InquilinoData {
     public void BajaInquilino(int id){
          String sql="UPDATE inquilino SET estado=0 WHERE ID_Inquilino=? AND estado=1 ";
         try {
+            try{
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,id);
             int exito = ps.executeUpdate(); 
@@ -83,7 +90,10 @@ public class InquilinoData {
                  JOptionPane.showMessageDialog(null, "No se encontro el Inquilino");
                 
             }
-            
+             }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
         }
@@ -94,6 +104,7 @@ public class InquilinoData {
      String sql= "SELECT `ID_Inquilino`, `Apellido`, `Nombre`, `DNI`, `Detalles`, `Tipo`, `Estado` FROM `inquilino` WHERE ID_Inquilino=? AND Estado=1";
             Inquilino inquilino=null; 
      try {
+         try{
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,id);
             ResultSet rs= ps.executeQuery();
@@ -111,7 +122,10 @@ public class InquilinoData {
                 JOptionPane.showMessageDialog(null,"No existe ese Inquilino");                
             }             
              ps.close();
-                                                   
+         }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
         }
@@ -179,6 +193,7 @@ public class InquilinoData {
             String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,Detalles=?,Tipo=?,Estado=? WHERE ID_Inquilino=?";
             
         try {
+            try{
             PreparedStatement ps= con.prepareStatement(sql);
             
             ps.setString(1,inquilino.getApellido());
@@ -192,12 +207,15 @@ public class InquilinoData {
             int exito= ps.executeUpdate();
             
             if(exito==1){
-                 System.out.println("hasta aca funciona");
+      
                 JOptionPane.showMessageDialog(null, "Inquilino modificado");
             }else{
                  JOptionPane.showMessageDialog(null, "No se encontro el inquilino que busca");
             }
-            
+            }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }          
                     
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Inquilino");
