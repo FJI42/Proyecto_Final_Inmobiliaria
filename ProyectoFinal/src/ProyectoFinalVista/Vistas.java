@@ -60,6 +60,11 @@ public class Vistas extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Contratos");
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -81,6 +86,16 @@ public class Vistas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+         jDesktopPane1.removeAll();
+         jDesktopPane1.repaint();
+         ContratoAlquiler nombre=new ContratoAlquiler();      
+         nombre.setVisible(true);
+         jDesktopPane1.add(nombre);
+         jDesktopPane1.moveToFront(nombre); 
+    }//GEN-LAST:event_jMenu5ActionPerformed
 
     /**
      * @param args the command line arguments
