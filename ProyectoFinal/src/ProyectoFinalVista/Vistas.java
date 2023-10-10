@@ -51,6 +51,11 @@ public class Vistas extends javax.swing.JFrame {
         );
 
         jMenu2.setText("Inquilinos");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Propietarios");
@@ -81,6 +86,15 @@ public class Vistas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+jDesktopPane1.removeAll();
+         jDesktopPane1.repaint();
+        InquilinosVistas nombre = new  InquilinosVistas();      
+       nombre.setVisible(true);
+        jDesktopPane1.add(nombre);
+         jDesktopPane1.moveToFront(nombre);        
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
