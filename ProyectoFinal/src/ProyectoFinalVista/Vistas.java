@@ -5,12 +5,14 @@
  */
 package ProyectoFinalVista;
 
+import java.awt.Dimension;
+import ProyectoFinalVista.InquilinoNuevo;
 /**
  *
  * @author Electra
  */
 public class Vistas extends javax.swing.JFrame {
-
+public int v = 0;
     /**
      * Creates new form Vistas
      */
@@ -28,14 +30,30 @@ public class Vistas extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem5.setText("jMenuItem5");
+
+        jMenu6.setText("jMenu6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,11 +61,11 @@ public class Vistas extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 848, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGap(0, 673, Short.MAX_VALUE)
         );
 
         jMenu2.setText("Inquilinos");
@@ -56,6 +74,15 @@ public class Vistas extends javax.swing.JFrame {
                 jMenu2ActionPerformed(evt);
             }
         });
+
+        jMenuItem3.setText("Administrar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Propietarios");
@@ -64,8 +91,8 @@ public class Vistas extends javax.swing.JFrame {
         jMenu4.setText("Propiedades");
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Contratos");
-        jMenuBar1.add(jMenu5);
+        jMenu7.setText("Contrato");
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -73,28 +100,33 @@ public class Vistas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-jDesktopPane1.removeAll();
-         jDesktopPane1.repaint();
-        InquilinosVistas nombre = new  InquilinosVistas();      
-       nombre.setVisible(true);
-        jDesktopPane1.add(nombre);
-         jDesktopPane1.moveToFront(nombre);        
+    
     }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+     jDesktopPane1.removeAll();
+    jDesktopPane1.repaint();
+    
+    InquilinosVistas nombre = new InquilinosVistas();
+//    nombre.setPreferredSize(new Dimension(600, 800)); // Establece las dimensiones preferidas
+    nombre.pack(); // Ajusta el tamaño de la ventana automáticamente
+    nombre.setVisible(true);
+
+    jDesktopPane1.add(nombre);
+    jDesktopPane1.moveToFront(nombre);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +169,13 @@ jDesktopPane1.removeAll();
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package ProyectoFinalVista;
-
+import ProyectoFinalVista.InquilinoNuevo;
+import ProyectoFinalVista.Vistas;
+import javax.swing.JDesktopPane;
 /**
  *
  * @author User
@@ -110,7 +112,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
                         .addGap(104, 104, 104)
                         .addComponent(btnNuevo)
                         .addGap(49, 49, 49)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,9 +144,8 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,6 +157,18 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
+    setVisible(false);
+    
+    // Muestra la nueva ventana
+    InquilinoNuevo nombre = new InquilinoNuevo();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+    nombre.setVisible(true);
+     dispose();
+System.out.println("hasta aca funciona");
+ 
+        
+      
     }//GEN-LAST:event_btnNuevoActionPerformed
 
 
