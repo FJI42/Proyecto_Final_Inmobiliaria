@@ -42,6 +42,7 @@ public int v = 0;
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -92,6 +93,15 @@ public int v = 0;
         jMenuBar1.add(jMenu4);
 
         jMenu7.setText("Contrato");
+
+        jMenuItem6.setText("Administracion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem6);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -127,6 +137,16 @@ public int v = 0;
     jDesktopPane1.add(nombre);
     jDesktopPane1.moveToFront(nombre);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        Contrato_Alquiler nombre = new Contrato_Alquiler();
+        nombre.setVisible(true);
+        jDesktopPane1.add(nombre);
+        jDesktopPane1.moveToFront(nombre);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,5 +197,6 @@ public int v = 0;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
