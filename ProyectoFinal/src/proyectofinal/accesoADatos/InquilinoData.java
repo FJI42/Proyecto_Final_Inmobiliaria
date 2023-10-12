@@ -190,7 +190,7 @@ public class InquilinoData {
      
        public void modificarInquilino(Inquilino inquilino){
             
-            String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,Detalles=?,Tipo=?,Estado=? WHERE ID_Inquilino=?";
+            String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,Detalles=?,Tipo=?,Estado=? WHERE DNI=?";
             
         try {
             try{
@@ -202,7 +202,7 @@ public class InquilinoData {
             ps.setString(4, inquilino.getDetalle());
             ps.setString(5, inquilino.getTipo());
             ps.setBoolean(6, inquilino.isEstado());
-            ps.setInt(7, inquilino.getId_Inquilino());
+//            ps.setInt(7, inquilino.getId_Inquilino());
            
             int exito= ps.executeUpdate();
             

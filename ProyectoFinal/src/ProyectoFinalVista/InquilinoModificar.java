@@ -5,19 +5,24 @@
  */
 package ProyectoFinalVista;
 
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import proyectofinal.Entidades.Inquilino;
+import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.InquilinoData;
 
 /**
  *
  * @author User
  */
 public class InquilinoModificar extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form InquilinoModificar
-     */
+private Connection con= null;
+public InquilinoData in = new InquilinoData();   
     public InquilinoModificar() {
         initComponents();
+        con= Conexion.getConexion();
     }
 
     /**
@@ -51,6 +56,23 @@ public class InquilinoModificar extends javax.swing.JInternalFrame {
                 txtApellidoActionPerformed(evt);
             }
         });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
 
         txtADetalle.setColumns(20);
         txtADetalle.setRows(5);
@@ -74,6 +96,11 @@ public class InquilinoModificar extends javax.swing.JInternalFrame {
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +204,42 @@ public class InquilinoModificar extends javax.swing.JInternalFrame {
     nombre.setVisible(true);
      dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+       try{
+        int DNI = parseInt(txtDNI.getText());
+        String Apellido = txtApellido.getText();
+        String Nombre = txtNombre.getText();
+        String Detalle = txtADetalle.getText();
+        int i =  cboTipo.getSelectedIndex();
+        System.out.println(i);
+        String Tipo =  cboTipo.getItemAt(i);
+        
+        Inquilino inq = new Inquilino(Apellido, Nombre, DNI, Detalle, Tipo, true);
+        in.modificarInquilino(inq);
+       }catch(NumberFormatException E){
+            JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
+       }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
