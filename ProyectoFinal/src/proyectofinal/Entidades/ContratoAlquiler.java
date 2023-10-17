@@ -124,6 +124,12 @@ public class ContratoAlquiler {
     public void setVendedor(String Vendedor) {
         this.Vendedor = Vendedor;
     }
+
+    @Override
+    public String toString() {
+        return "" + ID_Contrato + Inquilino+ Fecha_Final + Fecha_Inicio  + Fecha_Realizacion + Marca+ Propiedad + Vendedor+ Estado;
+    }
+
     
     
     
