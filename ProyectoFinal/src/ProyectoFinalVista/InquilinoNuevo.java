@@ -9,19 +9,26 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import ProyectoFinalVista.Vistas;
 import ProyectoFinalVista.InquilinosVistas;
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import proyectofinal.Entidades.Inquilino;
+import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.InquilinoData;
 /**
  *
  * @author User
  */
 public class InquilinoNuevo extends javax.swing.JInternalFrame {
-
+private Connection con= null;
+public InquilinoData in = new InquilinoData();   
     /**
      * Creates new form Inquilino
      */
     public InquilinoNuevo() {
         initComponents();   
-       
+       con= Conexion.getConexion();
 
     
     
@@ -52,13 +59,30 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         cboTipo = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnCancelar1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoActionPerformed(evt);
+            }
+        });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
             }
         });
 
@@ -81,7 +105,7 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel5.setText("Detalle");
 
-        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Soltero", "Pareja", "Familia" }));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,10 +114,10 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar1.setText("Salir");
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnCancelar1ActionPerformed(evt);
             }
         });
 
@@ -101,12 +125,6 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(85, 85, 85)
-                .addComponent(btnGuardar)
-                .addGap(195, 195, 195))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +150,12 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
                 .addGap(109, 109, 109)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar1)
+                .addGap(89, 89, 89)
+                .addComponent(btnGuardar)
+                .addGap(187, 187, 187))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +170,7 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,7 +188,7 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
                         .addGap(120, 120, 120))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar)
+                            .addComponent(btnCancelar1)
                             .addComponent(btnGuardar))
                         .addGap(65, 65, 65))))
         );
@@ -187,23 +211,86 @@ public class InquilinoNuevo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+          try{
         
-        InquilinosVistas nombre = new InquilinosVistas();   
+           
+          String ValidarDNI = txtDNI.getText();
+          int DNI = parseInt(txtDNI.getText());    
+          String Apellido = txtApellido.getText();
+          String Nombre = txtNombre.getText();
+          String Detalle = txtADetalle.getText();
+          int i =  cboTipo.getSelectedIndex();
+          
+          String Tipo =  cboTipo.getItemAt(i);
+          if (!Apellido.trim().isEmpty() && !Nombre.trim().isEmpty() && !Detalle.trim().isEmpty()) {
+    // La cadena no está vacía y no tiene espacios al principio ni al final
+           if(ValidarDNI.length() != 8){
+                  JOptionPane.showMessageDialog(null, "El DNI esta incompleto.");
+              } else{    
+ 
+          Inquilino inq = new Inquilino( Apellido, Nombre, DNI, Detalle, Tipo, true);
+          in.AgregarInquilino(inq);
+        
+          txtDNI.setText("");    
+          txtApellido.setText("");
+          txtNombre.setText("");
+          txtADetalle.setText("");
+          cboTipo.setSelectedItem("Estudiante");
+           }
+    }else{
+              
+            
+              JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
+          
+          }
+      }catch(NumberFormatException E){
+          JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
+      } 
+                 
+       
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        // TODO add your handling code here:
+       char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtDNI.getText().length() >= 8)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        // TODO add your handling code here:
+         InquilinosVistas nombre = new InquilinosVistas();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
     nombre.setVisible(true);
      dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cboTipo;
     private javax.swing.JLabel jLabel1;
