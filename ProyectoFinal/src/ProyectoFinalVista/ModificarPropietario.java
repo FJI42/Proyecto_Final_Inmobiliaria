@@ -110,10 +110,10 @@ public class ModificarPropietario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLTelefono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTelefono.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLTelefono.setText("Telefono");
 
-        jLDomicilio.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLDomicilio.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLDomicilio.setText("Domicilio");
 
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -153,7 +153,7 @@ public class ModificarPropietario extends javax.swing.JInternalFrame {
                         .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLDomicilio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                         .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
