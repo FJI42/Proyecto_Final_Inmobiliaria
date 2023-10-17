@@ -153,20 +153,16 @@ public class ProyectoFinal {
 //            } 
          
          //caD.cancelacion(1); 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+         
+         PropiedadInmuebleData piD= new PropiedadInmuebleData();
+         for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
+        
+        System.out.println(prop.getID_Local());
+        System.out.println(prop.getAccesibilidad());
+        System.out.println(prop.getDuenio());
+        System.out.println(prop.getCaracteristicas()); //salen errores 
+        
+}
 
 
         
@@ -188,6 +184,8 @@ public class ProyectoFinal {
 //////    pd.agregaPropietario(prop);
 ////pd.modificarPropietario(prop);
 //pd.BajaPropietario(1);
+
+
       }
     }
     

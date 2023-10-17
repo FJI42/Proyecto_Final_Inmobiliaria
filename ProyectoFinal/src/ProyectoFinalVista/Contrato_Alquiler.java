@@ -2,10 +2,14 @@ package ProyectoFinalVista;
 
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import proyectofinal.accesoADatos.*;
 import proyectofinal.Entidades.*;
@@ -24,7 +28,7 @@ private Connection con= null;
         initComponents();
         con= Conexion.getConexion();
         cargarCombo();
-//        cargarCombo2();
+        cargarCombo2(); 
     }
 
     /**
@@ -124,13 +128,13 @@ private Connection con= null;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jbCrearContrato)
                         .addGap(74, 74, 74)
                         .addComponent(jbRenovarContrato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(84, 84, 84)
                         .addComponent(jbCancelarContrato))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
@@ -146,22 +150,23 @@ private Connection con= null;
                             .addComponent(jLabel6))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jcInquilinos, 0, 79, Short.MAX_VALUE))
-                                .addGap(78, 78, 78)
-                                .addComponent(jbBuscarContrato))
-                            .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jrbEstado)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcInquilinos, 0, 79, Short.MAX_VALUE)
+                                    .addComponent(jTextField1))
+                                .addGap(78, 78, 78)
+                                .addComponent(jbBuscarContrato))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcPropiedades, javax.swing.GroupLayout.Alignment.LEADING, 0, 76, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jbSalir)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +221,7 @@ private Connection con= null;
                             .addComponent(jbCancelarContrato)
                             .addComponent(jbSalir)))
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 37, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,17 +327,18 @@ private Connection con= null;
 
     }
     
-//    private void cargarCombo2(){ 
-//        
-//        PropiedadInmuebleData piD = new PropiedadInmuebleData();
-//        ArrayList<PropiedadInmueble> propiedad = new ArrayList<>();
-//
-//        for (PropiedadInmueble prop : piD.buscarPropInmueble()) {
-//            propiedad.add(prop);
-//            jcPropiedades.addItem(prop);
-//        }
-//
-//    }
+     private void cargarCombo2(){ 
+        
+        PropiedadInmuebleData piD = new PropiedadInmuebleData();
+        ArrayList<PropiedadInmueble> propiedad = new ArrayList<>();
+
+        for (PropiedadInmueble prop : piD.obtenerLasPropiedades()) {
+            propiedad.add(prop);
+            jcPropiedades.addItem(prop);
+            
+        } //NO carga el combo por errores en el metodo 
+    }
     
+
 
 }

@@ -9,10 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import proyectofinal.Entidades.Inquilino;
 import proyectofinal.Entidades.PropiedadInmueble;
+import proyectofinal.Entidades.Propietario;
 
 /**
  *
@@ -149,4 +151,53 @@ public class PropiedadInmuebleData {
         
         return nPrecio;
     }
+    
+    public List<PropiedadInmueble> obtenerLasPropiedades(){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM propiedadinmueble";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Dueño");
+                     int idInquilino = rs.getInt("Inquilino");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(true);
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);  //"Error al acceder a la tabla Propiedad Inmueble");
+                System.out.println(ex);
+            }
+        
+        return propiedad; 
+       } //Salta errores 
 }

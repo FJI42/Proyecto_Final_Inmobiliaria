@@ -164,7 +164,7 @@ public class PropiedadInmueble {
 
     @Override
     public String toString() {
-        return "" + ID_Local+ accesibilidad + caracteristicas + direccion + duenio + estadoLocal + forma + idLocal + ocupante + precioTazado + superficieMinima + tipoLocal + zona;
+        return ID_Local+", "+ accesibilidad+", " + caracteristicas+", " + direccion+", " + duenio+", " + estadoLocal+", " + forma+", " + idLocal+", " + ocupante+", " + precioTazado+", " + superficieMinima+", " + tipoLocal+", " + zona+", ";
     }
 
 

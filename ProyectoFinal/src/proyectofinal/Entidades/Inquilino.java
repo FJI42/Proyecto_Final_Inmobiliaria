@@ -105,7 +105,7 @@ public class Inquilino {
 
     @Override
     public String toString() {
-        return "" +Id_Inquilino+ Apellido +Nombre + DNI + Detalle + Tipo + Estado + propiedades;
+        return Id_Inquilino+", " + Apellido+ ", " + Nombre+ ", " + DNI+ ", " + Detalle+ ", " + Tipo+ ", " + Estado+", " + propiedades+", ";
     }
 
    
