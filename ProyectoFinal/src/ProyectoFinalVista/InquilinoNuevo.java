@@ -215,7 +215,7 @@ public InquilinoData in = new InquilinoData();
         // TODO add your handling code here:
           try{
         
-          
+           
           String ValidarDNI = txtDNI.getText();
           int DNI = parseInt(txtDNI.getText());    
           String Apellido = txtApellido.getText();
