@@ -105,7 +105,7 @@ public InquilinoData in = new InquilinoData();
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel5.setText("Detalle");
 
-        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Soltero", "Pareja", "Familia" }));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public InquilinoData in = new InquilinoData();
             }
         });
 
-        btnCancelar1.setText("Cancelar");
+        btnCancelar1.setText("Salir");
         btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelar1ActionPerformed(evt);
@@ -213,35 +213,79 @@ public InquilinoData in = new InquilinoData();
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+          try{
         
-        InquilinosVistas nombre = new InquilinosVistas();   
-       JDesktopPane desktopPane = getDesktopPane(); 
-       desktopPane.add(nombre);
-    nombre.setVisible(true);
-     dispose();
+          
+          String ValidarDNI = txtDNI.getText();
+          int DNI = parseInt(txtDNI.getText());    
+          String Apellido = txtApellido.getText();
+          String Nombre = txtNombre.getText();
+          String Detalle = txtADetalle.getText();
+          int i =  cboTipo.getSelectedIndex();
+          
+          String Tipo =  cboTipo.getItemAt(i);
+          if (!Apellido.trim().isEmpty() && !Nombre.trim().isEmpty() && !Detalle.trim().isEmpty()) {
+    // La cadena no está vacía y no tiene espacios al principio ni al final
+           if(ValidarDNI.length() != 8){
+                  JOptionPane.showMessageDialog(null, "El DNI esta incompleto.");
+              } else{    
+ 
+          Inquilino inq = new Inquilino( Apellido, Nombre, DNI, Detalle, Tipo, true);
+          in.AgregarInquilino(inq);
+        
+          txtDNI.setText("");    
+          txtApellido.setText("");
+          txtNombre.setText("");
+          txtADetalle.setText("");
+          cboTipo.setSelectedItem("Estudiante");
+           }
+    }else{
+              
+            
+              JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
+          
+          }
+      }catch(NumberFormatException E){
+          JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
+      } 
+                 
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+       char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
     }//GEN-LAST:event_txtApellidoKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         // TODO add your handling code here:
          char c = evt.getKeyChar();
         if(c<'0' || c>'9') evt.consume();
+        if(txtDNI.getText().length() >= 8)
+    {
+        evt.consume();
+    }
     }//GEN-LAST:event_txtDNIKeyTyped
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
         // TODO add your handling code here:
+         InquilinosVistas nombre = new InquilinosVistas();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+    nombre.setVisible(true);
+     dispose();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
 

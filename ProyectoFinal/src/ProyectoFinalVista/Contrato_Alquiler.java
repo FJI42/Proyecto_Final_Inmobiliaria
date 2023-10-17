@@ -322,17 +322,17 @@ private Connection con= null;
 
     }
     
-    private void cargarCombo2(){ 
-        
-        PropiedadInmuebleData piD = new PropiedadInmuebleData();
-        ArrayList<PropiedadInmueble> propiedad = new ArrayList<>();
-
-        for (PropiedadInmueble prop : piD.buscarPropInmueble()) {
-            propiedad.add(prop);
-            jcPropiedades.addItem(prop);
-        }
-
-    }
+//    private void cargarCombo2(){ 
+//        
+//        PropiedadInmuebleData piD = new PropiedadInmuebleData();
+//        ArrayList<PropiedadInmueble> propiedad = new ArrayList<>();
+//
+//        for (PropiedadInmueble prop : piD.buscarPropInmueble()) {
+//            propiedad.add(prop);
+//            jcPropiedades.addItem(prop);
+//        }
+//
+//    }
     
 
 }
