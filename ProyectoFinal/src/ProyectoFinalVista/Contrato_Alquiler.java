@@ -242,7 +242,7 @@ private Connection con= null;
     private void jbBuscarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarContratoActionPerformed
         // TODO add your handling code here:
         ContratoAlquiler contratoEncontrado= caD.buscarContrato(parseInt(jTextField1.getText()));
-     if(contratoEncontrado!=null){
+     if(contratoEncontrado!=null){ 
             JOptionPane.showMessageDialog(
          null,
          "Id_Contrato: " + contratoEncontrado.getID_Contrato() + "\n" +
