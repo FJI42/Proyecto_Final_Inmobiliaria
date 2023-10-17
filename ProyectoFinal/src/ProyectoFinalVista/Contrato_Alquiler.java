@@ -24,6 +24,7 @@ private Connection con= null;
         initComponents();
         con= Conexion.getConexion();
         cargarCombo();
+//        cargarCombo2();
     }
 
     /**
@@ -59,7 +60,7 @@ private Connection con= null;
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
 
-        setBackground(new java.awt.Color(51, 51, 255));
+        setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel2.setText("Codigo:");
 
@@ -237,18 +238,18 @@ private Connection con= null;
         // TODO add your handling code here:
         ContratoAlquiler contratoEncontrado= caD.buscarContrato(parseInt(jTextField1.getText()));
      if(contratoEncontrado!=null){
-       JOptionPane.showMessageDialog(
-    null,
-    "Id_Contrato: " + contratoEncontrado.getID_Contrato() + "\n" +
-    "Inquilino: " + contratoEncontrado.getInquilino() + "\n" +
-    "Fecha_Final: " + contratoEncontrado.getFecha_Final() + "\n" +
-    "Fecha_Inicio: " + contratoEncontrado.getFecha_Inicio() + "\n" +
-    "Fecha_Realizacion: " + contratoEncontrado.getFecha_Realizacion() + "\n" +
-    "Marca: " + contratoEncontrado.getMarca() + "\n" +
-    "Propiedad: " + contratoEncontrado.getPropiedad() + "\n" +
-    "Vendedor: " + contratoEncontrado.getVendedor() 
-        
-);  
+            JOptionPane.showMessageDialog(
+         null,
+         "Id_Contrato: " + contratoEncontrado.getID_Contrato() + "\n" +
+         "Inquilino: " + contratoEncontrado.getInquilino() + "\n" +
+         "Fecha_Final: " + contratoEncontrado.getFecha_Final() + "\n" +
+         "Fecha_Inicio: " + contratoEncontrado.getFecha_Inicio() + "\n" +
+         "Fecha_Realizacion: " + contratoEncontrado.getFecha_Realizacion() + "\n" +
+         "Marca: " + contratoEncontrado.getMarca() + "\n" +
+         "Propiedad: " + contratoEncontrado.getPropiedad() + "\n" +
+         "Vendedor: " + contratoEncontrado.getVendedor() 
+
+     );  
      }
         
     }//GEN-LAST:event_jbBuscarContratoActionPerformed
@@ -304,7 +305,7 @@ private Connection con= null;
     private javax.swing.JButton jbRenovarContrato;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Inquilino> jcInquilinos;
-    private javax.swing.JComboBox<String> jcPropiedades;
+    private javax.swing.JComboBox<PropiedadInmueble> jcPropiedades;
     private javax.swing.JRadioButton jrbEstado;
     // End of variables declaration//GEN-END:variables
 

@@ -103,6 +103,11 @@ public class Inquilino {
         this.Estado = Estado;
     }
 
+    @Override
+    public String toString() {
+        return "" +Id_Inquilino+ Apellido +Nombre + DNI + Detalle + Tipo + Estado + propiedades;
+    }
+
    
     
     
