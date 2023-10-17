@@ -104,4 +104,10 @@ public class Propietario {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "" + idPropietario + apelidoPropietario + nombrePropietario + dni + domicilio + telefono+ Estado ;
+    }
+
+    
 }

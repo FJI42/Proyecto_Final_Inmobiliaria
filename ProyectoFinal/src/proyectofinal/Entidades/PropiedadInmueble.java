@@ -162,5 +162,11 @@ public class PropiedadInmueble {
         this.ocupante = ocupante;
     }
 
+    @Override
+    public String toString() {
+        return "" + ID_Local+ accesibilidad + caracteristicas + direccion + duenio + estadoLocal + forma + idLocal + ocupante + precioTazado + superficieMinima + tipoLocal + zona;
+    }
 
+
+    
 }
