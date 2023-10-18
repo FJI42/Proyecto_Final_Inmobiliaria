@@ -175,6 +175,7 @@ public class InquilinoData {
                 in.setDNI(rs.getInt("dni"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setTipo(rs.getString("Tipo"));
+                in.setEstado(rs.getBoolean("Estado"));
                     inquilino.add(in);
                     
                 }

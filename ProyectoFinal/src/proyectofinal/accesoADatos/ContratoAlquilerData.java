@@ -41,17 +41,17 @@ public class ContratoAlquilerData {
                 System.out.println("El registro ya existe en la base de datos.");           
              } else {
          
-            String sql="INSERT INTO `contratoalquiler`(`ID_Contrato`, `Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?,?)";
+            String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?)";
 
             try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
-                 ps.setInt(1, ca.getID_Contrato());
-                ps.setInt(2,ca.getInquilino().getId_Inquilino());
-                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Final()));
-                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Inicio()));
-                ps.setDate(5, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
-                ps.setString(6, String.valueOf(ca.getMarca())); 
-                ps.setInt(7,ca.getPropiedad().getIdLocal());            
-                ps.setString(8, ca.getVendedor());
+                 //ps.setInt(1, ca.getID_Contrato());
+                ps.setInt(1,ca.getInquilino().getId_Inquilino());
+                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
+                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
+                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
+                ps.setString(5, String.valueOf(ca.getMarca())); 
+                ps.setInt(6,ca.getPropiedad().getIdLocal());            
+                ps.setString(7, ca.getVendedor());
                 
 
                 ps.executeUpdate();
