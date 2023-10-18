@@ -268,7 +268,7 @@ private Connection con= null;
         // TODO add your handling code here:
          int id = Integer.parseInt(jTextField1.getText());
         Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
-        //String apellido = txtApellido.getText();
+        
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
         String fecha_final = formatoFecha.format(jDateChooser1.getDate());
         LocalDate fechFin = LocalDate.parse(fecha_final, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
@@ -280,8 +280,8 @@ private Connection con= null;
         PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();
         String vendedor= jTextField5.getText();
         
-        
-       ContratoAlquiler cal = new ContratoAlquiler(id,inquilino, fechFin, fechIn, fechRea, marca,propiedad, vendedor , true);
+               
+       ContratoAlquiler cal = new ContratoAlquiler(id,inquilino, fechFin, fechIn, fechRea, marca,propiedad, vendedor,true);
         caD.crearContrato(cal);
         
         
@@ -336,7 +336,7 @@ private Connection con= null;
             propiedad.add(prop);
             jcPropiedades.addItem(prop);
             
-        } //NO carga el combo por errores en el metodo 
+        }
     }
     
 

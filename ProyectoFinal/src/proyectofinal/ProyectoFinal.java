@@ -160,7 +160,7 @@ public class ProyectoFinal {
         System.out.println(prop.getID_Local());
         System.out.println(prop.getAccesibilidad());
         System.out.println(prop.getDuenio());
-        System.out.println(prop.getCaracteristicas()); //salen errores 
+        System.out.println(prop.getCaracteristicas()); 
         
 }
 

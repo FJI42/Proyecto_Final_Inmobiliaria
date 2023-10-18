@@ -162,7 +162,7 @@ public class PropiedadInmuebleData {
 
                 while(rs.next()){
                      int idPropietario= rs.getInt("Dueño");
-                     int idInquilino = rs.getInt("Inquilino");
+                     int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
@@ -180,8 +180,7 @@ public class PropiedadInmuebleData {
                     prop.setEstadoLocal(true);
                     prop.setForma(rs.getString("Forma"));
          
-                    prop.setOcupante(inquilino);
-                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setOcupante(inquilino);           
                     prop.setPrecioTazado(rs.getInt("PrecioTazado"));
                     prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
                     prop.setTipoLocal(rs.getString("TipoLocal"));
@@ -194,10 +193,11 @@ public class PropiedadInmuebleData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);  //"Error al acceder a la tabla Propiedad Inmueble");
-                System.out.println(ex);
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
             }
         
         return propiedad; 
-       } //Salta errores 
+       } 
+    
 }
