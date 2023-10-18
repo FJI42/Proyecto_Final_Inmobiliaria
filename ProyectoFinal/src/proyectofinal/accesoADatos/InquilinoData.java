@@ -138,11 +138,11 @@ public class InquilinoData {
         String sql="SELECT * FROM inquilino WHERE estado=0";
          try {
                 PreparedStatement ps= con.prepareStatement(sql);
-//                ps.setInt(1,id); 
+                
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
                     Inquilino in =new Inquilino(); 
-//                    in.setId_Inquilino(id);
+                    in.setId_Inquilino(rs.getInt("ID_Inquilino"));
                 in.setApellido(rs.getString("apellido"));
                 in.setNombre(rs.getString("nombre"));
                  in.setDNI(rs.getInt("dni"));
@@ -169,10 +169,10 @@ public class InquilinoData {
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
                     Inquilino in =new Inquilino(); 
-//                    in.setId_Inquilino(id);
+                in.setId_Inquilino(rs.getInt("ID_Inquilino"));
                 in.setApellido(rs.getString("apellido"));
                 in.setNombre(rs.getString("nombre"));
-                 in.setDNI(rs.getInt("dni"));
+                in.setDNI(rs.getInt("dni"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setTipo(rs.getString("Tipo"));
                     inquilino.add(in);
