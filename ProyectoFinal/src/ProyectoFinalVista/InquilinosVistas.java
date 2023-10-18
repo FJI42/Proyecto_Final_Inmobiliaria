@@ -6,28 +6,18 @@
 package ProyectoFinalVista;
 import ProyectoFinalVista.InquilinoNuevo;
 import ProyectoFinalVista.Vistas;
-import java.sql.Connection;
-import javax.swing.DefaultCellEditor;
 import javax.swing.JDesktopPane;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import proyectofinal.Entidades.Inquilino;
-import proyectofinal.accesoADatos.Conexion;
-import proyectofinal.accesoADatos.InquilinoData;
 /**
  *
  * @author User
  */
 public class InquilinosVistas extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo = new DefaultTableModel();
-    private Connection con= null;
-    
+    /**
+     * Creates new form InquilinosVistas
+     */
     public InquilinosVistas() {
         initComponents();
-        con= Conexion.getConexion();
-        ArmarCabecera();
     }
 
     /**
@@ -40,11 +30,11 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnBuscar = new javax.swing.JButton();
-        txtBuscar = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        rdbIExistente = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         btnNuevo = new javax.swing.JButton();
         btnEliminar1 = new javax.swing.JButton();
@@ -54,42 +44,31 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        btnBuscar.setText("Buscar");
+        jButton1.setText("jButton1");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "NroInquilino", "Apellido", "Nombre", "DNI", "Detalle", "Tipo"
+                "Title", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(500);
-            jTable1.getColumnModel().getColumn(5).setMaxWidth(200);
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         }
 
-        rdbIExistente.setText("Inquilinos Existentes");
-        rdbIExistente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbIExistenteActionPerformed(evt);
-            }
-        });
+        jRadioButton1.setText("Inquilinos Existentes");
 
         jRadioButton2.setText("Inquilinos de Baja");
 
@@ -124,40 +103,40 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
                         .addComponent(btnNuevo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBuscar)
+                                .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(94, 94, 94)
-                                .addComponent(rdbIExistente)
+                                .addComponent(jRadioButton1)
                                 .addGap(98, 98, 98)
                                 .addComponent(jRadioButton2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbIExistente)
+                    .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
                 .addGap(39, 39, 39)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo)
                     .addComponent(btnEliminar1)
                     .addComponent(Modificar1))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,7 +147,10 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -202,58 +184,17 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
 //     dispose();
     }//GEN-LAST:event_Modificar1ActionPerformed
 
-    private void rdbIExistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbIExistenteActionPerformed
-        // TODO add your handling code here:
-        jRadioButton2.setSelected(false);
-        borrarFilas();
-        InquilinoData id = new InquilinoData();
-      
-        if ( rdbIExistente.isSelected() == true) {
-            for (Inquilino in : id.obtenerLosInquilinos()) {
-                modelo.addRow(new Object[]{in.getId_Inquilino(),in.getApellido(),in.getNombre(),in.getDNI(),in.getDetalle(),in.getTipo()});
-            }
-        }
-    }//GEN-LAST:event_rdbIExistenteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modificar1;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JRadioButton rdbIExistente;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
-    private void ArmarCabecera(){
-    modelo.addColumn("NroInquilino");
-    modelo.addColumn("Apellido");
-    modelo.addColumn("Nombre");
-    modelo.addColumn("DNI");
-    modelo.addColumn("Detalles");
-    TableColumn column = jTable1.getColumnModel().getColumn(5);
-    column.setPreferredWidth(600);
-
-    modelo.addColumn("Tipo");
-    jTable1.setModel(modelo);
-    jTable1.setDefaultEditor(Object.class, null);
-    
-JTextField txt = new JTextField();
-txt.setBorder(null);
-DefaultCellEditor editor = new DefaultCellEditor(txt); 
-
-
-jTable1.getColumnModel().getColumn(2).setCellEditor(editor);
-    
-}
-      private void borrarFilas(){
-        int f = jTable1.getRowCount()-1;
-        for(;f>=0;f--){
-              modelo.removeRow(f);
-    }
-    }
 }
