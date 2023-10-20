@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -273,24 +274,34 @@ private Connection con= null;
 
     private void jbCrearContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearContratoActionPerformed
         // TODO add your handling code here:
+        guardar(); 
+        jDateChooser4.setDate(null);
+        jDateChooser5.setDate(null);
+        jDateChooser6.setDate(null);
+        jrbEstado.setSelected(true);
+        jTextField3.setText("");
+        jTextField5.setText("");
+       
          //int id = Integer.parseInt(jTextField1.getText());
-        Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
-        
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-        String fecha_final = formatoFecha.format(jDateChooser4.getDate());
-        LocalDate fechFin = LocalDate.parse(fecha_final, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        String fecha_inicio = formatoFecha.format(jDateChooser5.getDate());
-        LocalDate fechIn = LocalDate.parse(fecha_inicio, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        String fecha_realizacion = formatoFecha.format(jDateChooser6.getDate());
-        LocalDate fechRea = LocalDate.parse(fecha_realizacion, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        char marca = jTextField3.getText().charAt(0);
-        PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();
-        String vendedor= jTextField5.getText();
-        
-               
-       ContratoAlquiler cal = new ContratoAlquiler(inquilino, fechFin, fechIn, fechRea, marca,propiedad, vendedor,true);
-        caD.crearContrato(cal);
-        
+//        Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+//        
+//        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+//        String fecha_final = formatoFecha.format(jDateChooser4.getDate());
+//        LocalDate fechFin = LocalDate.parse(fecha_final, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+//        String fecha_inicio = formatoFecha.format(jDateChooser5.getDate());
+//        LocalDate fechIn = LocalDate.parse(fecha_inicio, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+//        String fecha_realizacion = formatoFecha.format(jDateChooser6.getDate());
+//        LocalDate fechRea = LocalDate.parse(fecha_realizacion, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+//        char marca = jTextField3.getText().charAt(0);
+//        PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();
+//        String vendedor= jTextField5.getText();
+//        
+//               
+//       ContratoAlquiler cal = new ContratoAlquiler(inquilino, fechFin, fechIn, fechRea, marca,propiedad, vendedor,true);
+//        caD.crearContrato(cal);
+//        jTextField3.setText("");
+//        jTextField5.setText("");
+
         
     }//GEN-LAST:event_jbCrearContratoActionPerformed
 
@@ -364,7 +375,53 @@ private Connection con= null;
             
         }
     }
-    
+     
+     public void guardar() {
+        try {
+            if (jcInquilinos.getSelectedItem()!= null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jTextField3.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jTextField5.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
 
+                Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                char marca = jTextField3.getText().charAt(0);
+                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
+                String vendedor= jTextField5.getText();                              
+                boolean estado = jrbEstado.isSelected();
+                
+            ContratoAlquiler cal = new ContratoAlquiler(inquilino, fecha_final, fecha_inicio, fecha_realizacion, marca, propiedad, vendedor,estado);
+                caD.crearContrato(cal);
+                
+            } //else if (jcInquilinos.getSelectedItem() == null){
+              //  JOptionPane.showMessageDialog(this, "Debe elegir un Inquilino");           
+            //} 
+            else if (jTextField5.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No debe dejar el campo del Vendedor vacio");
+            } else if (jDateChooser4.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha Final");
+            } else if (jDateChooser5.getDate()==null){
+                JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha Inicio");    
+            } else if (jDateChooser4.getDate()==null){
+                JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha de Realizacion");
+            } else if (jTextField3.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No debe dejar la Marca vacia");
+            } 
+            //else if (jcPropiedades.getSelectedItem()==null){
+                //JOptionPane.showMessageDialog(this, "Debe seleccionar una Propiedad");
+            //} 
+             else if (jTextField5.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "No debe dejar el Vendedor vacio");
+            }
+            else if (jrbEstado.isSelected() == false) {
+                JOptionPane.showMessageDialog(this, "Debe dejar activado el campo estado");
+            }
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No debe dejar campos vacios");
+        }
+    }
+//    Me da un error de "[ WARN] (AWT-EventQueue-0) Error: 1452-23000: Cannot add or update a child row: a foreign key constraint fails (`inmobiliaria_pf`.`contratoalquiler`, CONSTRAINT `c2` FOREIGN KEY (`Propiedad`) REFERENCES `propiedadinmueble` (`ID_Local`))
+//    " cuando quiero crear un contrato alquiler
+//
 
 }
