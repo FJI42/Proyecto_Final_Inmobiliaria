@@ -11,34 +11,47 @@ public class Inquilino {
     private String Apellido; 
     private String Nombre;
     private int DNI;
+    private long CUIL;
     private String Detalle;
     private String Tipo; 
     private boolean Estado; 
     private ArrayList <PropiedadInmueble> propiedades;  
-    
- 
+
     public Inquilino() {
     }
 
-    public Inquilino(String Apellido, String Nombre, int DNI, String Detalle, String Tipo, boolean Estado) {
-        this.Apellido = Apellido;
-        this.Nombre = Nombre;
-        this.DNI = DNI;
-        this.Detalle = Detalle;
-        this.Tipo = Tipo;
-        this.Estado = Estado;
-    }
-
-    public Inquilino(int Id_Inquilino, String Apellido, String Nombre, int DNI, String Detalle, String Tipo, boolean Estado) {
+    public Inquilino(int Id_Inquilino, String Apellido, String Nombre, int DNI, long CUIL, String Detalle, String Tipo, boolean Estado) {
         this.Id_Inquilino = Id_Inquilino;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
         this.DNI = DNI;
+        this.CUIL = CUIL;
         this.Detalle = Detalle;
         this.Tipo = Tipo;
         this.Estado = Estado;
-        
     }
+
+    public Inquilino(String Apellido, String Nombre, int DNI, long CUIL, String Detalle, String Tipo, boolean Estado) {
+        this.Apellido = Apellido;
+        this.Nombre = Nombre;
+        this.DNI = DNI;
+        this.CUIL = CUIL;
+        this.Detalle = Detalle;
+        this.Tipo = Tipo;
+        this.Estado = Estado;
+    }
+
+    public Inquilino(int Id_Inquilino, String Apellido, String Nombre, int DNI, long CUIL, String Detalle, String Tipo) {
+        this.Id_Inquilino = Id_Inquilino;
+        this.Apellido = Apellido;
+        this.Nombre = Nombre;
+        this.DNI = DNI;
+        this.CUIL = CUIL;
+        this.Detalle = Detalle;
+        this.Tipo = Tipo;
+    }
+    
+ 
 
     
 
@@ -103,9 +116,20 @@ public class Inquilino {
         this.Estado = Estado;
     }
 
+    public long getCUIL() {
+        return CUIL;
+    }
+
+    public void setCUIL(long CUIL) {
+        this.CUIL = CUIL;
+    }
+
+    
+
+    
     @Override
     public String toString() {
-        return Id_Inquilino+", " + Apellido+ ", " + Nombre+ ", " + DNI+ ", " + Detalle+ ", " + Tipo+ ", " + Estado+", " + propiedades+", ";
+        return Id_Inquilino+", " + Apellido+ ", " + Nombre+ ", " + DNI+ ", "+ CUIL+ ", " + Detalle+ ", " + Tipo+ ", " + Estado+", " + propiedades+", ";
     }
 
    

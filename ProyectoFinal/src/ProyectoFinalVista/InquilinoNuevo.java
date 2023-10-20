@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import ProyectoFinalVista.Vistas;
 import ProyectoFinalVista.InquilinosVistas;
 import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 import java.sql.Connection;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -60,6 +61,8 @@ public InquilinoData in = new InquilinoData();
         cboTipo = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtCUIL = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
@@ -121,6 +124,15 @@ public InquilinoData in = new InquilinoData();
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel6.setText("CUIL");
+
+        txtCUIL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCUILKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,12 +147,14 @@ public InquilinoData in = new InquilinoData();
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDNI, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(txtDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(txtCUIL)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,7 +184,11 @@ public InquilinoData in = new InquilinoData();
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtCUIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,26 +232,34 @@ public InquilinoData in = new InquilinoData();
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
           try{
-        
+          
            
           String ValidarDNI = txtDNI.getText();
-          int DNI = parseInt(txtDNI.getText());    
+          String ValidarCUIL = txtCUIL.getText();
+          int DNI = parseInt(txtDNI.getText());  
+          Long CUIL = parseLong(txtCUIL.getText());
           String Apellido = txtApellido.getText();
           String Nombre = txtNombre.getText();
           String Detalle = txtADetalle.getText();
           int i =  cboTipo.getSelectedIndex();
-          
+            
           String Tipo =  cboTipo.getItemAt(i);
           if (!Apellido.trim().isEmpty() && !Nombre.trim().isEmpty() && !Detalle.trim().isEmpty()) {
     // La cadena no está vacía y no tiene espacios al principio ni al final
-           if(ValidarDNI.length() != 8){
-                  JOptionPane.showMessageDialog(null, "El DNI esta incompleto.");
-              } else{    
+          if(ValidarDNI.length() != 8 || ValidarCUIL.length() !=11){
+               if(ValidarDNI.length() != 8){  
+               JOptionPane.showMessageDialog(null, "El DNI esta incompleto.");
+               }else{
+                 JOptionPane.showMessageDialog(null, "El CUIL esta incompleto.");
+                 
+               }
+          }else{    
  
-          Inquilino inq = new Inquilino( Apellido, Nombre, DNI, Detalle, Tipo, true);
+          Inquilino inq = new Inquilino( Apellido, Nombre, DNI, CUIL, Detalle, Tipo, false);
           in.AgregarInquilino(inq);
         
-          txtDNI.setText("");    
+          txtDNI.setText("");
+           txtCUIL.setText("");
           txtApellido.setText("");
           txtNombre.setText("");
           txtADetalle.setText("");
@@ -288,6 +314,16 @@ public InquilinoData in = new InquilinoData();
      dispose();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
+    private void txtCUILKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCUILKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtCUIL.getText().length() >= 11)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtCUILKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar1;
@@ -298,10 +334,12 @@ public InquilinoData in = new InquilinoData();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtADetalle;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCUIL;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

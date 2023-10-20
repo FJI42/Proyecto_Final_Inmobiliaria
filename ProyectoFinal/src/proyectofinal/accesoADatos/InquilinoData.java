@@ -43,15 +43,16 @@ public class InquilinoData {
                 JOptionPane.showMessageDialog(null, "El registro ya existe en la base de datos.");
             } else {
                 
-                String sql = "INSERT INTO `inquilino`(`Apellido`, `Nombre`, `DNI`, `Detalles`, `Tipo`, `Estado`) VALUES (?,?,?,?,?,?)";
+                String sql = "INSERT INTO `inquilino`(`Apellido`, `Nombre`, `DNI`,`CUIL`, `Detalles`, `Tipo`, `Estado`) VALUES (?,?,?,?,?,?,?)";
 
                 try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                     ps.setString(1, inquilino.getApellido());
                     ps.setString(2, inquilino.getNombre());
                     ps.setInt(3, inquilino.getDNI());
-                    ps.setString(4, inquilino.getDetalle());
-                    ps.setString(5, inquilino.getTipo());
-                    ps.setBoolean(6, inquilino.isEstado());
+                    ps.setLong(4, inquilino.getCUIL());
+                    ps.setString(5, inquilino.getDetalle());
+                    ps.setString(6, inquilino.getTipo());
+                    ps.setBoolean(7, inquilino.isEstado());
                     ps.executeUpdate();
 
                     ResultSet rs = ps.getGeneratedKeys();
@@ -87,7 +88,7 @@ public class InquilinoData {
             if(exito==1){
                 JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
             }    else{
-                 JOptionPane.showMessageDialog(null, "No se encontro el Inquilino");
+                 JOptionPane.showMessageDialog(null, "El Inquilino ya esta dado de baja");
                 
             }
              }catch(NumberFormatException n){
@@ -100,26 +101,26 @@ public class InquilinoData {
                                    
       }
     
-    public Inquilino BuscarInquilino(int id){
-     String sql= "SELECT `ID_Inquilino`, `Apellido`, `Nombre`, `DNI`, `Detalles`, `Tipo`, `Estado` FROM `inquilino` WHERE ID_Inquilino=? AND Estado=1";
+    public Inquilino BuscarInquilino(int dni){
+     String sql= "SELECT `ID_Inquilino`, `Apellido`, `Nombre`, `DNI`,`CUIL`, `Detalles`, `Tipo`, `Estado` FROM `inquilino` WHERE DNI=?";
             Inquilino inquilino=null; 
      try {
          try{
             PreparedStatement ps= con.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1,dni);
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
                 inquilino=new Inquilino();
-                inquilino.setId_Inquilino(id);
+                inquilino.setId_Inquilino(rs.getInt("ID_Inquilino"));
                 inquilino.setApellido(rs.getString("apellido"));
                 inquilino.setNombre(rs.getString("nombre"));
-                 inquilino.setDNI(rs.getInt("dni"));
+                inquilino.setDNI(dni); 
+                inquilino.setCUIL(rs.getLong("CUIL"));
                 inquilino.setDetalle(rs.getString("Detalles"));
                 inquilino.setTipo(rs.getString("Tipo"));
-//                inquilino.setEstado(true); 
+                inquilino.setEstado(rs.getBoolean("Estado")); 
                                    
-             }else {                 
-                JOptionPane.showMessageDialog(null,"No existe ese Inquilino");                
+                        
             }             
              ps.close();
          }catch(NumberFormatException n){
@@ -146,6 +147,7 @@ public class InquilinoData {
                 in.setApellido(rs.getString("apellido"));
                 in.setNombre(rs.getString("nombre"));
                  in.setDNI(rs.getInt("dni"));
+                 in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setTipo(rs.getString("Tipo"));
                     inquilino.add(in);
@@ -173,6 +175,7 @@ public class InquilinoData {
                 in.setApellido(rs.getString("apellido"));
                 in.setNombre(rs.getString("nombre"));
                 in.setDNI(rs.getInt("dni"));
+                in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setTipo(rs.getString("Tipo"));
                     inquilino.add(in);
@@ -190,7 +193,7 @@ public class InquilinoData {
      
        public void modificarInquilino(Inquilino inquilino){
             
-            String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,Detalles=?,Tipo=?,Estado=? WHERE ID_Inquilino=?";
+            String sql="UPDATE inquilino SET Apellido=?,Nombre=?,DNI=?,CUIL=?,Detalles=?,Tipo=? WHERE ID_Inquilino=?";
             
         try {
             try{
@@ -199,9 +202,9 @@ public class InquilinoData {
             ps.setString(1,inquilino.getApellido());
             ps.setString(2,inquilino.getNombre());
             ps.setInt(3,inquilino.getDNI());
-            ps.setString(4, inquilino.getDetalle());
-            ps.setString(5, inquilino.getTipo());
-            ps.setBoolean(6, inquilino.isEstado());
+            ps.setLong(4,inquilino.getCUIL());
+            ps.setString(5, inquilino.getDetalle());
+            ps.setString(6, inquilino.getTipo());
             ps.setInt(7, inquilino.getId_Inquilino());
            
             int exito= ps.executeUpdate();
