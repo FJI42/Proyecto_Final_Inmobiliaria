@@ -178,6 +178,7 @@ public class InquilinoData {
                 in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setTipo(rs.getString("Tipo"));
+                in.setEstado(rs.getBoolean("Estado"));
                     inquilino.add(in);
                     
                 }
