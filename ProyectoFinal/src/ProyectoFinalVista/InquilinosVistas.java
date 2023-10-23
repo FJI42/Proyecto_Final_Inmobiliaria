@@ -25,12 +25,14 @@ import proyectofinal.accesoADatos.InquilinoData;
 public class InquilinosVistas extends javax.swing.JInternalFrame {
 
        private DefaultTableModel modelo = new DefaultTableModel();
+       private DefaultTableModel modelo2 = new DefaultTableModel();
     private Connection con= null;
     private InquilinoData id = new InquilinoData();
     public InquilinosVistas() {
         initComponents();
         con= Conexion.getConexion();
         ArmarCabecera();
+        ArmarCabecera2();
     }
    
 
@@ -54,6 +56,10 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
         btnEliminar1 = new javax.swing.JButton();
         Modificar1 = new javax.swing.JButton();
         btnVerMas = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -134,6 +140,33 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
             }
         });
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jButton1.setText("Nuevo Garante");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Modificar Garante");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -141,31 +174,41 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(25, 25, 25)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnBuscar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(94, 94, 94)
+                                        .addComponent(rdbIExistentes)
+                                        .addGap(98, 98, 98)
+                                        .addComponent(rdbIbaja))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(rdbIExistentes)
-                                .addGap(98, 98, 98)
-                                .addComponent(rdbIbaja))))
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(btnEliminar1)
+                        .addGap(70, 70, 70)
+                        .addComponent(Modificar1)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVerMas)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(btnEliminar1)
-                .addGap(70, 70, 70)
-                .addComponent(Modificar1)
-                .addGap(70, 70, 70)
-                .addComponent(btnNuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVerMas)
-                .addGap(48, 48, 48))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,22 +223,29 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
                     .addComponent(rdbIbaja))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnEliminar1)
-                    .addComponent(Modificar1)
-                    .addComponent(btnVerMas))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGap(85, 85, 85)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNuevo)
+                            .addComponent(btnEliminar1)
+                            .addComponent(Modificar1)
+                            .addComponent(btnVerMas))
+                        .addGap(32, 32, 32))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,6 +394,29 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnVerMasActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+    
+    // Muestra la nueva ventana
+    GaranteNuevo nombre = new GaranteNuevo();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+    nombre.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+    
+    // Muestra la nueva ventana
+    GaranteModificar nombre = new GaranteModificar();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+    nombre.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modificar1;
@@ -351,9 +424,13 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar1;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVerMas;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JRadioButton rdbIExistentes;
     private javax.swing.JRadioButton rdbIbaja;
     private javax.swing.JTextField txtBuscar;
@@ -385,6 +462,36 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
  }
       private void borrarFilas(){
         int f = jTable1.getRowCount()-1;
+        for(;f>=0;f--){
+              modelo.removeRow(f);
+    }
+    }
+      private void ArmarCabecera2(){
+    modelo2.addColumn("Nro");
+    modelo2.addColumn("Apellido");
+    modelo2.addColumn("Nombre");
+    modelo2.addColumn("DNI");
+    modelo2.addColumn("CUIL");
+    modelo2.addColumn("Detalles");
+    modelo2.addColumn("Nro de Inquilino");
+
+    jTable2.setModel(modelo2);
+    jTable2.setDefaultEditor(Object.class, null);
+
+    // Programa una tarea para ejecutarse después de que se muestre la interfaz gráfica
+    SwingUtilities.invokeLater(() -> {
+        // Asegúrate de que haya al menos 5 columnas antes de intentar establecer el ancho
+        if (jTable2.getColumnCount() >= 5) {
+             jTable2.getColumnModel().getColumn(0).setPreferredWidth(10);
+              jTable2.getColumnModel().getColumn(3).setPreferredWidth(50);
+               jTable2.getColumnModel().getColumn(4).setPreferredWidth(58);
+            jTable2.getColumnModel().getColumn(5).setPreferredWidth(100);
+             jTable2.getColumnModel().getColumn(6).setPreferredWidth(30);
+        }
+    });
+ }
+      private void borrarFilas2(){
+        int f = jTable2.getRowCount()-1;
         for(;f>=0;f--){
               modelo.removeRow(f);
     }
