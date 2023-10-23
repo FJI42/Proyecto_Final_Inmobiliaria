@@ -189,6 +189,7 @@ public class ContratoAlquilerData {
             Inquilino inquilino = inD.BuscarInquilino(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
+            al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
             al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
@@ -230,6 +231,7 @@ public class ContratoAlquilerData {
             Inquilino inquilino = inD.BuscarInquilino(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
+            al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
             al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
@@ -237,7 +239,7 @@ public class ContratoAlquilerData {
             al.setMarca(rs.getString("Marca").charAt(0)); // Suponiendo que "Marca" es un char en la base de datos
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
-            al.setEstado(true);
+            //al.setEstado(true);
 
                 
                 contratoAlquiler.add(al);
@@ -247,6 +249,7 @@ public class ContratoAlquilerData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
+                ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
             }
         
