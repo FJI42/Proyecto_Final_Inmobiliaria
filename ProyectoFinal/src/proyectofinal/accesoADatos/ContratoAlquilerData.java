@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import proyectofinal.Entidades.ContratoAlquiler;
 import proyectofinal.Entidades.Inquilino;
@@ -168,5 +170,87 @@ public class ContratoAlquilerData {
             }                
     }
 
+    public List<ContratoAlquiler> obtenerContratosdeBaja(){
+        ArrayList<ContratoAlquiler> contratoAl= new ArrayList<>();   
+        String sql="SELECT * FROM contratoalquiler WHERE estado=0";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                    ContratoAlquiler al= new ContratoAlquiler(); 
+            int idInquilino = rs.getInt("Inquilino");
+            int idPropiedad = rs.getInt("Propiedad");
+            
+            // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
+            PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
+            InquilinoData inD = new InquilinoData();
+        
+            Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
+                    
+            al.setInquilino(inquilino);
+            al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
+            al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
+            al.setFecha_Realizacion(rs.getDate("Fecha_Realizacion").toLocalDate());
+            al.setMarca(rs.getString("Marca").charAt(0)); // Suponiendo que "Marca" es un char en la base de datos
+            al.setPropiedad(propiedad);
+            al.setVendedor(rs.getString("Vendedor"));
+            al.setEstado(true);
+
+                
+                contratoAl.add(al);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+            }
+        
+        return contratoAl; 
+       }
+     public List<ContratoAlquiler> obtenerLosContratos(){
+        ArrayList<ContratoAlquiler> contratoAlquiler= new ArrayList<>();   
+        String sql="SELECT * FROM contratoalquiler WHERE estado=1";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+//                ps.setInt(1,id); 
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                 ContratoAlquiler al= new ContratoAlquiler(); 
+            int idInquilino = rs.getInt("Inquilino");
+            int idPropiedad = rs.getInt("Propiedad");
+            
+            // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
+            PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
+            InquilinoData inD = new InquilinoData();
+        
+            Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
+                    
+            al.setInquilino(inquilino);
+            al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
+            al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
+            al.setFecha_Realizacion(rs.getDate("Fecha_Realizacion").toLocalDate());
+            al.setMarca(rs.getString("Marca").charAt(0)); // Suponiendo que "Marca" es un char en la base de datos
+            al.setPropiedad(propiedad);
+            al.setVendedor(rs.getString("Vendedor"));
+            al.setEstado(true);
+
+                
+                contratoAlquiler.add(al);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+            }
+        
+        return contratoAlquiler; 
+       }
     
 }
