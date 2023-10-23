@@ -40,7 +40,8 @@ public int v = 0;
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jMenuPropInm = new javax.swing.JMenu();
+        jMAdmPropInm = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -89,8 +90,17 @@ public int v = 0;
         jMenu3.setText("Propietarios");
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Propiedades");
-        jMenuBar1.add(jMenu4);
+        jMenuPropInm.setText("Propiedades");
+
+        jMAdmPropInm.setText("Administrar propiedad inmueble");
+        jMAdmPropInm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAdmPropInmActionPerformed(evt);
+            }
+        });
+        jMenuPropInm.add(jMAdmPropInm);
+
+        jMenuBar1.add(jMenuPropInm);
 
         jMenu7.setText("Contrato");
 
@@ -148,6 +158,19 @@ public int v = 0;
         jDesktopPane1.moveToFront(nombre);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMAdmPropInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdmPropInmActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+    
+        PropiedadInmuebleVista nombre = new PropiedadInmuebleVista();
+        // nombre.setPreferredSize(new Dimension(600, 800)); // Establece las dimensiones preferidas
+        // nombre.pack(); // Ajusta el tamaño de la ventana automáticamente
+        nombre.setVisible(true);
+
+        jDesktopPane1.add(nombre);
+        jDesktopPane1.moveToFront(nombre);
+    }//GEN-LAST:event_jMAdmPropInmActionPerformed
+  
     /**
      * @param args the command line arguments
      */
@@ -185,10 +208,10 @@ public int v = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMAdmPropInm;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
@@ -198,5 +221,6 @@ public int v = 0;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu jMenuPropInm;
     // End of variables declaration//GEN-END:variables
 }

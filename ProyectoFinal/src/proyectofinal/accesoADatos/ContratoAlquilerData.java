@@ -44,14 +44,16 @@ public class ContratoAlquilerData {
             String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?)";
 
             try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
-                 //ps.setInt(1, ca.getID_Contrato());
-                ps.setInt(1,ca.getInquilino().getId_Inquilino());
-                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
-                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
-                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
-                ps.setString(5, String.valueOf(ca.getMarca())); 
-                ps.setInt(6,ca.getPropiedad().getIdLocal());            
-                ps.setString(7, ca.getVendedor());
+
+                 ps.setInt(1, ca.getID_Contrato());
+                ps.setInt(2,ca.getInquilino().getId_Inquilino());
+                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Final()));
+                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Inicio()));
+                ps.setDate(5, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
+                ps.setString(6, String.valueOf(ca.getMarca())); 
+                ps.setInt(7,ca.getPropiedad().getID_Local());            
+                ps.setString(8, ca.getVendedor());
+
                 
 
                 ps.executeUpdate();
@@ -89,7 +91,7 @@ public class ContratoAlquilerData {
                 ps.setDate(3, Date.valueOf(id.getFecha_Inicio()));
                 ps.setDate(4, Date.valueOf(id.getFecha_Realizacion()));
                 ps.setString(5, String.valueOf(id.getMarca())); 
-                ps.setInt(6,id.getPropiedad().getIdLocal());            
+                ps.setInt(6,id.getPropiedad().getID_Local());            
                 ps.setString(7, id.getVendedor());
                 ps.setInt(8,id.getID_Contrato());
                 ps.setBoolean(9, true);
