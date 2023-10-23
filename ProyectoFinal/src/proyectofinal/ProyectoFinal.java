@@ -105,8 +105,14 @@ public class ProyectoFinal {
 //        System.out.println(in.getDni());
 //    }
 
+ContratoAlquilerData caD = new ContratoAlquilerData(); 
 
-
+for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
+        
+        System.out.println(in.getID_Contrato());
+        System.out.println(in.getMarca());
+        
+}
 
 
 
@@ -154,15 +160,15 @@ public class ProyectoFinal {
          
          //caD.cancelacion(1); 
          
-         PropiedadInmuebleData piD= new PropiedadInmuebleData();
-         for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
-        
-        System.out.println(prop.getID_Local());
-        System.out.println(prop.getAccesibilidad());
-        System.out.println(prop.getDuenio());
-        System.out.println(prop.getCaracteristicas()); 
-        
-}
+//         PropiedadInmuebleData piD= new PropiedadInmuebleData();
+// for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
+//        
+//        System.out.println(prop.getID_Local());
+//        System.out.println(prop.getAccesibilidad());
+//        System.out.println(prop.getDuenio());
+//        System.out.println(prop.getCaracteristicas()); 
+//        
+// }
 
 
         
@@ -176,7 +182,7 @@ public class ProyectoFinal {
 //         PropiedadInmuebleData propInD = new PropiedadInmuebleData();
 //         PropiedadInmueble propIn = new PropiedadInmueble("Accesible para discapacitados", "habitaciones,baño,garage,pileta","Belgrano 1002",Cari,true,"Rectangular",Ifran,1450000,30,"Residencial", "Suburbio residencial");
 //         
-//         propInD.AgregarPropiedadInmueble(propIn);
+        // propInD.AgregarPropiedadInmueble(propIn);
 //        
        
 //    Propietario prop = new Propietario(1,"C", "Francisco", 1304613, "av.Cabral", 34456780, true);

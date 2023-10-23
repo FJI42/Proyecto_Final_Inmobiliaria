@@ -142,7 +142,7 @@ public int v = 0;
         // TODO add your handling code here:
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        Contrato_Alquiler nombre = new Contrato_Alquiler();
+        ContratoBuscar nombre = new ContratoBuscar();
         nombre.setVisible(true);
         jDesktopPane1.add(nombre);
         jDesktopPane1.moveToFront(nombre);

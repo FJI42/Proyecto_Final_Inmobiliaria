@@ -139,7 +139,7 @@ public class ContratoAlquiler {
 
     @Override
     public String toString() {
-        return "" + ID_Contrato + Inquilino+ Fecha_Final + Fecha_Inicio  + Fecha_Realizacion + Marca+ Propiedad + Vendedor+ Estado;
+        return "" + ID_Contrato + Inquilino+ Fecha_Final + Fecha_Inicio  + Fecha_Realizacion + Marca+ Propiedad + Vendedor+ Estado ;
     }
 
     
