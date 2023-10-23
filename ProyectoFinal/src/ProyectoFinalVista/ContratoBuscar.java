@@ -27,6 +27,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     public ContratoBuscar() {
         initComponents();
         con= Conexion.getConexion();
+        jTable1.setModel(modelo);
         ArmarCabecera();
     }
 
@@ -234,7 +235,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     modelo.addColumn("Vendedor");
     //modelo.addColumn("Estado");
 
-    jTable1.setModel(modelo);
+    //jTable1.setModel(modelo);
 
     }
     

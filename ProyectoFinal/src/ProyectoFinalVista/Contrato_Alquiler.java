@@ -309,6 +309,7 @@ private Connection con= null;
         for (Inquilino inqui : inqD.obtenerLosInquilinos()) {
             inquilino.add(inqui);
             jcInquilinos.addItem(inqui);
+            //System.out.println(inqui);
         }
 
     }
@@ -321,6 +322,7 @@ private Connection con= null;
         for (PropiedadInmueble prop : piD.obtenerLasPropiedades()) {
             propiedad.add(prop);
             jcPropiedades.addItem(prop);
+            //System.out.println(prop);
             
         }
     }
@@ -329,6 +331,7 @@ private Connection con= null;
         try {
             if (jcInquilinos.getSelectedItem()!= null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jTextField3.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jTextField5.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
 
+                
                 Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
                 LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -338,12 +341,12 @@ private Connection con= null;
                 String vendedor= jTextField5.getText();                              
                 boolean estado = jrbEstado.isSelected();
                 
-            ContratoAlquiler cal = new ContratoAlquiler(inquilino, fecha_final, fecha_inicio, fecha_realizacion, marca, propiedad, vendedor,estado);
-                caD.crearContrato(cal);
+            ContratoAlquiler cal = new ContratoAlquiler(10,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
+            
+            //ContratoAlquiler co= new ContratoAlquiler(8,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
+            caD.crearContrato(cal); 
                 
-            } //else if (jcInquilinos.getSelectedItem() == null){
-              //  JOptionPane.showMessageDialog(this, "Debe elegir un Inquilino");           
-            //} 
+            } 
             else if (jTextField5.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No debe dejar el campo del Vendedor vacio");
             } else if (jDateChooser4.getDate() == null) {

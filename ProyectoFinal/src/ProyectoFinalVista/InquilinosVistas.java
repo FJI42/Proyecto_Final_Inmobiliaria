@@ -389,5 +389,9 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
               modelo.removeRow(f);
     }
     }
+      
+//      private void  cargarTabla(){
+//           modelo.addColumn();
+//      }
 }
 

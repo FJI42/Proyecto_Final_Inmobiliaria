@@ -20,6 +20,11 @@ public class Inquilino {
     public Inquilino() {
     }
 
+    public Inquilino(int Id_Inquilino) {
+        this.Id_Inquilino = Id_Inquilino;
+    }
+
+    
     public Inquilino(int Id_Inquilino, String Apellido, String Nombre, int DNI, long CUIL, String Detalle, String Tipo, boolean Estado) {
         this.Id_Inquilino = Id_Inquilino;
         this.Apellido = Apellido;
