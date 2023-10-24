@@ -41,6 +41,15 @@ public class Propietario {
         this.Estado = Estado;
     }
 
+    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono) {
+        this.idPropietario = idPropietario;
+        this.apelidoPropietario = apelidoPropietario;
+        this.nombrePropietario = nombrePropietario;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
+
   
  
     
