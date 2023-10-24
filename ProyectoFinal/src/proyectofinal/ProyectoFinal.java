@@ -159,7 +159,7 @@ public class ProyectoFinal {
 //            
 //            } 
          
-         //caD.cancelacion(1); 
+         //caD.cancelacion(1);
          
 //         PropiedadInmuebleData piD= new PropiedadInmuebleData();
 // for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
@@ -168,8 +168,18 @@ public class ProyectoFinal {
 //        System.out.println(prop.getAccesibilidad());
 //        System.out.println(prop.getDuenio());
 //        System.out.println(prop.getCaracteristicas()); 
-//        
-// }
+//    
+////         
+////         PropiedadInmuebleData piD= new PropiedadInmuebleData();
+////         for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
+////        
+////        System.out.println(prop.getID_Local());
+////        System.out.println(prop.getAccesibilidad());
+////        System.out.println(prop.getDuenio());
+////        System.out.println(prop.getCaracteristicas()); 
+        
+//}
+
 
 
         
@@ -193,8 +203,8 @@ public class ProyectoFinal {
 //pd.BajaPropietario(1);
 
 
-      }
-    }
+//      }
+//    }
     
     
 
