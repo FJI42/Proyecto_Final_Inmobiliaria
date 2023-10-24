@@ -154,15 +154,14 @@ public class PropietarioData {
 //                ps.setInt(1,id); 
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
-                    Propietario in =new Propietario(); 
-//              in.setID_Propietario();
+                Propietario in =new Propietario(); 
+                in.setIdPropietario(rs.getInt("iD_Propietario"));
                 in.setApelidoPropietario(rs.getString("apellido"));
                 in.setNombrePropietario(rs.getString("nombre"));
                 in.setDni(rs.getInt("dni"));
                 in.setDomicilio(rs.getString("Domicilio"));
                 in.setTelefono(rs.getInt("Telefono"));
                 propietario.add(in);
-                    
                 }
                 
                 ps.close(); 
@@ -172,24 +171,23 @@ public class PropietarioData {
             }
         
         return propietario; 
-       } 
+       }
             public List<Propietario> obtenerPropietariosdeBaja(){
-        ArrayList<Propietario> Propietario= new ArrayList<>();   
-        String sql="SELECT * FROM Propietario WHERE estado=0";
+        ArrayList<Propietario> propietario= new ArrayList<>();   
+        String sql="SELECT * FROM propietario WHERE estado=0";
          try {
                 PreparedStatement ps= con.prepareStatement(sql);
 //                ps.setInt(1,id); 
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
                     Propietario in =new Propietario(); 
-//                    in.setId_Inquilino(id);
+                in.setIdPropietario(rs.getInt("iD_Propietario"));
                 in.setApelidoPropietario(rs.getString("apellido"));
                 in.setNombrePropietario(rs.getString("nombre"));
                 in.setDni(rs.getInt("dni"));
                 in.setDomicilio(rs.getString("Domicilio"));
                 in.setTelefono(rs.getInt("Telefono"));
-                Propietario.add(in);
-                    
+                propietario.add(in);
                 }
                 
                 ps.close(); 
@@ -198,7 +196,7 @@ public class PropietarioData {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
             }
         
-        return Propietario; 
+        return propietario; 
        }
         }
 
