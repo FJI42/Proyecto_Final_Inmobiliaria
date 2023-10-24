@@ -158,7 +158,7 @@ for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
 //            
 //            } 
          
-         //caD.cancelacion(1); 
+         //caD.cancelacion(1);
          
 //         PropiedadInmuebleData piD= new PropiedadInmuebleData();
 // for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
@@ -167,8 +167,18 @@ for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
 //        System.out.println(prop.getAccesibilidad());
 //        System.out.println(prop.getDuenio());
 //        System.out.println(prop.getCaracteristicas()); 
-//        
-// }
+//    
+////         
+////         PropiedadInmuebleData piD= new PropiedadInmuebleData();
+////         for(PropiedadInmueble prop:piD.obtenerLasPropiedades()){
+////        
+////        System.out.println(prop.getID_Local());
+////        System.out.println(prop.getAccesibilidad());
+////        System.out.println(prop.getDuenio());
+////        System.out.println(prop.getCaracteristicas()); 
+        
+//}
+
 
 
         
@@ -192,8 +202,8 @@ for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
 //pd.BajaPropietario(1);
 
 
-      }
-    }
+//      }
+//    }
     
     
 

@@ -13,12 +13,14 @@
             <file>file:/C:/Users/Electra/Documents/GitHub/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/Entidades/Propietario.java</file>
         </group>
         <group name="DA Guia 2 GUI">
+            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/accesoADatos/GaranteData.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/Entidades/Inquilino.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/InquilinosVistas.java</file>
+            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/Entidades/Garante.java</file>
+            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/GaranteNuevo.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/InquilinoModificar.java</file>
-            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/NuevoPropietario.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/InquilinoNuevo.java</file>
-            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/PropietarioVistas.java</file>
+            <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/GaranteModificar.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/accesoADatos/InquilinoData.java</file>
         </group>
     </open-files>
