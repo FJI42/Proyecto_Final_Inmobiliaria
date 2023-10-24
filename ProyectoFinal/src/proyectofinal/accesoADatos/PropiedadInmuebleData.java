@@ -251,17 +251,17 @@ public class PropiedadInmuebleData {
         return propiedadInmueble;
     }
     
-        public List<PropiedadInmueble> obtenerLasPropiedades(){
+    public List<PropiedadInmueble> obtenerLasPropiedades(){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
-        String sql="SELECT * FROM `propiedad inmueble`";
+        String sql="SELECT * FROM propiedadinmueble";
          
         try {   
                 PreparedStatement ps= con.prepareStatement(sql);
                 ResultSet rs= ps.executeQuery();
 
                 while(rs.next()){
-                     int idPropietario= rs.getInt("Duenio");
-                     int idInquilino = rs.getInt("ocupante");
+                     int idPropietario= rs.getInt("Dueño");
+                     int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();

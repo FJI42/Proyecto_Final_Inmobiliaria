@@ -466,12 +466,9 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
               modelo.removeRow(f);
     }
     }
-<<<<<<< HEAD
+
       
-//      private void  cargarTabla(){
-//           modelo.addColumn();
-//      }
-=======
+
       private void ArmarCabecera2(){
     modelo2.addColumn("Nro");
     modelo2.addColumn("Apellido");
@@ -502,6 +499,6 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
               modelo.removeRow(f);
     }
     }
->>>>>>> master
+
 }
 

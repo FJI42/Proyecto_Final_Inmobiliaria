@@ -203,8 +203,9 @@ public class ProyectoFinal {
 //pd.BajaPropietario(1);
 
 
-//      }
-//    }
+     } } 
+
+    
     
     
 

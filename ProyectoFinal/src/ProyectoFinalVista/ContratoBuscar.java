@@ -184,6 +184,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         if (jbActivo.isSelected() == true) {
             for (ContratoAlquiler ca : caD.obtenerLosContratos()) {
                 modelo.addRow(new Object[]{ca.getInquilino(),ca.getFecha_Final(),ca.getFecha_Inicio(),ca.getFecha_Realizacion(),ca.getMarca(),ca.getPropiedad(),ca.getVendedor()});
+                
             }
     }     
 
@@ -235,7 +236,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     modelo.addColumn("Vendedor");
     //modelo.addColumn("Estado");
 
-    //jTable1.setModel(modelo);
+    jTable1.setModel(modelo);
 
     }
     

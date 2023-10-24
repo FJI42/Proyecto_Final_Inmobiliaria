@@ -27,7 +27,7 @@ public class PropiedadInmueble {
     public PropiedadInmueble() {
     }
 
-<<<<<<< HEAD
+
     public PropiedadInmueble(int ID_Local) {
         this.ID_Local = ID_Local;
     }
@@ -35,9 +35,6 @@ public class PropiedadInmueble {
 
     
     public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
-=======
-    public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma/*, int idLocal*/, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
->>>>>>> master
         this.ID_Local = ID_Local;
         this.accesibilidad = accesibilidad;
         this.caracteristicas = caracteristicas;

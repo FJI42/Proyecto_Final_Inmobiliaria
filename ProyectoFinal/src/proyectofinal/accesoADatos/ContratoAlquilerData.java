@@ -47,17 +47,18 @@ public class ContratoAlquilerData {
 
             try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
 
-                 ps.setInt(1, ca.getID_Contrato());
-                ps.setInt(2,ca.getInquilino().getId_Inquilino());
-                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Final()));
-                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Inicio()));
-                ps.setDate(5, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
-                ps.setString(6, String.valueOf(ca.getMarca())); 
-                ps.setInt(7,ca.getPropiedad().getID_Local());            
-                ps.setString(8, ca.getVendedor());
-
+                //ps.setInt(1, ca.getID_Contrato());
+                ps.setInt(1,ca.getInquilino().getId_Inquilino());
+                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
+                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
+                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
+                ps.setString(5, String.valueOf(ca.getMarca())); 
+                ps.setInt(6,ca.getPropiedad().getID_Local());            
+                ps.setString(7, ca.getVendedor());
+               
+                Inquilino inquilino = ca.getInquilino();
+                inquilino.setEstado(true);
                 
-
                 ps.executeUpdate();
 
                 ResultSet rs= ps.getGeneratedKeys();
@@ -242,10 +243,10 @@ public class ContratoAlquilerData {
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
             //al.setEstado(true);
-
+             //contratoAlquiler.add(ca);
                 
-                contratoAlquiler.add(al);
-                    
+                contratoAlquiler.add(al); 
+               
                 }
                 
                 ps.close(); 

@@ -29,7 +29,7 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         initComponents();
         con=Conexion.getConexion();
         cargar_cbPropietario();
-        cargar_cbTipoLocal();
+        //cargar_cbTipoLocal();
         
     }
 
@@ -142,6 +142,11 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
 
         btnAgregarPropietario.setText("Nuevo Propoietario");
+        btnAgregarPropietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPropietarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,10 +267,10 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
                 .addGap(3, 3, 3)
                 .addComponent(jLabel16)
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                        .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,6 +301,10 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPropietarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPropietarioActionPerformed
+
     private void cargar_cbPropietario(){ 
         
         PropietarioData propD = new PropietarioData();
@@ -314,7 +323,7 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregarPropInm;
     private javax.swing.JButton btnAgregarPropietario;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> cbPropietarios;
+    private javax.swing.JComboBox<Propietario> cbPropietarios;
     private javax.swing.JComboBox<String> cbTipoLocal;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
