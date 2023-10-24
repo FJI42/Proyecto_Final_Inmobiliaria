@@ -104,8 +104,10 @@ import proyectofinal.accesoADatos.PropietarioData;
 //        System.out.println(in.getNombrePropietario());
 //        System.out.println(in.getDni());
 //    }
+
 //
 //ContratoAlquilerData caD = new ContratoAlquilerData(); 
+
 //
 //for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
 //        
@@ -125,19 +127,19 @@ import proyectofinal.accesoADatos.PropietarioData;
         
 
     //ContratoAlquilerData
-    
-//        Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
-////         
+    //ContratoAlquilerData caD = new ContratoAlquilerData(); 
+//       Inquilino inq = new Inquilino(1,"Ifran", "Florencia", 87654321, 124567890, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
+//////         
 //        Propietario prop = new Propietario (1,"Jimenez", "juansito", 12345678, "Lasheras", 123456, true);
-//        //PropietarioData pd = new PropietarioData ();
-//
+//        PropietarioData pd = new PropietarioData ();
+////
 //        PropiedadInmueble mi = new PropiedadInmueble(3,"Buena","Bien ubicado","Lamarca 123",prop,true,"Buena",1,inq,2300.0f,200,"Local","Urbano");
-//        //PropiedadInmuebleData piD= new PropiedadInmuebleData();
-//         
-//        
-//        ContratoAlquiler ca= new ContratoAlquiler(4,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
+//        PropiedadInmuebleData piD= new PropiedadInmuebleData();
+////         
+////        
+//        ContratoAlquiler ca= new ContratoAlquiler(5,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
 //        ContratoAlquilerData caD= new ContratoAlquilerData(); 
-//        //caD.crearContrato(ca); 
+//        caD.crearContrato(ca); 
 //        
 //        Inquilino inquilino = new Inquilino(2,"Leiva Cheik Ali","Carlos", 87654324,"paga el alquiler a tiempo","Estudiante ", true);
 //        

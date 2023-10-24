@@ -505,6 +505,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
               modelo.removeRow(f);
     }
     }
+
       
       
       private void TablaGarante(){
@@ -518,6 +519,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
             }
                          
       }
+
       private void ArmarCabecera2(){
     modelo2.addColumn("Nro");
     modelo2.addColumn("Apellido");
@@ -548,5 +550,6 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
               modelo.removeRow(f);
     }
     }
+
 }
 
