@@ -288,7 +288,7 @@ public GaranteData gar = new GaranteData();
                     }
                 } else{
 
-                    Garante ga = new Garante( Apellido, Nombre, DNI, CUIL, Detalle, ID_Inquilino);
+                    Garante ga = new Garante(ID, Apellido, Nombre, DNI, CUIL, Detalle, ID_Inquilino);
                    gar.modificarGarante(ga);
                     txtID.setText("");
                     txtDNI.setText("");
@@ -305,7 +305,7 @@ public GaranteData gar = new GaranteData();
 
             }
         }catch(NumberFormatException E){
-            JOptionPane.showMessageDialog(null, "Debe aaCompletar todas las casillas.");
+            JOptionPane.showMessageDialog(null, "Debe Completar todas las casillas.");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 

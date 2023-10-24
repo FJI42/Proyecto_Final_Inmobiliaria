@@ -23,14 +23,14 @@ import proyectofinal.accesoADatos.PropietarioData;
  *
  * @author usuario
  */
-public class ProyectoFinal {
+//public class ProyectoFinal {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
         // TODO code application logic here
-         Connection con = Conexion.getConexion();
+//         Connection con = Conexion.getConexion();
          
 //     
 //         Inquilino in = new Inquilino("Ifran", "Florencia", 87654321, "Buen Inquilino, paga el alquiler a tiempo", "Dink", true);
@@ -104,15 +104,15 @@ public class ProyectoFinal {
 //        System.out.println(in.getNombrePropietario());
 //        System.out.println(in.getDni());
 //    }
-
-ContratoAlquilerData caD = new ContratoAlquilerData(); 
-
-for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
-        
-        System.out.println(in.getID_Contrato());
-        System.out.println(in.getMarca());
-        
-}
+//
+//ContratoAlquilerData caD = new ContratoAlquilerData(); 
+//
+//for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
+//        
+//        System.out.println(in.getID_Contrato());
+//        System.out.println(in.getMarca());
+//        
+//}
 
 
 
