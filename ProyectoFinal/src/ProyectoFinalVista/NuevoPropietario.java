@@ -5,25 +5,33 @@ package ProyectoFinalVista;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import ProyectoFinalVista.PropietarioVistas;
 import ProyectoFinalVista.*;
 import proyectofinal.*;
 import ProyectoFinalVista.*;
+import java.sql.Connection;
+import static java.lang.Integer.parseInt;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import proyectofinal.Entidades.Propietario;
+import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.PropietarioData;
 
 /**
  *
  * @author User
  */
 public class NuevoPropietario extends javax.swing.JInternalFrame {
-
+private Connection con= null;
+public PropietarioData in = new PropietarioData();   
     /**
      * Creates new form InquilinoModificar
      */
     public NuevoPropietario() {
         initComponents();
+        con= Conexion.getConexion();
     }
 
     /**
@@ -101,6 +109,11 @@ public class NuevoPropietario extends javax.swing.JInternalFrame {
         jLabel3.setText("Dni");
 
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +220,7 @@ public class NuevoPropietario extends javax.swing.JInternalFrame {
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
         
     }//GEN-LAST:event_txtApellidoActionPerformed
-
+    //Text Errors fix
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         PropietarioVistas nombre = new PropietarioVistas();   
@@ -216,26 +229,79 @@ public class NuevoPropietario extends javax.swing.JInternalFrame {
         nombre.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+       evt.consume();
+       }
     }//GEN-LAST:event_txtNombreKeyTyped
-
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+       evt.consume();
+       }
     }//GEN-LAST:event_txtApellidoKeyTyped
-
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
         // TODO add your handling code here:
+           char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtDni.getText().length() >= 8)
+    {
+        evt.consume();
+    }
     }//GEN-LAST:event_txtDniKeyTyped
-
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         // TODO add your handling code here:
+           char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtTelefono.getText().length() >= 10)
+    {
+        evt.consume();
+    }
     }//GEN-LAST:event_txtTelefonoKeyTyped
-
     private void txtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDomicilioKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+       evt.consume();
+       }
     }//GEN-LAST:event_txtDomicilioKeyTyped
+    //Text Errors fix
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+          try{
+          String ValidarDNI = txtDni.getText();   
+          String Apellido = txtApellido.getText();
+          String Nombre = txtNombre.getText();
+          int Dni = parseInt(txtDni.getText());
+          int Telefono = parseInt(txtTelefono.getText()); 
+          String Domicilio = txtDomicilio.getText();
+      
+          if (!Apellido.trim().isEmpty() && !Nombre.trim().isEmpty() &&!Domicilio.trim().isEmpty()) {
+           if(ValidarDNI.length() != 8){
+                  JOptionPane.showMessageDialog(null, "Complete El Dni Para Continuar.");
+              } else{    
+               
+          Propietario Prop = new Propietario(Apellido, Nombre, Dni, Domicilio, Telefono, true);
+          in.agregaPropietario(Prop);    
+          txtApellido.setText("");
+          txtNombre.setText("");
+          txtDni.setText("");
+          txtTelefono.setText("");
+          txtDomicilio.setText("");
+          
+           }
+    }else{
+              
+            
+              JOptionPane.showMessageDialog(null, "Complete Todas Las Casillas Para Continuar.");
+          
+          }
+      }catch(NumberFormatException E){
+          JOptionPane.showMessageDialog(null, "Complete Todas Las Casillas Para Continuar.");
+      } 
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,20 +5,33 @@
  */
 package ProyectoFinalVista;
 import ProyectoFinalVista.*;
-import ProyectoFinalVista.InquilinoNuevo;
+import ProyectoFinalVista.NuevoPropietario;
 import ProyectoFinalVista.Vistas;
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import proyectofinal.Entidades.Propietario;
+import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.PropietarioData;
 /**
  *
  * @author User
  */
 public class PropietarioVistas extends javax.swing.JInternalFrame {
+private DefaultTableModel modelo = new DefaultTableModel();
+private Connection con= null;
+private PropietarioData id = new PropietarioData();
 
     /**
      * Creates new form InquilinosVistas
      */
     public PropietarioVistas() {
         initComponents();
+        con= Conexion.getConexion();
+        ArmarCabecera();
     }
 
     /**
@@ -31,33 +44,59 @@ public class PropietarioVistas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         BtnCargar = new javax.swing.JButton();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdbIExistentes = new javax.swing.JRadioButton();
+        rdbIbaja = new javax.swing.JRadioButton();
         btnNuevoPropietario = new javax.swing.JButton();
         btnEliminarPropietario = new javax.swing.JButton();
         ModificarPropietario1 = new javax.swing.JButton();
+        btnVerMas = new javax.swing.JButton();
 
         BtnCargar.setText("...");
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("jMenuItem1");
 
         setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jButton1.setText("jButton1");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtBuscarKeyTyped(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,9 +108,19 @@ public class PropietarioVistas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jRadioButton1.setText("Inquilinos Existentes");
+        rdbIExistentes.setText("Inquilinos Existentes");
+        rdbIExistentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbIExistentesActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Inquilinos de Baja");
+        rdbIbaja.setText("Inquilinos de Baja");
+        rdbIbaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbIbajaActionPerformed(evt);
+            }
+        });
 
         btnNuevoPropietario.setText("Nuevo");
         btnNuevoPropietario.addActionListener(new java.awt.event.ActionListener() {
@@ -81,11 +130,23 @@ public class PropietarioVistas extends javax.swing.JInternalFrame {
         });
 
         btnEliminarPropietario.setText("Eliminar");
+        btnEliminarPropietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPropietarioActionPerformed(evt);
+            }
+        });
 
         ModificarPropietario1.setText("Modificar");
         ModificarPropietario1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ModificarPropietario1ActionPerformed(evt);
+            }
+        });
+
+        btnVerMas.setText("Ver Mas");
+        btnVerMas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMasActionPerformed(evt);
             }
         });
 
@@ -100,43 +161,46 @@ public class PropietarioVistas extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rdbIExistentes)
                                 .addGap(133, 133, 133)
-                                .addComponent(jRadioButton2)
+                                .addComponent(rdbIbaja)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
-                            .addComponent(jTextField1))
+                            .addComponent(txtBuscar))
                         .addGap(67, 67, 67))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
+                        .addGap(50, 50, 50)
                         .addComponent(btnNuevoPropietario)
-                        .addGap(104, 104, 104)
+                        .addGap(67, 67, 67)
                         .addComponent(ModificarPropietario1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(75, 75, 75)
                         .addComponent(btnEliminarPropietario)
-                        .addGap(86, 86, 86))))
+                        .addGap(56, 56, 56)
+                        .addComponent(btnVerMas)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                    .addComponent(rdbIbaja)
+                    .addComponent(rdbIExistentes))
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminarPropietario)
                     .addComponent(ModificarPropietario1)
-                    .addComponent(btnNuevoPropietario))
+                    .addComponent(btnNuevoPropietario)
+                    .addComponent(btnVerMas))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
 
@@ -157,47 +221,182 @@ public class PropietarioVistas extends javax.swing.JInternalFrame {
     private void btnNuevoPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPropietarioActionPerformed
         // TODO add your handling code here:
     setVisible(false);
-    
     // Muestra la nueva ventana
-    NuevoPropietario nombre = new NuevoPropietario();   
+       NuevoPropietario nombre = new NuevoPropietario();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
-    nombre.setVisible(true);
+       nombre.setVisible(true);
 //     dispose();
-
- 
-        
-      
     }//GEN-LAST:event_btnNuevoPropietarioActionPerformed
 
     private void ModificarPropietario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarPropietario1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-    
     // Muestra la nueva ventana
-    ModificarPropietario nombre = new ModificarPropietario();   
+       ModificarPropietario nombre = new ModificarPropietario();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
-    nombre.setVisible(true);
+       nombre.setVisible(true);
 //     dispose();
     }//GEN-LAST:event_ModificarPropietario1ActionPerformed
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void rdbIExistentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbIExistentesActionPerformed
+                  rdbIbaja.setSelected(false);
+        borrarFilas();
+      
+    
+        if ( rdbIExistentes.isSelected() == true) {
+        
+            for (Propietario in : id.obtenerLosPropietarios()) {
+                modelo.addRow(new Object[]{in.getIdPropietario(),in.getApelidoPropietario(),in.getNombrePropietario(),in.getDni(),in.getDomicilio(),in.getTelefono()});
+        
+            }
+    }
+    }//GEN-LAST:event_rdbIExistentesActionPerformed
+
+    private void rdbIbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbIbajaActionPerformed
+     rdbIExistentes.setSelected(false);
+         borrarFilas();
+    
+      
+        if (  rdbIbaja.isSelected() == true) {
+        
+            for (Propietario in : id.obtenerPropietariosdeBaja()) {
+                modelo.addRow(new Object[]{in.getIdPropietario(),in.getApelidoPropietario(),in.getNombrePropietario(),in.getDni(),in.getDomicilio(),in.getTelefono()});
+        
+            }
+        }
+    }//GEN-LAST:event_rdbIbajaActionPerformed
+
+    private void btnEliminarPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPropietarioActionPerformed
+       try {
+            int filaS = jTable1.getSelectedRow();
+            
+            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+           int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Propietario?", "Dar de Baja", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION){
+          id.BajaPropietario(in.getIdPropietario());
+        }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado nada, intentar nuevamente");
+        }
+    }//GEN-LAST:event_btnEliminarPropietarioActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+            try{
+        int buscar = parseInt(txtBuscar.getText());
+        String ValidarDNI = txtBuscar.getText();
+        if (ValidarDNI.length() != 8) {
+            JOptionPane.showMessageDialog(null, "Para buscar debe ingresar el DNI del inquilino");
+        } else {
+            borrarFilas();
+            if (id.BuscarPropietario(buscar).isEstado()) {
+                rdbIExistentes.setSelected(true);
+                rdbIbaja.setSelected(false);
+            } else {
+                rdbIExistentes.setSelected(false);
+                rdbIbaja.setSelected(true);
+            }
+            int idI = id.BuscarPropietario(buscar).getIdPropietario();
+            String Apellido = id.BuscarPropietario(buscar).getApelidoPropietario();
+            String Nombre = id.BuscarPropietario(buscar).getNombrePropietario();
+            int Dni = id.BuscarPropietario(buscar).getDni();
+            String Domicilio = id.BuscarPropietario(buscar).getDomicilio();
+            int Telefono = id.BuscarPropietario(buscar).getTelefono();
+            boolean Estado = id.BuscarPropietario(buscar).isEstado();
+            Propietario in = new Propietario(idI,Apellido, Nombre, Dni,Domicilio, Telefono, Estado);
+            modelo.addRow(new Object[]{in.getIdPropietario(), in.getApelidoPropietario(), in.getNombrePropietario(), in.getDni(),in.getDomicilio(), in.getTelefono(), in.isEstado()});
+            txtBuscar.setText("");
+        }
+        }catch(NullPointerException N){
+            JOptionPane.showMessageDialog(null,"No existe ese Propietario");
+            txtBuscar.setText("");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void btnVerMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMasActionPerformed
+               try {
+            int filaS = jTable1.getSelectedRow();
+            
+            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+       
+          id.BuscarPropietario(in.getDni());
+         JOptionPane.showMessageDialog(this,  
+    "Nro: " + in.getIdPropietario() + "\n" +
+    "Apellido: " + in.getApelidoPropietario()+ "\n" +
+    "Nombre: " + in.getNombrePropietario() +  "\n " +
+    "Dni: " + in.getDni() + "\n" +
+    "Domicilio: " + in.getDomicilio() + "\n" +
+    "Detalle: " + in.getTelefono() + "\n" +
+    "Estado: " + in.isEstado());  
+
+        
+            
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado nada, intentar nuevamente");
+        }
+    }//GEN-LAST:event_btnVerMasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCargar;
     private javax.swing.JButton ModificarPropietario1;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminarPropietario;
     private javax.swing.JButton btnNuevoPropietario;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVerMas;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton rdbIExistentes;
+    private javax.swing.JRadioButton rdbIbaja;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+
+private void ArmarCabecera(){
+    modelo.addColumn("Nro");
+    modelo.addColumn("Apellido");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Dni");
+    modelo.addColumn("Domicilio");
+    modelo.addColumn("Telefono");
+    
+
+    jTable1.setModel(modelo);
+    jTable1.setDefaultEditor(Object.class, null);
+
+    // Programa una tarea para ejecutarse después de que se muestre la interfaz gráfica
+    SwingUtilities.invokeLater(() -> {
+        // Asegúrate de que haya al menos 5 columnas antes de intentar establecer el ancho
+        if (jTable1.getColumnCount() >= 5) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(58);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+        }
+    });
+ }
+      private void borrarFilas(){
+        int f = jTable1.getRowCount()-1;
+        for(;f>=0;f--){
+              modelo.removeRow(f);
+    }
+    }
 }
