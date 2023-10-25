@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import proyectofinal.Entidades.ContratoAlquiler;
 import proyectofinal.Entidades.Inquilino;
 import proyectofinal.Entidades.PropiedadInmueble;
+import proyectofinal.accesoADatos.*;
 
 
 public class ContratoAlquilerData {
@@ -121,16 +122,17 @@ public class ContratoAlquilerData {
         ps.setInt(1, cod);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
-             contrato = new ContratoAlquiler();
+          contrato = new ContratoAlquiler();
              contrato.setID_Contrato(cod);
             int idInquilino = rs.getInt("Inquilino");
             int idPropiedad = rs.getInt("Propiedad");
             
             // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
-            InquilinoData inD = new InquilinoData();
-        
+            InquilinoData inD = new InquilinoData();       
             Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            
+           // System.out.println(inquilino.toString());
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
             contrato.setInquilino(inquilino);
             contrato.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
@@ -200,7 +202,7 @@ public class ContratoAlquilerData {
             al.setMarca(rs.getString("Marca").charAt(0)); // Suponiendo que "Marca" es un char en la base de datos
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
-            al.setEstado(true);
+            //al.setEstado(true);
 
                 
                 contratoAl.add(al);
@@ -233,6 +235,7 @@ public class ContratoAlquilerData {
             InquilinoData inD = new InquilinoData();
         
             Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
             al.setID_Contrato(rs.getInt("ID_Contrato"));

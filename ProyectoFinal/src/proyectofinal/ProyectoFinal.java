@@ -112,16 +112,24 @@ public class ProyectoFinal {
 //    }
 
 //
-      ContratoAlquilerData caD = new ContratoAlquilerData(); 
+//      ContratoAlquilerData caD = new ContratoAlquilerData(); 
+//
+//
+//       for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
+//        
+//        System.out.println(in.getID_Contrato());
+//        System.out.println(in.getMarca());
+//        
+//        }
 
-
-       for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
-        
-        System.out.println(in.getID_Contrato());
-        System.out.println(in.getMarca());
-        
-        }
-
+    PropiedadInmuebleData propD = new PropiedadInmuebleData();
+//    propD.buscarPropInmueble(1);
+         PropiedadInmueble in = propD.buscarPropInmueble(1);
+     //for(PropiedadInmueble in: propD.buscarPropInmueble(1)){
+         if(in!=null){
+        System.out.println("Accesibilidad "+ in.getOcupante());
+       //Ocupante tira null
+     }
 
 
 

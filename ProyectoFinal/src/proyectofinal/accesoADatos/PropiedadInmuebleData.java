@@ -119,7 +119,7 @@ public class PropiedadInmuebleData {
     }
     
     public PropiedadInmueble buscarPropInmueble(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -127,30 +127,38 @@ public class PropiedadInmuebleData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet res = ps.executeQuery();
+            
             if (res.next()){
                 propiedadInmueble =new PropiedadInmueble();
                 propiedadInmueble.setID_Local(codigo);
-                int idPropietario = res.getInt("Duenio");
+                int idPropietario = res.getInt("Dueño");
                 int idInquilino = res.getInt("Ocupante");
+                
                 //obtener duenio y ocupante
                 PropietarioData pD= new PropietarioData();
                 InquilinoData inD= new InquilinoData();
                 
                 Propietario prop=pD.BuscarPropietario(idPropietario);
-                Inquilino inq=inD.BuscarInquilino(idInquilino);
+                Inquilino inq= inD.BuscarInquilinoId(idInquilino);
+               // System.out.println(idInquilino);
+                        //new Inquilino(inD.BuscarInquilino(idInquilino).getId_Inquilino(),inD.BuscarInquilino(idInquilino).getApellido(),inD.BuscarInquilino(idInquilino).getNombre(),inD.BuscarInquilino(idInquilino).getDNI(),inD.BuscarInquilino(idInquilino).getCUIL(),inD.BuscarInquilino(idInquilino).getDetalle(),inD.BuscarInquilino(idInquilino).getTipo());
+                        
+//                System.out.println(idInquilino);
+//                System.out.println(inq);
                 
-                propiedadInmueble.setAccesibilidad(res.getString("accesobilidad"));
-                propiedadInmueble.setCaracteristicas(res.getString("caracteristicas"));
-                propiedadInmueble.setDireccion(res.getString("direccion"));
+                propiedadInmueble.setAccesibilidad(res.getString("Accesibilidad"));
+                propiedadInmueble.setCaracteristicas(res.getString("Caracteristicas"));
+                propiedadInmueble.setDireccion(res.getString("Direccion"));
                 propiedadInmueble.setDuenio(prop);
-                propiedadInmueble.setEstadoLocal(res.getBoolean("estadoLocal"));
-                propiedadInmueble.setForma(res.getString("forma"));
+                propiedadInmueble.setEstadoLocal(res.getBoolean("EstadoLocal"));
+                propiedadInmueble.setForma(res.getString("Forma"));
                 propiedadInmueble.setOcupante(inq);
-                propiedadInmueble.setPrecioTazado(res.getFloat("precioTazado"));
-                propiedadInmueble.setSuperficieMinima(res.getInt("superficieMinima"));
-                propiedadInmueble.setTipoLocal(res.getString("tipoLocal"));
-                propiedadInmueble.setZona(res.getString("zona"));
+                propiedadInmueble.setPrecioTazado(res.getFloat("PrecioTazado"));
+                propiedadInmueble.setSuperficieMinima(res.getInt("SuperficieMin"));
+                propiedadInmueble.setTipoLocal(res.getString("TipoLocal"));
+                propiedadInmueble.setZona(res.getString("Zona"));
           
+                
             }else{
                 JOptionPane.showMessageDialog(null, "No exite Propiedad");
             }
@@ -159,9 +167,11 @@ public class PropiedadInmuebleData {
                         
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+            
         }
         
         return propiedadInmueble;
+        
     }
     
     public float FijarPrecio(int idProp, Float nPrecio){

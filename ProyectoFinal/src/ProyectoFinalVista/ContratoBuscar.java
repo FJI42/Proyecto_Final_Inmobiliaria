@@ -7,6 +7,7 @@ package ProyectoFinalVista;
 
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     public ContratoBuscar() {
         initComponents();
         con= Conexion.getConexion();
-        //jTable1.setModel(modelo);
+        jTable1.setModel(modelo);
         ArmarCabecera();
     }
 
@@ -160,7 +161,8 @@ private DefaultTableModel modelo = new DefaultTableModel();
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
         ContratoAlquiler contratoEncontrado= caD.buscarContrato(parseInt(jTextField1.getText()));
-     if(contratoEncontrado!=null){ 
+     try { 
+         if(contratoEncontrado!=null){ 
             JOptionPane.showMessageDialog(
          null,
          "Id_Contrato: " + contratoEncontrado.getID_Contrato() + "\n" +
@@ -171,9 +173,14 @@ private DefaultTableModel modelo = new DefaultTableModel();
          "Marca: " + contratoEncontrado.getMarca() + "\n" +
          "Propiedad: " + contratoEncontrado.getPropiedad() + "\n" +
          "Vendedor: " + contratoEncontrado.getVendedor() 
-
-     );  
+          );    
+         }
+               
+     } catch(NullPointerException ex){
+         JOptionPane.showMessageDialog(this,"Error al Buscar");
      }
+         
+     
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActivoActionPerformed

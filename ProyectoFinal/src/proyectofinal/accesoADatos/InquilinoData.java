@@ -105,7 +105,7 @@ public class InquilinoData {
      String sql= "SELECT `ID_Inquilino`, `Apellido`, `Nombre`, `DNI`,`CUIL`, `Detalles`, `Tipo`, `Estado` FROM `inquilino` WHERE DNI=?";
             Inquilino inquilino=null; 
      try {
-         try{
+         try{ 
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,dni);
             ResultSet rs= ps.executeQuery();
@@ -134,6 +134,39 @@ public class InquilinoData {
         return inquilino;             
 } 
     
+    public Inquilino BuscarInquilinoId(int id){
+     String sql= "SELECT `ID_Inquilino`, `Apellido`, `Nombre`, `DNI`,`CUIL`, `Detalles`, `Tipo` FROM `inquilino` WHERE ID_Inquilino=?";
+            Inquilino inquilino=null; 
+     try {
+         try{ 
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                inquilino=new Inquilino();
+                inquilino.setId_Inquilino(id);
+                inquilino.setApellido(rs.getString("Apellido"));
+                inquilino.setNombre(rs.getString("Nombre"));
+                inquilino.setDNI(rs.getInt("DNI")); 
+                inquilino.setCUIL(rs.getLong("CUIL"));
+                inquilino.setDetalle(rs.getString("Detalles"));
+                inquilino.setTipo(rs.getString("Tipo"));
+                //inquilino.setEstado(rs.getBoolean("Estado")); 
+                                   
+                        
+            }             
+             ps.close();
+         }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
+        }
+        
+        return inquilino;             
+} 
+ 
     public List<Inquilino> obtenerInquilinosdeBaja(){
         ArrayList<Inquilino> inquilino= new ArrayList<>();   
         String sql="SELECT * FROM inquilino WHERE estado=0";
