@@ -506,9 +506,6 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
     }
     }
 
-<<<<<<< HEAD
-      
-=======
       
       
       private void TablaGarante(){
@@ -522,7 +519,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
             }
                          
       }
->>>>>>> master
+
 
       private void ArmarCabecera2(){
     modelo2.addColumn("Nro");

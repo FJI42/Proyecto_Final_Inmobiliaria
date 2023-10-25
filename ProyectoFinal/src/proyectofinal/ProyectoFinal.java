@@ -23,17 +23,17 @@ import proyectofinal.accesoADatos.PropietarioData;
  *
  * @author usuario
  */
-//public class ProyectoFinal {
+public class ProyectoFinal {
 
     /**
      * @param args the command line arguments
      */
-//    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) {
+         //TODO code application logic here
 
-//         Connection con = Conexion.getConexion();
+         Connection con = Conexion.getConexion();
          
-//     
+     
 
 //         Connection con = Conexion.getConexion();
 //    }}
@@ -112,15 +112,15 @@ import proyectofinal.accesoADatos.PropietarioData;
 //    }
 
 //
-//ContratoAlquilerData caD = new ContratoAlquilerData(); 
+      ContratoAlquilerData caD = new ContratoAlquilerData(); 
 
-//
-//for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
-//        
-//        System.out.println(in.getID_Contrato());
-//        System.out.println(in.getMarca());
-//        
-//}
+
+       for(ContratoAlquiler in:caD.obtenerContratosdeBaja()){
+        
+        System.out.println(in.getID_Contrato());
+        System.out.println(in.getMarca());
+        
+        }
 
 
 
@@ -215,9 +215,11 @@ import proyectofinal.accesoADatos.PropietarioData;
 //pd.BajaPropietario(1);
 
 
-     } } 
+      
 
     
     
     
+       } 
 
+} 

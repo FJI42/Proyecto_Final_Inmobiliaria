@@ -34,7 +34,7 @@ public class PropiedadInmuebleData {
     
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
                 
-        String sql="INSERT INTO `propiedad inmueble`(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO `propiedadinmueble`(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         
         try{
             PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -70,7 +70,7 @@ public class PropiedadInmuebleData {
     }
     
     public void EliminarPropiedadInmueble(int idLocal){
-       String sql="UPDATE `propiedad inmueble` SET Estado=0 WHERE ID_Local=? AND Estado= 1";  
+       String sql="UPDATE `propiedadinmueble` SET Estado=0 WHERE ID_Local=? AND Estado= 1";  
        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class PropiedadInmuebleData {
     }
     
     public void ModificarPropiedadInmueble(PropiedadInmueble propInmueble){
-        String sql="UPDATE `propiedad inmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -119,7 +119,7 @@ public class PropiedadInmuebleData {
     }
     
     public PropiedadInmueble buscarPropInmueble(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedad inmueble` WHERE ID_Local =?";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -165,7 +165,7 @@ public class PropiedadInmuebleData {
     }
     
     public float FijarPrecio(int idProp, Float nPrecio){
-        String sql="UPDATE `propiedad inmueble` SET nPrecio=? WHERE idProp = ?";
+        String sql="UPDATE `propiedadinmueble` SET nPrecio=? WHERE idProp = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -188,7 +188,7 @@ public class PropiedadInmuebleData {
     
     public float alquilarInmueble(int idProp, int idInq){
         
-        String sql="UPDATE `propiedad inmueble` SET idInq=? WHERE idProp = ?";
+        String sql="UPDATE `propiedadinmueble` SET idInq=? WHERE idProp = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -210,7 +210,7 @@ public class PropiedadInmuebleData {
     }
 
     public PropiedadInmueble buscarPropInmuebleLibre(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedad inmueble` WHERE ID_Local =? AND Ocupante IS NULL";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =? AND Ocupante IS NULL";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -287,7 +287,7 @@ public class PropiedadInmuebleData {
                     prop.setTipoLocal(rs.getString("TipoLocal"));
                     prop.setZona(rs.getString("Zona"));
                     
-                    System.out.println(prop);
+                    
                     propiedad.add(prop);
                     
                 }
@@ -295,8 +295,8 @@ public class PropiedadInmuebleData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex);  //"Error al acceder a la tabla Propiedad Inmueble");
-                System.out.println(ex);
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
             }
         
         return propiedad; 

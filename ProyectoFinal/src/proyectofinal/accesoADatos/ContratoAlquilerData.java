@@ -215,6 +215,7 @@ public class ContratoAlquilerData {
         
         return contratoAl; 
        }
+    
      public List<ContratoAlquiler> obtenerLosContratos(){
         ArrayList<ContratoAlquiler> contratoAlquiler= new ArrayList<>();   
         String sql="SELECT * FROM contratoalquiler WHERE estado=1";
@@ -223,7 +224,7 @@ public class ContratoAlquilerData {
 //                ps.setInt(1,id); 
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
-                 ContratoAlquiler al= new ContratoAlquiler(); 
+           ContratoAlquiler al= new ContratoAlquiler(); 
             int idInquilino = rs.getInt("Inquilino");
             int idPropiedad = rs.getInt("Propiedad");
             
@@ -242,17 +243,14 @@ public class ContratoAlquilerData {
             al.setMarca(rs.getString("Marca").charAt(0)); // Suponiendo que "Marca" es un char en la base de datos
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
-            //al.setEstado(true);
-             //contratoAlquiler.add(ca);
-                
-                contratoAlquiler.add(al); 
+            //al.setEstado(true); 
+            contratoAlquiler.add(al); 
                
                 }
                 
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
             }
         
