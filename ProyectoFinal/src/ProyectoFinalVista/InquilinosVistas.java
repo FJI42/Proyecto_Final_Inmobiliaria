@@ -35,7 +35,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
         initComponents();
         con= Conexion.getConexion();
         ArmarCabecera();
-       
+        ArmarCabecera2();
         TablaGarante();
     }
    
@@ -332,6 +332,8 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
            int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Inquilino?", "Dar de Baja", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION){
           id.BajaInquilino(in.getId_Inquilino());
+      
+//        TablaGarante();
         }
             
 
@@ -509,7 +511,7 @@ public class InquilinosVistas extends javax.swing.JInternalFrame {
       
       
       private void TablaGarante(){
-           ArmarCabecera2();
+          
            borrarFilas2();
         
       

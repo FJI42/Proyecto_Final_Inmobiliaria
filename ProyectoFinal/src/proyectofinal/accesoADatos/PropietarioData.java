@@ -90,7 +90,7 @@ public class PropietarioData {
         }
         }  
         public Propietario BuscarPropietario(int id){
-     String sql= "SELECT `ID_Propietario`, `Apellido`, `Nombre`, `DNI`, `Domicilio`, `Telefono`, `Estado` FROM `propietario` WHERE ID_Propietario=? AND Estado=1";
+     String sql= "SELECT * FROM `propietario` WHERE Dni=? AND Estado=1";
             Propietario propietario=null; 
      try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -98,13 +98,13 @@ public class PropietarioData {
             ResultSet rs= ps.executeQuery();
             if(rs.next()){
                 propietario=new Propietario();
-                propietario.setIdPropietario(id);
+                propietario.setIdPropietario(rs.getInt("ID_Propietario"));
                 propietario.setApelidoPropietario(rs.getString("Apellido"));
                 propietario.setNombrePropietario(rs.getString("Nombre"));
                 propietario.setDni(rs.getInt("Dni"));
                 propietario.setDomicilio(rs.getString("Domicilio"));
                 propietario.setTelefono(rs.getInt("Telefono"));
-              propietario.setEstado(true); 
+                propietario.setEstado(true); 
                                    
              }else {                 
                 JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
