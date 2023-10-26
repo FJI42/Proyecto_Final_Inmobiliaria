@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ProyectoFinalVista;
 
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +47,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setClosable(true);
@@ -101,6 +100,13 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,23 +115,27 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jbActivo)
-                                    .addGap(100, 100, 100)
-                                    .addComponent(jbVencido))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jbBuscar)
-                                    .addGap(61, 61, 61)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jbSalir)
-                        .addGap(129, 129, 129)
-                        .addComponent(jButton1)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbBuscar)
+                                .addGap(61, 61, 61)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 149, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jbActivo)
+                                .addGap(124, 124, 124)
+                                .addComponent(jbVencido)
+                                .addGap(125, 125, 125))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jbSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(87, 87, 87)
+                .addComponent(jButton1)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,10 +150,11 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
                     .addComponent(jbVencido))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbSalir)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(24, 24, 24))
         );
 
@@ -188,12 +199,14 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         jbVencido.setSelected(false);
         borrarFilas();
-        
-        if (jbActivo.isSelected() == true) {
-            for (ContratoAlquiler al : caD.obtenerLosContratos()) {
+        //System.out.println(caD.obtenerLosContratos());
+        List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
+        contratoAlquiler = caD.obtenerLosContratos(); 
+       // if (jbActivo.isSelected() == true) {  
+            for (ContratoAlquiler al : contratoAlquiler) {
                 modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
                 
-            }
+           // }
     }     
 
     }//GEN-LAST:event_jbActivoActionPerformed
@@ -203,10 +216,12 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
          jbActivo.setSelected(false);
          borrarFilas();
 
-        if (jbVencido.isSelected() == true) {
-            for (ContratoAlquiler al : caD.obtenerContratosdeBaja()) {
+         List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
+         contratoAlquiler = caD.obtenerContratosdeBaja(); 
+        //if (jbVencido.isSelected() == true) {
+            for (ContratoAlquiler al : contratoAlquiler) {
                 modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
-            }
+            //}
     } 
     }//GEN-LAST:event_jbVencidoActionPerformed
 
@@ -222,9 +237,41 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 //     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+        int fs = jTable1.getSelectedRow();
+        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 0); // Obtener el ID del Inquilino
+        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 1);
+        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 2);
+        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 3);
+        char marca = (char) modelo.getValueAt(fs, 4);
+        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 5);
+        String vendedor = (String) modelo.getValueAt(fs, 6);
+        boolean estado = true;
+
+        ContratoAlquiler con = new ContratoAlquiler(idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, estado);
+        caD.cancelacion(con.getID_Contrato());
+     } catch (ArrayIndexOutOfBoundsException e) {
+    JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
+      }
+        
+//        try {
+//            int fs = jTable1.getSelectedRow();
+//            //ContratoAlquiler insd = new inscripcionData();
+//            //ContratoAlquiler con = (ContratoAlquiler) jComboBox1.getSelectedItem();
+//            ContratoAlquiler con = new ContratoAlquiler((Inquilino)modelo.getValueAt(fs, 0), (LocalDate)modelo.getValueAt(fs, 1), (LocalDate) modelo.getValueAt(fs, 2),(LocalDate) modelo.getValueAt(fs, 3),(char) modelo.getValueAt(fs, 4),(PropiedadInmueble) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),(String) modelo.getValueAt(fs, 7),true);
+//            caD.cancelacion(con.getID_Contrato());
+//
+//        } catch (ArrayIndexOutOfBoundsException e) {
+//            JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
+//        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

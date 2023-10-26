@@ -191,7 +191,7 @@ public class ContratoAlquilerData {
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
             InquilinoData inD = new InquilinoData();
         
-            Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
             //al.setID_Contrato(rs.getInt("ID_Contrato"));
