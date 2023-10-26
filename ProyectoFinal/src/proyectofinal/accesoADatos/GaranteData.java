@@ -75,26 +75,29 @@ public class GaranteData {
     }
   }
        
-    public void BajaInquilino(int id){
-         String sql="UPDATE inquilino SET estado=0 WHERE ID_Inquilino=? AND estado=1 ";
+    public void BajaGarante(int id){
+         String sql="DELETE FROM `garantes` WHERE ID_Inquilino=? ";
         try {
             try{
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,id);
+             
+          
+
             int exito = ps.executeUpdate(); 
-            
-            if(exito==1){
-                JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
-            }    else{
-                 JOptionPane.showMessageDialog(null, "El Inquilino ya esta dado de baja");
-                
-            }
+//            
+//            if(exito==1){
+//                JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
+//            }    else{
+//                 JOptionPane.showMessageDialog(null, "El Inquilino ya esta dado de baja");
+//                
+//            }
              }catch(NumberFormatException n){
              JOptionPane.showMessageDialog(null, "Se produjo un error");
                      
          }                       
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
+           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Garantes");
         }
                                    
       }

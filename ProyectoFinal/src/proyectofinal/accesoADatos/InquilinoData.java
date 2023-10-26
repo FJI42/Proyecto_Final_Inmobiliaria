@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import proyectofinal.Entidades.Inquilino;
-
+import proyectofinal.accesoADatos.GaranteData;
 /**
  *
  * @author User
@@ -84,7 +84,8 @@ public class InquilinoData {
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,id);
             int exito = ps.executeUpdate(); 
-            
+             GaranteData g = new GaranteData();                  
+                g.BajaGarante(id);
             if(exito==1){
                 JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
             }    else{
@@ -152,8 +153,7 @@ public class InquilinoData {
                 inquilino.setDetalle(rs.getString("Detalles"));
                 inquilino.setTipo(rs.getString("Tipo"));
                 //inquilino.setEstado(rs.getBoolean("Estado")); 
-                                   
-                        
+               
             }             
              ps.close();
          }catch(NumberFormatException n){
