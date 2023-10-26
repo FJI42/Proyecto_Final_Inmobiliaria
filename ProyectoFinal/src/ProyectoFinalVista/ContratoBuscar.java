@@ -19,8 +19,9 @@ import proyectofinal.accesoADatos.*;
  * @author usuario
  */
 public class ContratoBuscar extends javax.swing.JInternalFrame {
-ContratoAlquilerData caD= new ContratoAlquilerData(); 
-private DefaultTableModel modelo = new DefaultTableModel();
+    
+  ContratoAlquilerData caD= new ContratoAlquilerData(); 
+  private DefaultTableModel modelo = new DefaultTableModel();
     private Connection con= null;
     /**
      * Creates new form ContratoBuscar
@@ -28,7 +29,6 @@ private DefaultTableModel modelo = new DefaultTableModel();
     public ContratoBuscar() {
         initComponents();
         con= Conexion.getConexion();
-        jTable1.setModel(modelo);
         ArmarCabecera();
     }
 
@@ -166,28 +166,29 @@ private DefaultTableModel modelo = new DefaultTableModel();
             JOptionPane.showMessageDialog(
          null,
          "Id_Contrato: " + contratoEncontrado.getID_Contrato() + "\n" +
-         "Inquilino: " + contratoEncontrado.getInquilino() + "\n" +
+         "Inquilino: " + contratoEncontrado.getInquilino().getId_Inquilino() + "\n" +
          "Fecha_Final: " + contratoEncontrado.getFecha_Final() + "\n" +
          "Fecha_Inicio: " + contratoEncontrado.getFecha_Inicio() + "\n" +
          "Fecha_Realizacion: " + contratoEncontrado.getFecha_Realizacion() + "\n" +
          "Marca: " + contratoEncontrado.getMarca() + "\n" +
-         "Propiedad: " + contratoEncontrado.getPropiedad() + "\n" +
-         "Vendedor: " + contratoEncontrado.getVendedor() 
-          );    
+         "Propiedad: " + contratoEncontrado.getPropiedad().getID_Local() + "\n" +
+         "Vendedor: " + contratoEncontrado.getVendedor());    
+          
+            jTextField1.setText("");
          }
                
      } catch(NullPointerException ex){
          JOptionPane.showMessageDialog(this,"Error al Buscar");
      }
          
-     
+     //Funciona correctamente 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActivoActionPerformed
         // TODO add your handling code here:
         jbVencido.setSelected(false);
         borrarFilas();
-   
+        
         if (jbActivo.isSelected() == true) {
             for (ContratoAlquiler al : caD.obtenerLosContratos()) {
                 modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});

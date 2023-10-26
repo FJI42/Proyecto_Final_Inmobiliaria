@@ -130,7 +130,7 @@ public class ContratoAlquilerData {
             // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
             InquilinoData inD = new InquilinoData();       
-            Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
             
            // System.out.println(inquilino.toString());
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
@@ -158,7 +158,7 @@ public class ContratoAlquilerData {
     
     public void cancelacion(int ID_Contrato){
         
-        String sql="UPDATE contratoalquiler SET estado=0 WHERE ID_Contrato=? AND estado=1";
+        String sql="UPDATE contratoalquiler SET estado=0 WHERE ID_Contrato=?";
             try { 
                 PreparedStatement ps= con.prepareStatement(sql);
                 ps.setInt(1,ID_Contrato);
@@ -194,7 +194,7 @@ public class ContratoAlquilerData {
             Inquilino inquilino = inD.BuscarInquilino(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
-            al.setID_Contrato(rs.getInt("ID_Contrato"));
+            //al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
             al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
@@ -234,11 +234,11 @@ public class ContratoAlquilerData {
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
             InquilinoData inD = new InquilinoData();
         
-            Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+            Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
 
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
                     
-            al.setID_Contrato(rs.getInt("ID_Contrato"));
+            //al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
             al.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());

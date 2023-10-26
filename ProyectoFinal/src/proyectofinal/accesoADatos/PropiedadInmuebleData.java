@@ -140,11 +140,6 @@ public class PropiedadInmuebleData {
                 
                 Propietario prop=pD.BuscarPropietario(idPropietario);
                 Inquilino inq= inD.BuscarInquilinoId(idInquilino);
-               // System.out.println(idInquilino);
-                        //new Inquilino(inD.BuscarInquilino(idInquilino).getId_Inquilino(),inD.BuscarInquilino(idInquilino).getApellido(),inD.BuscarInquilino(idInquilino).getNombre(),inD.BuscarInquilino(idInquilino).getDNI(),inD.BuscarInquilino(idInquilino).getCUIL(),inD.BuscarInquilino(idInquilino).getDetalle(),inD.BuscarInquilino(idInquilino).getTipo());
-                        
-//                System.out.println(idInquilino);
-//                System.out.println(inq);
                 
                 propiedadInmueble.setAccesibilidad(res.getString("Accesibilidad"));
                 propiedadInmueble.setCaracteristicas(res.getString("Caracteristicas"));

@@ -61,6 +61,8 @@ private Connection con= null;
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
         jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jlID = new javax.swing.JLabel();
+        jtID = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 255));
 
@@ -103,8 +105,18 @@ private Connection con= null;
         });
 
         jbRenovarContrato.setText("Renovar");
+        jbRenovarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRenovarContratoActionPerformed(evt);
+            }
+        });
 
         jbCancelarContrato.setText("Cancelar");
+        jbCancelarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarContratoActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Estado:");
 
@@ -123,19 +135,14 @@ private Connection con= null;
 
         jcPropiedades.setToolTipText("");
 
+        jlID.setText("ID:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbCrearContrato)
-                        .addGap(74, 74, 74)
-                        .addComponent(jbRenovarContrato)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addComponent(jbCancelarContrato))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,59 +153,70 @@ private Connection con= null;
                             .addComponent(jLabel4)
                             .addComponent(jLabel10)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jlID))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcPropiedades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcInquilinos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jrbEstado)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jrbEstado)
                                     .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(78, 78, 78)
+                                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 14, Short.MAX_VALUE)))
+                        .addGap(90, 90, 90))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jbCrearContrato)
+                        .addGap(76, 76, 76)
+                        .addComponent(jbRenovarContrato)
+                        .addGap(60, 60, 60)
+                        .addComponent(jbCancelarContrato)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addComponent(jbSalir)
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(22, 22, 22)
-                                .addComponent(jLabel4))
-                            .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlID)
+                            .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
                     .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,13 +224,13 @@ private Connection con= null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jrbEstado))
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCrearContrato)
                     .addComponent(jbRenovarContrato)
                     .addComponent(jbCancelarContrato)
                     .addComponent(jbSalir))
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -283,6 +301,88 @@ private Connection con= null;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
+    private void jbRenovarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarContratoActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+            if (!jtID.getText().isEmpty() && jcInquilinos.getSelectedItem()!= null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jTextField3.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jTextField5.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
+
+                int ID = parseInt(jtID.getText());
+                Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                char marca = jTextField3.getText().charAt(0);
+                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
+                String vendedor= jTextField5.getText();                              
+                boolean estado = jrbEstado.isSelected();
+                
+            ContratoAlquiler cal = new ContratoAlquiler(ID,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
+            
+            //ContratoAlquiler co= new ContratoAlquiler(8,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
+            caD.renovacion(cal); 
+            
+            jtID.setText("");
+            jDateChooser4.setDate(null);
+            jDateChooser5.setDate(null);
+            jDateChooser6.setDate(null);
+        
+            jTextField3.setText("");
+            jTextField5.setText("");
+                
+            } else if(jtID.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
+            }
+            else if (jTextField5.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del Vendedor vacio!");
+            } else if (jDateChooser4.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Final!");
+            } else if (jDateChooser5.getDate()==null){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Inicio!");    
+            } else if (jDateChooser4.getDate()==null){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha de Realizacion!");
+            } else if (jTextField3.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar la Marca vacia!");
+            } 
+             else if (jTextField5.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el Vendedor vacio!");
+            }
+            else if (jrbEstado.isSelected() == false) {
+                JOptionPane.showMessageDialog(this, "¡Debe dejar sin marcar el campo estado!");
+            }
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
+        }
+
+    }//GEN-LAST:event_jbRenovarContratoActionPerformed
+
+    private void jbCancelarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarContratoActionPerformed
+        // TODO add your handling code here:
+        
+        int id= Integer.parseInt(jtID.getText());
+        caD.cancelacion(id);
+         //Limpio campos
+                jtID.setText("");
+         //Deshabilito botones luego de ejecutar acccion!
+         desHabilitarBotones();
+         
+//        try {
+//            if (!jtID.getText().isEmpty()){
+//                int ID = parseInt(jtID.getText());
+//            ContratoAlquiler cal = new ContratoAlquiler(ID);
+//                caD.cancelacion(ID);
+//                jtID.setText("");
+//            } else if(jtID.getText().isEmpty()){
+//                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
+//            }}
+//            catch (NullPointerException e) {
+//            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
+//        }
+            
+                 
+    }//GEN-LAST:event_jbCancelarContratoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDateChooser4;
@@ -304,7 +404,9 @@ private Connection con= null;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<Inquilino> jcInquilinos;
     private javax.swing.JComboBox<PropiedadInmueble> jcPropiedades;
+    private javax.swing.JLabel jlID;
     private javax.swing.JRadioButton jrbEstado;
+    private javax.swing.JTextField jtID;
     // End of variables declaration//GEN-END:variables
 
 
@@ -313,7 +415,7 @@ private Connection con= null;
         InquilinoData inqD = new InquilinoData();
         ArrayList<Inquilino> inquilino = new ArrayList<>();
 
-        for (Inquilino inqui : inqD.obtenerLosInquilinos()) {
+        for (Inquilino inqui : inqD.obtenerInquilinosdeBaja()) {
             inquilino.add(inqui);
             jcInquilinos.addItem(inqui);
             //System.out.println(inqui);
@@ -330,8 +432,7 @@ private Connection con= null;
         for (PropiedadInmueble prop : piD.obtenerLasPropiedades()) {
             propiedad.add(prop);
             jcPropiedades.addItem(prop);
-            
-            
+  
         }
     }
      
@@ -380,8 +481,21 @@ private Connection con= null;
             JOptionPane.showMessageDialog(this, "No debe dejar campos vacios");
         }
     }
-//    Me da un error de "[ WARN] (AWT-EventQueue-0) Error: 1452-23000: Cannot add or update a child row: a foreign key constraint fails (`inmobiliaria_pf`.`contratoalquiler`, CONSTRAINT `c2` FOREIGN KEY (`Propiedad`) REFERENCES `propiedadinmueble` (`ID_Local`))
-//    " cuando quiero crear un contrato alquiler
-//
 
+     public void habilitarBotones() {
+       
+            jbCancelarContrato.setEnabled(true);
+            jbCrearContrato.setEnabled(true);
+            jbRenovarContrato.setEnabled(true);
+        
+    }
+     
+     public void desHabilitarBotones(){
+         
+         jbCancelarContrato.setEnabled(false);
+            jbCrearContrato.setEnabled(false);
+            jbRenovarContrato.setEnabled(false);
+            
+       
+    }
 }

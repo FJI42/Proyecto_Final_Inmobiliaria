@@ -21,6 +21,11 @@ public class ContratoAlquiler {
     public ContratoAlquiler() {
     }
 
+    public ContratoAlquiler(int ID_Contrato) {
+        this.ID_Contrato = ID_Contrato;
+    }
+
+    
     public ContratoAlquiler(Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, boolean Estado) {
         this.Inquilino = Inquilino;
         this.Fecha_Final = Fecha_Final;
