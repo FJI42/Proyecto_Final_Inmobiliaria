@@ -93,20 +93,23 @@ private PropietarioData id = new PropietarioData();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nro", "Apellido", "Nombre", "Dni", "Domicilio", "Telefono"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(120);
+        }
 
         rdbIExistentes.setText("Inquilinos Existentes");
         rdbIExistentes.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +244,10 @@ private PropietarioData id = new PropietarioData();
     }//GEN-LAST:event_ModificarPropietario1ActionPerformed
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        // TODO add your handling code here:
+    char c = evt.getKeyChar();
+    if(c<'0' || c>'9') evt.consume();
+    if(txtBuscar.getText().length() >= 8)
+    {evt.consume();}
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -294,8 +300,8 @@ private PropietarioData id = new PropietarioData();
             try{
         int buscar = parseInt(txtBuscar.getText());
         String ValidarDNI = txtBuscar.getText();
-        if (ValidarDNI.length() != 8) {
-            JOptionPane.showMessageDialog(null, "Para buscar debe ingresar el DNI del inquilino");
+        if (ValidarDNI.length() < 0) {
+            JOptionPane.showMessageDialog(null, "Para buscar debe ingresar el Dni del Propietario");
         } else {
             borrarFilas();
             if (id.BuscarPropietario(buscar).isEstado()) {
@@ -330,21 +336,18 @@ private PropietarioData id = new PropietarioData();
                try {
             int filaS = jTable1.getSelectedRow();
             
-            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
-       
+          Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+           
           id.BuscarPropietario(in.getDni());
          JOptionPane.showMessageDialog(this,  
-    "Nro: " + in.getIdPropietario() + "\n" +
-    "Apellido: " + in.getApelidoPropietario()+ "\n" +
-    "Nombre: " + in.getNombrePropietario() +  "\n " +
-    "Dni: " + in.getDni() + "\n" +
-    "Domicilio: " + in.getDomicilio() + "\n" +
-    "Detalle: " + in.getTelefono() + "\n" +
-    "Estado: " + in.isEstado());  
-
-        
-            
-
+                 
+    "Nro: "       + in.getIdPropietario()     + "\n " +
+    "Apellido: "  + in.getApelidoPropietario()+ "\n " +
+    "Nombre: "    + in.getNombrePropietario() + "\n " +
+    "Dni: "       + in.getDni()               + "\n " +
+    "Domicilio: " + in.getDomicilio()         + "\n " +
+    "Telefono: "  + in.getTelefono()          + "\n "  );  
+         
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado nada, intentar nuevamente");
         }
