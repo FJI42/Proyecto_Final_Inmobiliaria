@@ -165,6 +165,35 @@ public class GaranteData {
         return garante; 
        }
      
+      public List<Garante> obtenerGaranteID(int id){
+        ArrayList<Garante> garante= new ArrayList<>();   
+        String sql="SELECT * FROM garantes WHERE ID_Inquilino=?";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setInt(1,id); 
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                    Garante in =new Garante(); 
+                in.setID_Garante(rs.getInt("ID_Garante"));
+                in.setApellido(rs.getString("apellido"));
+                in.setNombre(rs.getString("nombre"));
+                in.setDNI(rs.getInt("dni"));
+                in.setCUIL(rs.getLong("CUIL"));
+                in.setDetalle(rs.getString("Detalles"));
+                in.setId_Inquilino(id);
+                    garante.add(in);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Garante");
+            }
+        
+        return garante; 
+       }
+     
        public void modificarGarante(Garante garante){
             
             String sql="UPDATE garantes SET Apellido=?,Nombre=?,DNI=?,CUIL=?,Detalles=?,ID_Inquilino=? WHERE ID_Garante=?";

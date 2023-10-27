@@ -100,7 +100,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -239,33 +239,39 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try {
-        int fs = jTable1.getSelectedRow();
-        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 0); // Obtener el ID del Inquilino
-        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 1);
-        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 2);
-        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 3);
-        char marca = (char) modelo.getValueAt(fs, 4);
-        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 5);
-        String vendedor = (String) modelo.getValueAt(fs, 6);
-        boolean estado = true;
 
-        ContratoAlquiler con = new ContratoAlquiler(idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, estado);
-        caD.cancelacion(con.getID_Contrato());
-     } catch (ArrayIndexOutOfBoundsException e) {
-    JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
-      }
-        
 //        try {
-//            int fs = jTable1.getSelectedRow();
-//            //ContratoAlquiler insd = new inscripcionData();
-//            //ContratoAlquiler con = (ContratoAlquiler) jComboBox1.getSelectedItem();
-//            ContratoAlquiler con = new ContratoAlquiler((Inquilino)modelo.getValueAt(fs, 0), (LocalDate)modelo.getValueAt(fs, 1), (LocalDate) modelo.getValueAt(fs, 2),(LocalDate) modelo.getValueAt(fs, 3),(char) modelo.getValueAt(fs, 4),(PropiedadInmueble) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),(String) modelo.getValueAt(fs, 7),true);
-//            caD.cancelacion(con.getID_Contrato());
+//        int fs = jTable1.getSelectedRow();
+//        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 0); // Obtener el ID del Inquilino
+//        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 1);
+//        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 2);
+//        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 3);
+//        char marca = (char) modelo.getValueAt(fs, 4);
+//        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 5);
+//        String vendedor = (String) modelo.getValueAt(fs, 6);
+//        boolean estado = true;
 //
-//        } catch (ArrayIndexOutOfBoundsException e) {
-//            JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
-//        }
+//        ContratoAlquiler con = new ContratoAlquiler(idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, estado);
+//        caD.cancelacion(con.getID_Contrato());
+//     } catch (ArrayIndexOutOfBoundsException e) {
+//    JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
+//      }
+        
+        try {
+            int fs = jTable1.getSelectedRow(); 
+            ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), (LocalDate) modelo.getValueAt(fs, 3),(LocalDate) modelo.getValueAt(fs, 4),(char) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),(String) modelo.getValueAt(fs, 7),true);
+            int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Contrato", "Dar de Baja", JOptionPane.YES_NO_OPTION);
+            System.out.println(con1);
+            if (resp == JOptionPane.YES_OPTION){                
+                caD.cancelacion(con1.getID_Contrato());
+                //System.out.println("entro");
+                //con1.getID_Contrato()
+        } 
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
+        } //Igualmente no me lo cancela, pregunta pero no ejecuta la cancelacion 
+        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
@@ -282,6 +288,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ArmarCabecera(){
+    modelo.addColumn("Codigo");
     modelo.addColumn("Inquilino");
     modelo.addColumn("Fecha Final");
     modelo.addColumn("Fecha Inicio");

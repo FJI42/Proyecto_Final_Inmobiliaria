@@ -117,6 +117,36 @@ public class PropietarioData {
         
         return propietario;             
 }
+        
+        public Propietario BuscarPropietarioID(int id){
+     String sql= "SELECT * FROM `propietario` WHERE ID_Propietario=? AND Estado=1";
+            Propietario propietario=null; 
+     try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                propietario=new Propietario();
+                propietario.setIdPropietario(id);
+                propietario.setApelidoPropietario(rs.getString("Apellido"));
+                propietario.setNombrePropietario(rs.getString("Nombre"));
+                propietario.setDni(rs.getInt("Dni"));
+                propietario.setDomicilio(rs.getString("Domicilio"));
+                propietario.setTelefono(rs.getInt("Telefono"));
+                propietario.setEstado(true); 
+                                   
+             }else {                 
+                JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
+            }             
+             ps.close();
+                                                   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
+        }
+        
+        return propietario;             
+}
+        
                public void modificarPropietario(Propietario propietario){
             
             String sql="UPDATE propietario SET Apellido=?,Nombre=?,DNI=?,Domicilio=?,Telefono=?,Estado=? WHERE ID_Propietario=?";

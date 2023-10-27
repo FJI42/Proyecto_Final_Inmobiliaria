@@ -138,7 +138,7 @@ public class PropiedadInmuebleData {
                 PropietarioData pD= new PropietarioData();
                 InquilinoData inD= new InquilinoData();
                 
-                Propietario prop=pD.BuscarPropietario(idPropietario);
+                Propietario prop=pD.BuscarPropietarioID(idPropietario);
                 Inquilino inq= inD.BuscarInquilinoId(idInquilino);
                 
                 propiedadInmueble.setAccesibilidad(res.getString("Accesibilidad"));
@@ -270,10 +270,10 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
