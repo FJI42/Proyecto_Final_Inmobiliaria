@@ -126,12 +126,15 @@ public class ProyectoFinal {
 //    propD.buscarPropInmueble(1);
          PropiedadInmueble in = propD.buscarPropInmueble(1);
      //for(PropiedadInmueble in: propD.buscarPropInmueble(1)){
-         if(in!=null){
-        System.out.println("Accesibilidad "+ in.getOcupante());
+         //if(in!=null){
+        //System.out.println("Accesibilidad "+ in.getOcupante());
        //Ocupante tira null
-     }
+     //}
 
-
+     //CONTRATO ALQUILER - CANCELACION 
+     
+     ContratoAlquilerData caD = new ContratoAlquilerData();
+     caD.cancelacion(4);
 
 
 //        Propietario in = pd.BuscarPropietario(1);

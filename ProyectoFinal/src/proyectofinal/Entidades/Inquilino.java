@@ -137,6 +137,8 @@ public class Inquilino {
         return Id_Inquilino+", " + Apellido+ ", " + Nombre+ ", " + DNI+ ", "+ CUIL+ ", " + Detalle+ ", " + Tipo+ ", " + Estado+", " + propiedades+", ";
     }
 
+    
+
    
     
     

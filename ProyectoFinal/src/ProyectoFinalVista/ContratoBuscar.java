@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import proyectofinal.Entidades.*;
 import proyectofinal.accesoADatos.*;
@@ -204,7 +205,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         contratoAlquiler = caD.obtenerLosContratos(); 
        // if (jbActivo.isSelected() == true) {  
             for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
+                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
                 
            // }
     }     
@@ -220,7 +221,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
          contratoAlquiler = caD.obtenerContratosdeBaja(); 
         //if (jbVencido.isSelected() == true) {
             for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
+                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
             //}
     } 
     }//GEN-LAST:event_jbVencidoActionPerformed
@@ -242,34 +243,36 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 
 //        try {
 //        int fs = jTable1.getSelectedRow();
-//        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 0); // Obtener el ID del Inquilino
-//        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 1);
-//        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 2);
-//        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 3);
-//        char marca = (char) modelo.getValueAt(fs, 4);
-//        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 5);
-//        String vendedor = (String) modelo.getValueAt(fs, 6);
-//        boolean estado = true;
+//        int idContrato= (int)modelo.getValueAt(fs,0); 
+//        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 1); 
+//        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 2);
+//        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 3);
+//        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 4);
+//        char marca = (char) modelo.getValueAt(fs, 5);
+//        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 6);
+//        String vendedor = (String) modelo.getValueAt(fs, 7);
+//        //boolean estado = true;
 //
-//        ContratoAlquiler con = new ContratoAlquiler(idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, estado);
+//        ContratoAlquiler con = new ContratoAlquiler(idContrato,idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, true);
 //        caD.cancelacion(con.getID_Contrato());
 //     } catch (ArrayIndexOutOfBoundsException e) {
 //    JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
-//      }
-        
-        try {
-            int fs = jTable1.getSelectedRow(); 
-            ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), (LocalDate) modelo.getValueAt(fs, 3),(LocalDate) modelo.getValueAt(fs, 4),(char) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),(String) modelo.getValueAt(fs, 7),true);
+//      } 
+
+    try {
+        int fs = jTable1.getSelectedRow(); 
+        ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), 
+            (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), 
+            (LocalDate) modelo.getValueAt(fs, 3),(LocalDate) modelo.getValueAt(fs, 4),
+            (char) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),
+            (String) modelo.getValueAt(fs, 7), true);
             int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Contrato", "Dar de Baja", JOptionPane.YES_NO_OPTION);
-            System.out.println(con1);
+            
             if (resp == JOptionPane.YES_OPTION){                
-                caD.cancelacion(con1.getID_Contrato());
-                //System.out.println("entro");
-                //con1.getID_Contrato()
-        } 
+                caD.cancelacion(con1.getID_Contrato()); } 
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
-        } //Igualmente no me lo cancela, pregunta pero no ejecuta la cancelacion 
+        } //Funciona !
         
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -296,9 +299,9 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     modelo.addColumn("Marca");
     modelo.addColumn("Propiedades");
     modelo.addColumn("Vendedor");
-    //modelo.addColumn("Estado");
 
     jTable1.setModel(modelo);
+    //jTable1.setDefaultEditor(Object.class, null);
 
     }
     
