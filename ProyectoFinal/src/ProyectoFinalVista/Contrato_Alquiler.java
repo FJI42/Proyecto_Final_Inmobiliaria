@@ -55,7 +55,6 @@ private Connection con= null;
         jtVendedor = new javax.swing.JTextField();
         jbCrearContrato = new javax.swing.JButton();
         jbRenovarContrato = new javax.swing.JButton();
-        jbCancelarContrato = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jbSalir = new javax.swing.JButton();
         jcInquilinos = new javax.swing.JComboBox<>();
@@ -114,13 +113,6 @@ private Connection con= null;
         jbRenovarContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbRenovarContratoActionPerformed(evt);
-            }
-        });
-
-        jbCancelarContrato.setText("Cancelar");
-        jbCancelarContrato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarContratoActionPerformed(evt);
             }
         });
 
@@ -184,45 +176,46 @@ private Connection con= null;
                                     .addComponent(jLabel4))
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcPropiedades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jrbEstado)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jrbEstado)
+                                                .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
                                             .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel10)
                                     .addComponent(jbCrearContrato))
-                                .addGap(62, 62, 62)
-                                .addComponent(jbRenovarContrato)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                                .addGap(130, 130, 130)
                                 .addComponent(jButton1)
-                                .addGap(69, 69, 69))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jlID)
-                                .addGap(115, 115, 115)
-                                .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbCancelarContrato))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addContainerGap()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jlID)
+                                        .addGap(115, 115, 115)
+                                        .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jbRenovarContrato))
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(86, 86, 86)
+                                        .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jbSalir)
                 .addContainerGap())
         );
@@ -233,7 +226,7 @@ private Connection con= null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlID)
                     .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCancelarContrato))
+                    .addComponent(jbRenovarContrato))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -241,8 +234,8 @@ private Connection con= null;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDateChooser4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,7 +247,7 @@ private Connection con= null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jDateChooser6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -274,7 +267,6 @@ private Connection con= null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCrearContrato)
                     .addComponent(jbSalir)
-                    .addComponent(jbRenovarContrato)
                     .addComponent(jButton1))
                 .addContainerGap())
         );
@@ -410,32 +402,6 @@ private Connection con= null;
 
     }//GEN-LAST:event_jbRenovarContratoActionPerformed
 
-    private void jbCancelarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarContratoActionPerformed
-        // TODO add your handling code here:
-        
-        int id= Integer.parseInt(jtID.getText());
-        caD.cancelacion(id);
-         //Limpio campos
-                jtID.setText("");
-         //Deshabilito botones luego de ejecutar acccion!
-         desHabilitarBotones();
-         
-//        try {
-//            if (!jtID.getText().isEmpty()){
-//                int ID = parseInt(jtID.getText());
-//            ContratoAlquiler cal = new ContratoAlquiler(ID);
-//                caD.cancelacion(ID);
-//                jtID.setText("");
-//            } else if(jtID.getText().isEmpty()){
-//                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
-//            }}
-//            catch (NullPointerException e) {
-//            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
-//        }
-            
-                 
-    }//GEN-LAST:event_jbCancelarContratoActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
@@ -480,7 +446,6 @@ private Connection con= null;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JButton jbCancelarContrato;
     private javax.swing.JButton jbCrearContrato;
     private javax.swing.JButton jbRenovarContrato;
     private javax.swing.JButton jbSalir;
@@ -632,15 +597,13 @@ private Connection con= null;
              
      public void habilitarBotones(){
        
-            jbCancelarContrato.setEnabled(true);
             jbCrearContrato.setEnabled(true);
             jbRenovarContrato.setEnabled(true);
         
     }
      
      public void desHabilitarBotones(){
-         
-         jbCancelarContrato.setEnabled(false);
+
             jbCrearContrato.setEnabled(false);
             jbRenovarContrato.setEnabled(false);
             
