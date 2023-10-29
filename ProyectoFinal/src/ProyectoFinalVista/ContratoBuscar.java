@@ -40,34 +40,23 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jbActivo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jbVencido = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jbActivo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setClosable(true);
 
-        jbBuscar.setText("Buscar");
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(51, 204, 255));
 
-        jbActivo.setText("Contrato activo");
-        jbActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbActivoActionPerformed(evt);
-            }
-        });
-
-        jbVencido.setText("Contrato vencido");
+        jbVencido.setText("Contratos de baja");
         jbVencido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVencidoActionPerformed(evt);
@@ -101,74 +90,94 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("Cancelar contrato");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+
+        jbActivo.setText("Contratos activos");
+        jbActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActivoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 25, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jbActivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbVencido)
+                .addGap(91, 91, 91))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jbBuscar)
+                        .addGap(56, 56, 56)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jbSalir)
+                        .addGap(123, 123, 123)
+                        .addComponent(jButton2)
+                        .addGap(161, 161, 161)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbBuscar)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbActivo)
+                            .addComponent(jbVencido))))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalir)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbBuscar)
-                                .addGap(61, 61, 61)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 149, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbActivo)
-                                .addGap(124, 124, 124)
-                                .addComponent(jbVencido)
-                                .addGap(125, 125, 125))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jbSalir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(87, 87, 87)
-                .addComponent(jButton1)
-                .addGap(111, 111, 111))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbBuscar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbActivo)
-                    .addComponent(jbVencido))
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalir)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(24, 24, 24))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-         int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION){
-            this.dispose();
-        }
-    }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
@@ -206,62 +215,44 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
         contratoAlquiler = caD.obtenerLosContratos(); 
        // if (jbActivo.isSelected() == true) {  
-            for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor(),al.getPropietario()});
+        for (ContratoAlquiler al : contratoAlquiler) {
+            modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),
+                al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),
+                al.getMarca(),al.getPropiedad(),al.getVendedor(),
+                al.getPropietario()});
                 
            // }
-    }     
-
+        }     
     }//GEN-LAST:event_jbActivoActionPerformed
 
     private void jbVencidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVencidoActionPerformed
         // TODO add your handling code here:
-         jbActivo.setSelected(false);
+        jbActivo.setSelected(false);
          borrarFilas();
 
          List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
          contratoAlquiler = caD.obtenerContratosdeBaja(); 
         //if (jbVencido.isSelected() == true) {
-            for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor(),al.getPropietario()});
+         for (ContratoAlquiler al : contratoAlquiler) {
+            modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),
+                al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),
+                al.getMarca(),al.getPropiedad(),al.getVendedor(),
+                al.getPropietario()});
             //}
-    } 
+          } 
     }//GEN-LAST:event_jbVencidoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
-    
-    // Muestra la nueva ventana
-       Contrato_Alquiler nombre = new Contrato_Alquiler();   
-       JDesktopPane desktopPane = getDesktopPane(); 
-       desktopPane.add(nombre);
-       nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
-//     dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
-//        try {
-//        int fs = jTable1.getSelectedRow();
-//        int idContrato= (int)modelo.getValueAt(fs,0); 
-//        Inquilino idInquilino = (Inquilino) modelo.getValueAt(fs, 1); 
-//        LocalDate fechaFinal = (LocalDate) modelo.getValueAt(fs, 2);
-//        LocalDate fechaInicio = (LocalDate) modelo.getValueAt(fs, 3);
-//        LocalDate fechaRealizacion = (LocalDate) modelo.getValueAt(fs, 4);
-//        char marca = (char) modelo.getValueAt(fs, 5);
-//        PropiedadInmueble propiedad = (PropiedadInmueble) modelo.getValueAt(fs, 6);
-//        String vendedor = (String) modelo.getValueAt(fs, 7);
-//        //boolean estado = true;
-//
-//        ContratoAlquiler con = new ContratoAlquiler(idContrato,idInquilino, fechaFinal, fechaInicio, fechaRealizacion, marca, propiedad, vendedor, true);
-//        caD.cancelacion(con.getID_Contrato());
-//     } catch (ArrayIndexOutOfBoundsException e) {
-//    JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
-//      } 
-
-    try {
+        try {
         int fs = jTable1.getSelectedRow(); 
         ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), 
             (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), 
@@ -276,13 +267,25 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
         } //Funciona !
         
-
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+    
+    // Muestra la nueva ventana
+       Contrato_Alquiler nombre = new Contrato_Alquiler();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+       nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
+//     dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

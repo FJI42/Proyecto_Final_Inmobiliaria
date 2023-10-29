@@ -160,7 +160,8 @@ public class ContratoAlquilerData {
                 }    
                                
             } catch (SQLException ex) {
-              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+              JOptionPane.showMessageDialog(null, ex);
+                      //"Error al acceder a la tabla Contrato Alquiler");
             }
         
     }

@@ -167,20 +167,20 @@ public class GaranteData {
      
       public List<Garante> obtenerGaranteID(int id){
         ArrayList<Garante> garante= new ArrayList<>();   
-        String sql="SELECT * FROM garantes WHERE ID_Garante=?";
+        String sql="SELECT * FROM garantes WHERE ID_Inquilino=?";
          try {
                 PreparedStatement ps= con.prepareStatement(sql);
                 ps.setInt(1,id); 
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
                     Garante in =new Garante(); 
-                in.setID_Garante(id);
+                in.setID_Garante(rs.getInt("ID_Garante"));
                 in.setApellido(rs.getString("Apellido"));
                 in.setNombre(rs.getString("Nombre"));
                 in.setDNI(rs.getInt("DNI"));
                 in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
-                in.setId_Inquilino(rs.getInt("ID_Inquilino"));
+                in.setId_Inquilino(id);
                     garante.add(in);
                     
                 }

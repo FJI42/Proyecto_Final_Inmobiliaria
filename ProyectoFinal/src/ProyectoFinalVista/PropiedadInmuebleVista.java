@@ -115,29 +115,34 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbGarage)
-                    .addComponent(rbGalpon)
-                    .addComponent(rbLocalComercial)
-                    .addComponent(rbTerreno)
-                    .addComponent(rbCasa)
-                    .addComponent(rbInmAlquilado)
-                    .addComponent(rbInmDisponible)
-                    .addComponent(btnEliminarInmueble)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnModificarInmueble)
-                            .addComponent(btnAgregarInmueble))
-                        .addGap(18, 18, 18)
+                            .addComponent(rbGarage)
+                            .addComponent(rbGalpon)
+                            .addComponent(rbLocalComercial)
+                            .addComponent(rbTerreno)
+                            .addComponent(rbCasa)
+                            .addComponent(rbInmAlquilado)
+                            .addComponent(rbInmDisponible)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnEliminarInmueble))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAlquilarInmueble)
-                            .addComponent(btnActualizarPrecio))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(btnAgregarInmueble)
+                            .addComponent(btnModificarInmueble))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnActualizarPrecio)
+                            .addComponent(btnAlquilarInmueble))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +157,9 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarInmueble)
                     .addComponent(btnActualizarPrecio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(btnEliminarInmueble)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbInmDisponible)
@@ -172,10 +177,10 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                 .addComponent(rbGalpon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbGarage)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
-        backG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 570));
+        backG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 570));
 
         lbTitulo.setText("Propiedades");
         backG.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
@@ -204,7 +209,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
             tablaInmuebles.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        backG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 690, -1));
+        backG.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 690, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

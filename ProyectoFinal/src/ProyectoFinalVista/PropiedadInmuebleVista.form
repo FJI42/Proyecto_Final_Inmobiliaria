@@ -64,42 +64,50 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="270" height="570"/>
+              <AbsoluteConstraints x="0" y="0" width="240" height="570"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rbGarage" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbGalpon" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbLocalComercial" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbTerreno" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbCasa" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbInmAlquilado" min="-2" max="-2" attributes="0"/>
-                          <Component id="rbInmDisponible" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jSeparator3" alignment="0" pref="213" max="32767" attributes="0"/>
-                              <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rbGarage" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbGalpon" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbLocalComercial" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbTerreno" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbCasa" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbInmAlquilado" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbInmDisponible" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jSeparator3" alignment="0" pref="213" max="32767" attributes="0"/>
+                                      <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnModificarInmueble" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnAgregarInmueble" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnModificarInmueble" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAlquilarInmueble" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnActualizarPrecio" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAlquilarInmueble" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -118,9 +126,9 @@
                           <Component id="btnModificarInmueble" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnActualizarPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rbInmDisponible" min="-2" max="-2" attributes="0"/>
@@ -138,7 +146,7 @@
                       <Component id="rbGalpon" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rbGarage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="73" max="32767" attributes="0"/>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -249,7 +257,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="280" y="80" width="690" height="-1"/>
+              <AbsoluteConstraints x="250" y="80" width="690" height="-1"/>
             </Constraint>
           </Constraints>
 
