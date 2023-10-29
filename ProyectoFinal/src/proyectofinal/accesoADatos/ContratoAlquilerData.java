@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import proyectofinal.Entidades.ContratoAlquiler;
 import proyectofinal.Entidades.Inquilino;
 import proyectofinal.Entidades.PropiedadInmueble;
+import proyectofinal.Entidades.Propietario;
 import proyectofinal.accesoADatos.*;
 
 
@@ -33,168 +34,108 @@ public class ContratoAlquilerData {
     //renovacion (funciona)
     
      public void crearContrato(ContratoAlquiler ca){
+
+        String consulta= "SELECT * FROM `contratoalquiler` WHERE ID_Contrato=?";
          
-//    String consultaInquilinoGarante = "SELECT ID_Garante FROM Garante WHERE ID_Inquilino=?";
-//    
-//    try (PreparedStatement statement = con.prepareStatement(consultaInquilinoGarante)) {
-//        statement.setInt(1, ca.getInquilino().getId_Inquilino());
-//        
-//        try (ResultSet resultSet = statement.executeQuery()) {
-//            if (resultSet.next()) {
-//                int idGarante = resultSet.getInt("ID_Garante");
-//                
-//                // Verifica si se encontró un ID_Garante asociado al ID_Inquilino
-//                if (idGarante != 0) {
-//                    String consulta = "SELECT * FROM contratoalquiler WHERE ID_Contrato=?";
-//                    
-//                    try (PreparedStatement ps = con.prepareStatement(consulta)) {
-//                        ps.setInt(1, ca.getID_Contrato());
-//                        
-//                        try (ResultSet contratoResultSet = ps.executeQuery()) {
-//                            if (contratoResultSet.next()) {
-//                                System.out.println("El registro ya existe en la base de datos.");
-//                            } else {
-//                                //ps.setInt(1, ca.getID_Contrato());
-//                ps.setInt(1,ca.getInquilino().getId_Inquilino());
-//                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
-//                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
-//                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
-//                ps.setString(5, String.valueOf(ca.getMarca())); 
-//                ps.setInt(6,ca.getPropiedad().getID_Local());            
-//                ps.setString(7, ca.getVendedor());
-//               
-//                Inquilino inquilino = ca.getInquilino();
-//                inquilino.setEstado(true);
-//                
-//                ps.executeUpdate();
-//
-//                ResultSet rs= ps.getGeneratedKeys();
-//                if(rs.next()){
-//                    ca.setID_Contrato(rs.getInt(1));
-//                    JOptionPane.showMessageDialog(null, "Contrato creado");
-//                }
-//                ps.close();   
-//    }
-//                } catch (SQLException ex) {
-//                    JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
-//                  }
-//                } catch (SQLException ex) {
-//                    JOptionPane.showMessageDialog(null, "Error en la tabla Contrato");
-//                  }
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "El inquilino no tiene un garante asociado en GaranteData.");
-//                }
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No se encontró un inquilino con el ID especificado.");
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al verificar el ID_Garante.");
-//        }
-//    } catch (SQLException e) {
-//        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla GaranteData.");
-//    }
-
-
-//        String consulta= "SELECT * FROM `contratoalquiler` WHERE ID_Contrato=?";
-//         
-//        try{
-//            PreparedStatement statement = con.prepareStatement(consulta);
-//            statement.setInt(1, ca.getID_Contrato());
-//           try(ResultSet resultSet = statement.executeQuery()){
-//             if (resultSet.next()) {        
-//                System.out.println("El registro ya existe en la base de datos.");           
-//             } else {
-//         
-//            String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?)";
-//
-//            try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
-//
-//                //ps.setInt(1, ca.getID_Contrato());
-//                ps.setInt(1,ca.getInquilino().getId_Inquilino());
-//                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
-//                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
-//                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
-//                ps.setString(5, String.valueOf(ca.getMarca())); 
-//                ps.setInt(6,ca.getPropiedad().getID_Local());            
-//                ps.setString(7, ca.getVendedor());
-//               
-//                Inquilino inquilino = ca.getInquilino();
-//                inquilino.setEstado(true);
-//                
-//                ps.executeUpdate();
-//
-//                ResultSet rs= ps.getGeneratedKeys();
-//                if(rs.next()){
-//                    ca.setID_Contrato(rs.getInt(1));
-//                    JOptionPane.showMessageDialog(null, "Contrato creado");
-//                }
-//                ps.close(); 
-//            
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
-//        } 
-//             
-//        } 
-//             }catch (SQLException e) {
-//             JOptionPane.showMessageDialog(null, "Error en a la tabla Contrato ");
-//         } 
-//         } catch (SQLException e) {
-//             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato");
-//    
-//             }
-
-//------------------------------------------------------
-    String consulta = "SELECT * FROM `contratoalquiler` WHERE ID_Contrato=?";
-    try {
         try{
-        PreparedStatement statement = con.prepareStatement(consulta);
-        statement.setInt(1, ca.getID_Contrato());
+            PreparedStatement statement = con.prepareStatement(consulta);
+            statement.setInt(1, ca.getID_Contrato());
+           try(ResultSet resultSet = statement.executeQuery()){
+             if (resultSet.next()) {        
+                System.out.println("El registro ya existe en la base de datos.");           
+             } else {
+         
+            String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`,`ID_Propietario`) VALUES (?,?,?,?,?,?,?,?)";
 
-        try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                JOptionPane.showMessageDialog(null, "El registro ya existe en la base de datos.");
-            } else {               
-                String sql = "INSERT INTO `contratoalquiler`(`Inquilino`,`Garante`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?)";
+            try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
 
-            try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                //ps.setInt(1, ca.getID_Contrato());
                 ps.setInt(1,ca.getInquilino().getId_Inquilino());
-                ps.setInt(2,ca.getGarante());
                 ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
                 ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
                 ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
                 ps.setString(5, String.valueOf(ca.getMarca())); 
                 ps.setInt(6,ca.getPropiedad().getID_Local());            
                 ps.setString(7, ca.getVendedor());
-
-                
+                ps.setInt(8,ca.getPropietario().getIdPropietario());
                 ps.executeUpdate();
-
-                    ResultSet rs = ps.getGeneratedKeys();
-                    if (rs.next()) {
-                        ca.setGarante(rs.getInt(1));
-                        JOptionPane.showMessageDialog(null, "¡Contrato Guardado!");
-                    }
-                } catch (SQLException ex) {
-                   JOptionPane.showMessageDialog(null, "Error al guardar");
+                
+                ResultSet rs= ps.getGeneratedKeys();
+                if(rs.next()){
+                    InquilinoData inqD= new InquilinoData();
+                    inqD.EstadoT(ca.getInquilino().getId_Inquilino());
+                    PropiedadInmuebleData piD= new PropiedadInmuebleData();
+                    piD.EstadoFalse(ca.getPropiedad().getID_Local());
+                    ca.setID_Contrato(rs.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Contrato creado");
                 }
-            }
-        } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Error en a la tabla Contrato Alquiler");
-        }
-         }catch(NumberFormatException n){
-             JOptionPane.showMessageDialog(null, "Se produjo un error");
-                     
-         }                       
-    } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+                ps.close(); 
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+        } 
+             
+        } 
+             }catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, "Error en a la tabla Contrato ");
+         } 
+         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato");
     
-    }
+             }
+
+//------------------------------------------------------
+//    String consulta = "SELECT * FROM `contratoalquiler` WHERE ID_Contrato=?";
+//    try {
+//        try{
+//        PreparedStatement statement = con.prepareStatement(consulta);
+//        statement.setInt(1, ca.getID_Contrato());
+//
+//        try (ResultSet resultSet = statement.executeQuery()) {
+//            if (resultSet.next()) {
+//                JOptionPane.showMessageDialog(null, "El registro ya existe en la base de datos.");
+//            } else {               
+//                String sql = "INSERT INTO `contratoalquiler`(`Inquilino`,`Garante`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`) VALUES (?,?,?,?,?,?,?)";
+//
+//            try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+//                ps.setInt(1,ca.getInquilino().getId_Inquilino());
+//                ps.setInt(2,ca.getGarante());
+//                ps.setDate(2, java.sql.Date.valueOf(ca.getFecha_Final()));
+//                ps.setDate(3, java.sql.Date.valueOf(ca.getFecha_Inicio()));
+//                ps.setDate(4, java.sql.Date.valueOf(ca.getFecha_Realizacion()));
+//                ps.setString(5, String.valueOf(ca.getMarca())); 
+//                ps.setInt(6,ca.getPropiedad().getID_Local());            
+//                ps.setString(7, ca.getVendedor());
+//
+//                
+//                ps.executeUpdate();
+//
+//                    ResultSet rs = ps.getGeneratedKeys();
+//                    if (rs.next()) {
+//                        ca.setGarante(rs.getInt(1));
+//                        JOptionPane.showMessageDialog(null, "¡Contrato Guardado!");
+//                    }
+//                } catch (SQLException ex) {
+//                   JOptionPane.showMessageDialog(null, "Error al guardar");
+//                }
+//            }
+//        } catch (SQLException e) {
+//             JOptionPane.showMessageDialog(null, "Error en a la tabla Contrato Alquiler");
+//        }
+//         }catch(NumberFormatException n){
+//             JOptionPane.showMessageDialog(null, "Se produjo un error");
+//                     
+//         }                       
+//    } catch (SQLException e) {
+//             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Contrato Alquiler");
+//    
+//    }
 
   } 
  
  
      public void renovacion(ContratoAlquiler id){
-        String sql="UPDATE `contratoalquiler` SET `Inquilino`=?,`Fecha_Final`=?,`Fecha_Inicio`=?,`Fecha_Realizacion`=?,`Marca`=?,`Propiedad`=?,`Vendedor`=?,`Estado`=? WHERE ID_Contrato=?";
+        String sql="UPDATE `contratoalquiler` SET `Inquilino`=?,`Fecha_Final`=?,`Fecha_Inicio`=?,`Fecha_Realizacion`=?,`Marca`=?,`Propiedad`=?,`Vendedor`=?,`Estado`=?,`ID_Propietario`=? WHERE ID_Contrato=?";
            
         try { 
               PreparedStatement ps= con.prepareStatement(sql);
@@ -208,6 +149,7 @@ public class ContratoAlquilerData {
                 ps.setString(7, id.getVendedor());
                 ps.setInt(8,id.getID_Contrato());
                 ps.setBoolean(9, true);
+                ps.setInt(10,id.getPropietario().getIdPropietario());
                 
                  int exito= ps.executeUpdate();
                
@@ -224,7 +166,7 @@ public class ContratoAlquilerData {
     
     public ContratoAlquiler buscarContrato(int cod) {
         
-    String sql = "SELECT `Inquilino`,`Fecha_Final`,`Fecha_Inicio`,`Fecha_Realizacion`,`Marca`,`Propiedad`,`Vendedor`,`Estado` FROM `contratoalquiler` WHERE ID_Contrato=?";
+    String sql = "SELECT `Inquilino`,`Fecha_Final`,`Fecha_Inicio`,`Fecha_Realizacion`,`Marca`,`Propiedad`,`Vendedor`,`Estado`,`ID_Propietario` FROM `contratoalquiler` WHERE ID_Contrato=?";
     ContratoAlquiler contrato = null;
     try {
          PreparedStatement ps= con.prepareStatement(sql);
@@ -235,14 +177,17 @@ public class ContratoAlquilerData {
              contrato.setID_Contrato(cod);
             int idInquilino = rs.getInt("Inquilino");
             int idPropiedad = rs.getInt("Propiedad");
+            int idPropietario = rs.getInt("ID_Propietario");
             
             // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
-            InquilinoData inD = new InquilinoData();       
-            Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
+            InquilinoData inD = new InquilinoData();   
+            PropietarioData pD= new PropietarioData();
             
-           // System.out.println(inquilino.toString());
+            Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
+            Propietario propietario = pD.BuscarPropietarioID(idPropietario);
+            
             contrato.setInquilino(inquilino);
             contrato.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
             contrato.setFecha_Inicio(rs.getDate("Fecha_Inicio").toLocalDate());
@@ -251,6 +196,7 @@ public class ContratoAlquilerData {
             contrato.setPropiedad(propiedad);
             contrato.setVendedor(rs.getString("Vendedor"));
             contrato.setEstado(true);
+            contrato.setPropietario(propietario);
 
         } else {
             JOptionPane.showMessageDialog(null, "No existe ese contrato");
@@ -297,14 +243,17 @@ public class ContratoAlquilerData {
                     ContratoAlquiler al= new ContratoAlquiler(); 
             int idInquilino = rs.getInt("Inquilino");
             int idPropiedad = rs.getInt("Propiedad");
+            int idPropietario = rs.getInt("ID_Propietario");
             
             // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
             InquilinoData inD = new InquilinoData();
+            PropietarioData pD= new PropietarioData();
         
             Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
-                    
+            Propietario propietario = pD.BuscarPropietarioID(idPropietario);
+            
             al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
@@ -314,6 +263,7 @@ public class ContratoAlquilerData {
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
             al.setEstado(true);
+            al.setPropietario(propietario);
 
                 
                 contratoAl.add(al);
@@ -342,14 +292,17 @@ public class ContratoAlquilerData {
            ContratoAlquiler al= new ContratoAlquiler(); 
             int idInquilino = rs.getInt("Inquilino");
             int idPropiedad = rs.getInt("Propiedad");
+            int idPropietario = rs.getInt("ID_Propietario");
             
             // Usar métodos para obtener los objetos Inquilino y PropiedadInmueble completos
             PropiedadInmuebleData piD = new PropiedadInmuebleData(); 
             InquilinoData inD = new InquilinoData();
-        
+            PropietarioData pD= new PropietarioData();
+            
             Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
             PropiedadInmueble propiedad = piD.buscarPropInmueble(idPropiedad);
-                    
+            Propietario propietario = pD.BuscarPropietarioID(idPropietario);
+            
             al.setID_Contrato(rs.getInt("ID_Contrato"));
             al.setInquilino(inquilino);
             al.setFecha_Final(rs.getDate("Fecha_Final").toLocalDate());
@@ -359,6 +312,7 @@ public class ContratoAlquilerData {
             al.setPropiedad(propiedad);
             al.setVendedor(rs.getString("Vendedor"));
             al.setEstado(true); 
+            al.setPropietario(propietario);
             contratoAlquiler.add(al); 
                
                 }
@@ -367,7 +321,7 @@ public class ContratoAlquilerData {
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, ex);
-                System.out.println(ex);
+                //System.out.println(ex);
 //"Error al acceder a la tabla Contrato Alquiler");
             }
         

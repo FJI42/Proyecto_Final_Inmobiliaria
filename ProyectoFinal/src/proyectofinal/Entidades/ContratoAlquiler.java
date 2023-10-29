@@ -10,8 +10,8 @@ public class ContratoAlquiler {
      
     private int ID_Contrato; 
     private Inquilino Inquilino; 
-    private int garante; //?
-    private Garante garantes; // ?
+    private int garante; 
+    private Garante garantes; 
     private LocalDate Fecha_Final; 
     private LocalDate Fecha_Inicio; 
     private LocalDate Fecha_Realizacion; 
@@ -19,10 +19,59 @@ public class ContratoAlquiler {
     private PropiedadInmueble Propiedad; 
     private String Vendedor;
     private boolean Estado;
+    private Propietario propietario; 
 
     public ContratoAlquiler() {
+        
     }
 
+    public ContratoAlquiler(Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, boolean Estado, Propietario propietario) {
+        this.Inquilino = Inquilino;
+        this.Fecha_Final = Fecha_Final;
+        this.Fecha_Inicio = Fecha_Inicio;
+        this.Fecha_Realizacion = Fecha_Realizacion;
+        this.Marca = Marca;
+        this.Propiedad = Propiedad;
+        this.Vendedor = Vendedor;
+        this.Estado = Estado;
+        this.propietario = propietario;
+    }
+    
+
+    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, Propietario propietario) {
+        this.ID_Contrato = ID_Contrato;
+        this.Inquilino = Inquilino;
+        this.Fecha_Final = Fecha_Final;
+        this.Fecha_Inicio = Fecha_Inicio;
+        this.Fecha_Realizacion = Fecha_Realizacion;
+        this.Marca = Marca;
+        this.Propiedad = Propiedad;
+        this.Vendedor = Vendedor;
+        this.propietario = propietario;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
+    }
+
+    public ContratoAlquiler(int ID_Contrato, Inquilino Inquilino, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, boolean Estado, Propietario propietario) {
+        this.ID_Contrato = ID_Contrato;
+        this.Inquilino = Inquilino;
+        this.Fecha_Final = Fecha_Final;
+        this.Fecha_Inicio = Fecha_Inicio;
+        this.Fecha_Realizacion = Fecha_Realizacion;
+        this.Marca = Marca;
+        this.Propiedad = Propiedad;
+        this.Vendedor = Vendedor;
+        this.Estado = Estado;
+        this.propietario = propietario;
+    }
+
+    
     public ContratoAlquiler(Inquilino Inquilino, Garante garantes, LocalDate Fecha_Final, LocalDate Fecha_Inicio, LocalDate Fecha_Realizacion, char Marca, PropiedadInmueble Propiedad, String Vendedor, boolean Estado) {
         this.Inquilino = Inquilino;
         this.garantes = garantes;
@@ -240,8 +289,10 @@ public class ContratoAlquiler {
 
     @Override
     public String toString() {
-        return "" + ID_Contrato + ", " + Inquilino + ", " + garante + ", " + Fecha_Final + ", " + Fecha_Inicio + ", " + Fecha_Realizacion + ", " + Marca + ", " + Propiedad + ", " + Vendedor + ", " + Estado;
+        return "" + ID_Contrato + ", " + Inquilino + ", " + garante + ", " + garantes + ", " + Fecha_Final + ", " + Fecha_Inicio + ", " + Fecha_Realizacion + ", " + Marca + ", " + Propiedad + ", " + Vendedor + ", " + Estado + ", " + propietario;
     }
+
+    
 
     
 

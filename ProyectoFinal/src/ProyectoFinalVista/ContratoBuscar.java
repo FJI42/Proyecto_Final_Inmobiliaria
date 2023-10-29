@@ -184,13 +184,15 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
          "Fecha_Realizacion: " + contratoEncontrado.getFecha_Realizacion() + "\n" +
          "Marca: " + contratoEncontrado.getMarca() + "\n" +
          "Propiedad: " + contratoEncontrado.getPropiedad().getID_Local() + "\n" +
-         "Vendedor: " + contratoEncontrado.getVendedor());    
+         "Vendedor: " + contratoEncontrado.getVendedor()+ "\n" +
+         "Propietario: "+ contratoEncontrado.getPropietario().getIdPropietario());
           
             jTextField1.setText("");
          }
                
      } catch(NullPointerException ex){
-         JOptionPane.showMessageDialog(this,"Error al Buscar");
+         JOptionPane.showMessageDialog(this,ex);
+         System.out.println(ex);
      }
          
      //Funciona correctamente 
@@ -205,7 +207,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         contratoAlquiler = caD.obtenerLosContratos(); 
        // if (jbActivo.isSelected() == true) {  
             for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
+                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor(),al.getPropietario()});
                 
            // }
     }     
@@ -221,7 +223,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
          contratoAlquiler = caD.obtenerContratosdeBaja(); 
         //if (jbVencido.isSelected() == true) {
             for (ContratoAlquiler al : contratoAlquiler) {
-                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
+                modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor(),al.getPropietario()});
             //}
     } 
     }//GEN-LAST:event_jbVencidoActionPerformed
@@ -234,7 +236,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
        Contrato_Alquiler nombre = new Contrato_Alquiler();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
-       nombre.setVisible(true);
+       nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
 //     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -265,7 +267,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), 
             (LocalDate) modelo.getValueAt(fs, 3),(LocalDate) modelo.getValueAt(fs, 4),
             (char) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),
-            (String) modelo.getValueAt(fs, 7), true);
+            (String) modelo.getValueAt(fs, 7), true,(Propietario)modelo.getValueAt(fs,8));
             int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Contrato", "Dar de Baja", JOptionPane.YES_NO_OPTION);
             
             if (resp == JOptionPane.YES_OPTION){                
@@ -299,6 +301,8 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     modelo.addColumn("Marca");
     modelo.addColumn("Propiedades");
     modelo.addColumn("Vendedor");
+    modelo.addColumn("Propietario");
+    
 
     jTable1.setModel(modelo);
     //jTable1.setDefaultEditor(Object.class, null);

@@ -32,6 +32,32 @@ public class PropiedadInmuebleData {
     EnviarRequisitos(Int,String,String)
     FijarPrecios(float)*/
     
+    public void EstadoFalse(int id){
+     String sql="UPDATE propiedadinmueble SET estado=0 WHERE ID_Local=? ";
+        try {
+            try{
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1,id);
+            int exito = ps.executeUpdate(); 
+             GaranteData g = new GaranteData();                  
+                g.BajaGarante(id);
+            if(exito==1){
+                JOptionPane.showMessageDialog(null, "¡Estado de la Propiedad modificado!");
+            }    else{
+                 JOptionPane.showMessageDialog(null, "Esta Propiedad no se puede volver a contratar");
+                
+            }
+             }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propiedad Inmueble ");
+        }         
+  
+  
+  } 
+    
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
                 
         String sql="INSERT INTO `propiedadinmueble`(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";

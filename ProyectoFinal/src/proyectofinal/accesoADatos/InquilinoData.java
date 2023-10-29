@@ -5,9 +5,7 @@
  */
 package proyectofinal.accesoADatos;
 
-import proyectofinal.accesoADatos.Conexion;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import proyectofinal.Entidades.Inquilino;
-import proyectofinal.accesoADatos.GaranteData;
 /**
  *
  * @author User
@@ -27,6 +24,33 @@ public class InquilinoData {
     public InquilinoData(){
          con= Conexion.getConexion();
     }
+    
+    
+  public void EstadoT(int id){
+     String sql="UPDATE inquilino SET estado=1 WHERE ID_Inquilino=? ";
+        try {
+            try{
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1,id);
+            int exito = ps.executeUpdate(); 
+             GaranteData g = new GaranteData();                  
+                g.BajaGarante(id);
+            if(exito==1){
+                JOptionPane.showMessageDialog(null, "¡Estado del Inquilino modificado!");
+            }    else{
+                 JOptionPane.showMessageDialog(null, "Este Inquilino no puede volver a contratar");
+                
+            }
+             }catch(NumberFormatException n){
+             JOptionPane.showMessageDialog(null, "Se produjo un error");
+                     
+         }                       
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
+        }         
+  
+  
+  }      
 
   public void AgregarInquilino(Inquilino inquilino)  {
     String consulta = "SELECT * FROM inquilino WHERE `DNI` = ? ";
@@ -195,6 +219,7 @@ public class InquilinoData {
         
         return inquilino; 
        }
+    
      public List<Inquilino> obtenerLosInquilinos(){
         ArrayList<Inquilino> inquilino= new ArrayList<>();   
         String sql="SELECT * FROM inquilino WHERE estado=1";
@@ -223,7 +248,7 @@ public class InquilinoData {
             }
         
         return inquilino; 
-       }
+       } 
      
        public void modificarInquilino(Inquilino inquilino){
             
@@ -260,6 +285,6 @@ public class InquilinoData {
             
       }    
      
-}
+            }
 
 

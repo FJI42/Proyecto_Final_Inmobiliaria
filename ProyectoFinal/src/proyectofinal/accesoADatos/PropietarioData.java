@@ -202,6 +202,33 @@ public class PropietarioData {
         
         return propietario; 
        }
+        public List<Propietario> obtenerLosPropietariosID(int id){
+        ArrayList<Propietario> propietario= new ArrayList<>();   
+        String sql="SELECT * FROM propietario WHERE ID_Propietario=?";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setInt(1,id); 
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                Propietario in =new Propietario(); 
+                in.setIdPropietario(rs.getInt("ID_Propietario"));
+                in.setApelidoPropietario(rs.getString("Apellido"));
+                in.setNombrePropietario(rs.getString("Nombre"));
+                in.setDni(rs.getInt("DNI"));
+                in.setDomicilio(rs.getString("Domicilio"));
+                in.setTelefono(rs.getInt("Telefono"));
+                propietario.add(in);
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
+            }
+        
+        return propietario; 
+       }
+        
             public List<Propietario> obtenerPropietariosdeBaja(){
         ArrayList<Propietario> propietario= new ArrayList<>();   
         String sql="SELECT * FROM propietario WHERE estado=0";

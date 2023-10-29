@@ -13,6 +13,10 @@
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/GaranteModificar.java</file>
             <file>file:/C:/Users/User/Desktop/Practica/Desarrollo%20de%20Aplicaciones/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/accesoADatos/InquilinoData.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/usuario/Documents/kraken/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/Contrato_Alquiler.java</file>
+            <file>file:/C:/Users/usuario/Documents/kraken/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/proyectofinal/Entidades/ContratoAlquiler.java</file>
+            <file>file:/C:/Users/usuario/Documents/kraken/Proyecto_Final_Inmobiliaria/ProyectoFinal/src/ProyectoFinalVista/ContratoBuscar.java</file>
+        </group>
     </open-files>
 </project-private>

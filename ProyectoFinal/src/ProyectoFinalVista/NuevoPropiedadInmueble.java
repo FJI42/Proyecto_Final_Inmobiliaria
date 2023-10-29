@@ -137,8 +137,6 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         jLabel20.setForeground(new java.awt.Color(102, 102, 102));
         jLabel20.setText("jLabel2");
 
-        cbPropietarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-" }));
-
         cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
 
         btnAgregarPropietario.setText("Nuevo Propoietario");
