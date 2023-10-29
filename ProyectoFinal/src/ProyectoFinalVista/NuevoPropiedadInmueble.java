@@ -75,7 +75,7 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         btnAgregarPropietario = new javax.swing.JButton();
         txtForma = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(102, 204, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);

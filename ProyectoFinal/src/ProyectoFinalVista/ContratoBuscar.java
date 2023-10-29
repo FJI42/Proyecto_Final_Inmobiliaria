@@ -54,7 +54,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(0, 153, 153));
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(51, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jbVencido.setText("Contratos de baja");
         jbVencido.addActionListener(new java.awt.event.ActionListener() {

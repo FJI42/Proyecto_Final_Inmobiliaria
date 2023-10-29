@@ -76,7 +76,7 @@ private Connection con= null;
         setBackground(new java.awt.Color(102, 102, 255));
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jlID.setText("ID:");
 

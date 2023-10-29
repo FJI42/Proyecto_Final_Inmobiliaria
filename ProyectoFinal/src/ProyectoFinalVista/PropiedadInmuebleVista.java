@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyectofinal.Entidades.PropiedadInmueble;
@@ -80,6 +81,11 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 570));
 
         btnAgregarInmueble.setText("Agregar");
+        btnAgregarInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarInmuebleActionPerformed(evt);
+            }
+        });
 
         btnModificarInmueble.setText("Modificar");
 
@@ -224,6 +230,18 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarInmuebleActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+    
+    // Muestra la nueva ventana
+       NuevoPropiedadInmueble nombre = new NuevoPropiedadInmueble();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+       nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
+//     dispose();
+    }//GEN-LAST:event_btnAgregarInmuebleActionPerformed
 /**/
     private void mostrarDatosPropiedadInmueble(){
         

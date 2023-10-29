@@ -38,7 +38,7 @@ public int v = 0;
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        ImageIcon icono=new ImageIcon(getClass().getResource("/ProyectoFinal/imagenes/ima_2.jpg"));
+        ImageIcon icono=new ImageIcon(getClass().getResource("/ProyectoFinal/imagenes/ima_3.jpg"));
         Image miImagen=icono.getImage();
         jDesktopPane1 = new javax.swing.JDesktopPane(){
 
