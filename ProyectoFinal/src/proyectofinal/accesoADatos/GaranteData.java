@@ -175,9 +175,9 @@ public class GaranteData {
                 while(rs.next()){
                     Garante in =new Garante(); 
                 in.setID_Garante(id);
-                in.setApellido(rs.getString("apellido"));
-                in.setNombre(rs.getString("nombre"));
-                in.setDNI(rs.getInt("dni"));
+                in.setApellido(rs.getString("Apellido"));
+                in.setNombre(rs.getString("Nombre"));
+                in.setDNI(rs.getInt("DNI"));
                 in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setId_Inquilino(rs.getInt("ID_Inquilino"));

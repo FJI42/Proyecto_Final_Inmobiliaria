@@ -74,6 +74,7 @@ private Connection con= null;
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 255));
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -207,13 +208,13 @@ private Connection con= null;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jrbEstado))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jrbEstado)
+                            .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(210, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jbCrearContrato)
@@ -257,17 +258,17 @@ private Connection con= null;
                     .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,7 +282,7 @@ private Connection con= null;
                     .addComponent(jButton1)
                     .addComponent(jbSalir)
                     .addComponent(jbCrearContrato))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -391,7 +392,7 @@ private Connection con= null;
 
     private void jcInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcInquilinosActionPerformed
         // TODO add your handling code here:
-        cargarComboGarante();
+       cargarComboGarante();
         //jComboBox1.setSelectedItem("");
         //no funciona, aparecen los garantes duplicados conforme si selecciona 
         //nuevamente al inquilino 
@@ -458,6 +459,8 @@ private Connection con= null;
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         cargarComboGarante();
+        //Me esta devolviendo los garantes que tienen el mismo id que el inquilino
+        //no los garantes de tal inquilino
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
@@ -525,13 +528,14 @@ private Connection con= null;
          for (Garante gar : garD.obtenerGaranteID(inq.getId_Inquilino())) {
             garante.add(gar);           
             jComboBox1.addItem(gar);                                
-         } } //Por algun motivo ahora no me carga el combo en la ventana 
+         } } 
+    
 
     private void cPropietario(){ 
         PropietarioData pD= new PropietarioData();
         ArrayList<Propietario> propietario= new ArrayList<>();  
         Propietario pro = (Propietario)jComboBox2.getSelectedItem();
-        jComboBox2.removeAllItems();
+        //jComboBox2.removeAllItems();
         
         for (Propietario po : pD.obtenerLosPropietarios()) {
             propietario.add(po);           
@@ -544,7 +548,7 @@ private Connection con= null;
     
      public void guardar() {
         try {
-            if (jcInquilinos.getSelectedItem()!= null && jComboBox1.getSelectedItem()!=null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
+            if (jcInquilinos.getSelectedItem()!= null && jComboBox2.getSelectedItem()!=null  && jComboBox1.getSelectedItem()!=null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
                 
                 Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
                 //Garante garante = (Garante)jComboBox1.getSelectedItem();

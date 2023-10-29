@@ -45,7 +45,7 @@ public class ContratoAlquilerData {
                 System.out.println("El registro ya existe en la base de datos.");           
              } else {
          
-            String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`,`ID_Propietario`) VALUES (?,?,?,?,?,?,?,?)";
+            String sql="INSERT INTO `contratoalquiler`(`Inquilino`, `Fecha_Final`, `Fecha_Inicio`, `Fecha_Realizacion`, `Marca`, `Propiedad`, `Vendedor`,`Estado`,`ID_Propietario`) VALUES (?,?,?,?,?,?,?,?,?)";
 
             try(PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
 
@@ -57,7 +57,8 @@ public class ContratoAlquilerData {
                 ps.setString(5, String.valueOf(ca.getMarca())); 
                 ps.setInt(6,ca.getPropiedad().getID_Local());            
                 ps.setString(7, ca.getVendedor());
-                ps.setInt(8,ca.getPropietario().getIdPropietario());
+                ps.setBoolean(8,ca.isEstado());
+                ps.setInt(9,ca.getPropietario().getIdPropietario());
                 ps.executeUpdate();
                 
                 ResultSet rs= ps.getGeneratedKeys();

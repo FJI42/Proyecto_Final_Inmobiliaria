@@ -33,7 +33,7 @@ public class PropiedadInmuebleData {
     FijarPrecios(float)*/
     
     public void EstadoFalse(int id){
-     String sql="UPDATE propiedadinmueble SET estado=0 WHERE ID_Local=? ";
+     String sql="UPDATE propiedadinmueble SET EstadoLocal=0 WHERE ID_Local=? ";
         try {
             try{
             PreparedStatement ps= con.prepareStatement(sql);

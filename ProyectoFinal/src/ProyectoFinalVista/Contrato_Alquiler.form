@@ -5,6 +5,7 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="66" red="66" type="rgb"/>
     </Property>
+    <Property name="closable" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -106,14 +107,14 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtVendedor" min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="jDateChooser6" min="-2" max="-2" attributes="0"/>
                               <Component id="jcPropiedades" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                              <Component id="jtMarca" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="jComboBox2" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="jrbEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtMarca" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="jtVendedor" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="210" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -170,9 +171,9 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtMarca" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -181,8 +182,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -200,7 +201,7 @@
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbCrearContrato" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
