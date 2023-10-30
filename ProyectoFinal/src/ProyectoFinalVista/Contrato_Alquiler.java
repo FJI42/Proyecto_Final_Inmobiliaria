@@ -426,7 +426,7 @@ private Connection con= null;
          setVisible(false);
     
     // Muestra la nueva ventana
-       GaranteNuevo nombre = new GaranteNuevo();   
+       GaranteNuevo2 nombre = new GaranteNuevo2();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
        nombre.setVisible(true);

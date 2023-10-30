@@ -14,7 +14,7 @@ public class Propietario {
     private String nombrePropietario;
     private int dni;
     private String domicilio;
-    private int telefono;
+    private long telefono;
     private boolean Estado;
  
     
@@ -22,7 +22,7 @@ public class Propietario {
     public Propietario() {
     }
 
-    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono, boolean Estado) {
+    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, long telefono, boolean Estado) {
         this.idPropietario = idPropietario;
         this.apelidoPropietario = apelidoPropietario;
         this.nombrePropietario = nombrePropietario;
@@ -32,7 +32,7 @@ public class Propietario {
         this.Estado = Estado;
     }
 
-    public Propietario(String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono, boolean Estado) {
+    public Propietario(String apelidoPropietario, String nombrePropietario, int dni, String domicilio, long telefono, boolean Estado) {
         this.apelidoPropietario = apelidoPropietario;
         this.nombrePropietario = nombrePropietario;
         this.dni = dni;
@@ -41,7 +41,7 @@ public class Propietario {
         this.Estado = Estado;
     }
 
-    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, int telefono) {
+    public Propietario(int idPropietario, String apelidoPropietario, String nombrePropietario, int dni, String domicilio, long telefono) {
         this.idPropietario = idPropietario;
         this.apelidoPropietario = apelidoPropietario;
         this.nombrePropietario = nombrePropietario;
@@ -105,11 +105,11 @@ public class Propietario {
         this.nombrePropietario = nombrePropietario;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 

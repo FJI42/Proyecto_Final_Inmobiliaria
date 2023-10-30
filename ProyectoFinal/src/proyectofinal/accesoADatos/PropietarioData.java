@@ -50,7 +50,7 @@ public class PropietarioData {
                     ps.setString(2, propietario1.getNombrePropietario());
                     ps.setInt(3,    propietario1.getDni());
                     ps.setString(4, propietario1.getDomicilio());
-                    ps.setInt(5,    propietario1.getTelefono());
+                    ps.setLong(5,    propietario1.getTelefono());
                     ps.setBoolean(6,propietario1.isEstado());
                     ps.executeUpdate();
                     
@@ -90,7 +90,7 @@ public class PropietarioData {
         }
         }  
         public Propietario BuscarPropietario(int id){
-     String sql= "SELECT * FROM `propietario` WHERE Dni=? AND Estado=1";
+     String sql= "SELECT * FROM `propietario` WHERE Dni=? ";
             Propietario propietario=null; 
      try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -158,7 +158,7 @@ public class PropietarioData {
             ps.setString(2,  propietario.getNombrePropietario());
             ps.setInt(3,     propietario.getDni());
             ps.setString(4,  propietario.getDomicilio());
-            ps.setInt(5,     propietario.getTelefono());
+            ps.setLong(5,     propietario.getTelefono());
             ps.setBoolean(6, propietario.isEstado());
             ps.setInt(7,     propietario.getIdPropietario());
            

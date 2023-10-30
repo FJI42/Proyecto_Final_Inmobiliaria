@@ -13,6 +13,7 @@ import proyectofinal.*;
 import ProyectoFinalVista.*;
 import java.sql.Connection;
 import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import proyectofinal.Entidades.Propietario;
@@ -275,7 +276,7 @@ public PropietarioData in = new PropietarioData();
           String Apellido = txtApellido.getText();
           String Nombre = txtNombre.getText();
           int Dni = parseInt(txtDni.getText());
-          int Telefono = parseInt(txtTelefono.getText()); 
+          long Telefono = parseLong(txtTelefono.getText()); 
           String Domicilio = txtDomicilio.getText();
       
           if (!Apellido.trim().isEmpty() && !Nombre.trim().isEmpty() &&!Domicilio.trim().isEmpty()) {

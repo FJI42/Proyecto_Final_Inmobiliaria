@@ -284,7 +284,7 @@ private PropietarioData id = new PropietarioData();
        try {
             int filaS = jTable1.getSelectedRow();
             
-            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (long) modelo.getValueAt(filaS, 5));
            int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Propietario?", "Dar de Baja", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION){
           id.BajaPropietario(in.getIdPropietario());
@@ -314,7 +314,7 @@ private PropietarioData id = new PropietarioData();
             String Nombre = id.BuscarPropietario(buscar).getNombrePropietario();
             int Dni = id.BuscarPropietario(buscar).getDni();
             String Domicilio = id.BuscarPropietario(buscar).getDomicilio();
-            int Telefono = id.BuscarPropietario(buscar).getTelefono();
+            long Telefono = id.BuscarPropietario(buscar).getTelefono();
             boolean Estado = id.BuscarPropietario(buscar).isEstado();
             Propietario in = new Propietario(idI,Apellido, Nombre, Dni,Domicilio, Telefono, Estado);
             modelo.addRow(new Object[]{in.getIdPropietario(), in.getApelidoPropietario(), in.getNombrePropietario(), in.getDni(),in.getDomicilio(), in.getTelefono(), in.isEstado()});
@@ -334,7 +334,7 @@ private PropietarioData id = new PropietarioData();
                try {
             int filaS = jTable1.getSelectedRow();
             
-          Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+          Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (long) modelo.getValueAt(filaS, 5));
            
           id.BuscarPropietario(in.getDni());
          JOptionPane.showMessageDialog(this,  
