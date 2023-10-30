@@ -104,6 +104,12 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
         jbActivo.setText("Contratos activos");
         jbActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,6 +286,16 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
        nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
 //     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(jTextField1.getText().length() >= 8)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

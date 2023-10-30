@@ -85,6 +85,11 @@ private Connection con= null;
                 jtIDActionPerformed(evt);
             }
         });
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Nuevo garante");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +123,17 @@ private Connection con= null;
         jtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtMarcaActionPerformed(evt);
+            }
+        });
+        jtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMarcaKeyTyped(evt);
+            }
+        });
+
+        jtVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtVendedorKeyTyped(evt);
             }
         });
 
@@ -317,8 +333,6 @@ private Connection con= null;
                 Propietario propietario = (Propietario)jComboBox2.getSelectedItem();
                 
             ContratoAlquiler cal = new ContratoAlquiler(ID,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado,propietario);
-            
-            //ContratoAlquiler co= new ContratoAlquiler(8,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
             caD.renovacion(cal); 
                 
             } else if(jtID.getText().isEmpty()){
@@ -396,26 +410,7 @@ private Connection con= null;
         //nuevamente al inquilino 
         
     }//GEN-LAST:event_jcInquilinosActionPerformed
-
-//    private void jtVendedorKeyTyped(java.awt.event.KeyEvent evt) {                                    
-//        // TODO add your handling code here:
-//        char c = evt.getKeyChar();
-//       if(!Character.isLetter(c) && c != ' ') {
-//        evt.consume();
-//       }
-//    }       
-    
-//     private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {                              
-//        // TODO add your handling code here:
-//        char c = evt.getKeyChar();
-//        if(c<'0' || c>'9') evt.consume();
-//        if(jtID.getText().length() >= 11)
-//        {
-//            evt.consume();
-//        }
-//    }  
-    
-    
+   
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
          int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
@@ -438,21 +433,12 @@ private Connection con= null;
 
     private void jtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMarcaActionPerformed
         // TODO add your handling code here:
-//        char c = evt.getKeyChar();
-//       if(!Character.isLetter(c) && c != ' ') {
-//        evt.consume();
-//       }
-//tambien da error 
+
     }//GEN-LAST:event_jtMarcaActionPerformed
 
     private void jtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIDActionPerformed
         // TODO add your handling code here:
-//        char c = evt.getKeyChar();
-//        if(c<'0' || c>'9') evt.consume();
-//        if(jtID.getText().length() >= 11)
-//        {
-//            evt.consume();
-//        } //me da error 
+
     }//GEN-LAST:event_jtIDActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -461,6 +447,32 @@ private Connection con= null;
         //Me esta devolviendo los garantes que tienen el mismo id que el inquilino
         //no los garantes de tal inquilino
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMarcaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
+    }//GEN-LAST:event_jtMarcaKeyTyped
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(jtID.getText().length() >= 8)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_jtIDKeyTyped
+
+    private void jtVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtVendedorKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
+    }//GEN-LAST:event_jtVendedorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

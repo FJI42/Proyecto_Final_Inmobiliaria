@@ -217,6 +217,7 @@
         <Component class="javax.swing.JTextField" name="jtID">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtIDActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtIDKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
@@ -283,9 +284,13 @@
         <Component class="javax.swing.JTextField" name="jtMarca">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtMarcaActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtMarcaKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtVendedor">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtVendedorKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCrearContrato">
           <Properties>
