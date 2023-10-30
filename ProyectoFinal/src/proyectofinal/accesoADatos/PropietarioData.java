@@ -90,7 +90,36 @@ public class PropietarioData {
         }
         }  
         public Propietario BuscarPropietario(int id){
-     String sql= "SELECT `ID_Propietario`, `Apellido`, `Nombre`, `DNI`, `Domicilio`, `Telefono`, `Estado` FROM `propietario` WHERE ID_Propietario=? AND Estado=1";
+     String sql= "SELECT * FROM `propietario` WHERE Dni=? AND Estado=1";
+            Propietario propietario=null; 
+     try {
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                propietario=new Propietario();
+                propietario.setIdPropietario(rs.getInt("ID_Propietario"));
+                propietario.setApelidoPropietario(rs.getString("Apellido"));
+                propietario.setNombrePropietario(rs.getString("Nombre"));
+                propietario.setDni(rs.getInt("Dni"));
+                propietario.setDomicilio(rs.getString("Domicilio"));
+                propietario.setTelefono(rs.getInt("Telefono"));
+                propietario.setEstado(true); 
+                                   
+             }else {                 
+                JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
+            }             
+             ps.close();
+                                                   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
+        }
+        
+        return propietario;             
+}
+        
+        public Propietario BuscarPropietarioID(int id){
+     String sql= "SELECT * FROM `propietario` WHERE ID_Propietario=? AND Estado=1";
             Propietario propietario=null; 
      try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -104,7 +133,7 @@ public class PropietarioData {
                 propietario.setDni(rs.getInt("Dni"));
                 propietario.setDomicilio(rs.getString("Domicilio"));
                 propietario.setTelefono(rs.getInt("Telefono"));
-              propietario.setEstado(true); 
+                propietario.setEstado(true); 
                                    
              }else {                 
                 JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
@@ -117,6 +146,7 @@ public class PropietarioData {
         
         return propietario;             
 }
+        
                public void modificarPropietario(Propietario propietario){
             
             String sql="UPDATE propietario SET Apellido=?,Nombre=?,DNI=?,Domicilio=?,Telefono=?,Estado=? WHERE ID_Propietario=?";
@@ -172,6 +202,33 @@ public class PropietarioData {
         
         return propietario; 
        }
+        public List<Propietario> obtenerLosPropietariosID(int id){
+        ArrayList<Propietario> propietario= new ArrayList<>();   
+        String sql="SELECT * FROM propietario WHERE ID_Propietario=?";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setInt(1,id); 
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                Propietario in =new Propietario(); 
+                in.setIdPropietario(rs.getInt("ID_Propietario"));
+                in.setApelidoPropietario(rs.getString("Apellido"));
+                in.setNombrePropietario(rs.getString("Nombre"));
+                in.setDni(rs.getInt("DNI"));
+                in.setDomicilio(rs.getString("Domicilio"));
+                in.setTelefono(rs.getInt("Telefono"));
+                propietario.add(in);
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
+            }
+        
+        return propietario; 
+       }
+        
             public List<Propietario> obtenerPropietariosdeBaja(){
         ArrayList<Propietario> propietario= new ArrayList<>();   
         String sql="SELECT * FROM propietario WHERE estado=0";

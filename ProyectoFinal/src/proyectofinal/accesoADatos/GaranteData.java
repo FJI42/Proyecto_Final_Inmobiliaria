@@ -75,26 +75,29 @@ public class GaranteData {
     }
   }
        
-    public void BajaInquilino(int id){
-         String sql="UPDATE inquilino SET estado=0 WHERE ID_Inquilino=? AND estado=1 ";
+    public void BajaGarante(int id){
+         String sql="DELETE FROM `garantes` WHERE ID_Inquilino=? ";
         try {
             try{
             PreparedStatement ps= con.prepareStatement(sql);
             ps.setInt(1,id);
+             
+          
+
             int exito = ps.executeUpdate(); 
-            
-            if(exito==1){
-                JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
-            }    else{
-                 JOptionPane.showMessageDialog(null, "El Inquilino ya esta dado de baja");
-                
-            }
+//            
+//            if(exito==1){
+//                JOptionPane.showMessageDialog(null, "Inquilino Eliminado");
+//            }    else{
+//                 JOptionPane.showMessageDialog(null, "El Inquilino ya esta dado de baja");
+//                
+//            }
              }catch(NumberFormatException n){
              JOptionPane.showMessageDialog(null, "Se produjo un error");
                      
          }                       
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inquilino");
+           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Garantes");
         }
                                    
       }
@@ -149,6 +152,35 @@ public class GaranteData {
                 in.setCUIL(rs.getLong("CUIL"));
                 in.setDetalle(rs.getString("Detalles"));
                 in.setId_Inquilino(rs.getInt("ID_Inquilino"));
+                    garante.add(in);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Garante");
+            }
+        
+        return garante; 
+       }
+     
+      public List<Garante> obtenerGaranteID(int id){
+        ArrayList<Garante> garante= new ArrayList<>();   
+        String sql="SELECT * FROM garantes WHERE ID_Inquilino=?";
+         try {
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setInt(1,id); 
+                ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                    Garante in =new Garante(); 
+                in.setID_Garante(rs.getInt("ID_Garante"));
+                in.setApellido(rs.getString("Apellido"));
+                in.setNombre(rs.getString("Nombre"));
+                in.setDNI(rs.getInt("DNI"));
+                in.setCUIL(rs.getLong("CUIL"));
+                in.setDetalle(rs.getString("Detalles"));
+                in.setId_Inquilino(id);
                     garante.add(in);
                     
                 }

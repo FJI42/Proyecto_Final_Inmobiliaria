@@ -7,6 +7,9 @@ package ProyectoFinalVista;
 
 import java.awt.Dimension;
 import ProyectoFinalVista.InquilinoNuevo;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author Electra
@@ -35,7 +38,16 @@ public int v = 0;
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icono=new ImageIcon(getClass().getResource("/ProyectoFinal/imagenes/ima_3.jpg"));
+        Image miImagen=icono.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
+
+            }
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -117,9 +129,9 @@ public int v = 0;
 
         jMenuBar1.add(jMenuPropInm);
 
-        jMenu7.setText("Contrato");
+        jMenu7.setText("Contratos");
 
-        jMenuItem6.setText("Administracion");
+        jMenuItem6.setText("Administrar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);

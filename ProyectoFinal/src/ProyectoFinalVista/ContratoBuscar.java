@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ProyectoFinalVista;
 
 import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import proyectofinal.Entidades.*;
 import proyectofinal.accesoADatos.*;
@@ -41,33 +40,23 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jbBuscar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jbActivo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jbVencido = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jbSalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jbActivo = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setClosable(true);
 
-        jbBuscar.setText("Buscar");
-        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jbActivo.setText("Contrato activo");
-        jbActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbActivoActionPerformed(evt);
-            }
-        });
-
-        jbVencido.setText("Contrato vencido");
+        jbVencido.setText("Contratos de baja");
         jbVencido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbVencidoActionPerformed(evt);
@@ -101,62 +90,100 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("Cancelar contrato");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
+        jbActivo.setText("Contratos activos");
+        jbActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActivoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 25, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jbActivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbVencido)
+                .addGap(91, 91, 91))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jbBuscar)
+                        .addGap(56, 56, 56)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jbSalir)
+                        .addGap(123, 123, 123)
+                        .addComponent(jButton2)
+                        .addGap(161, 161, 161)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbBuscar)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbActivo)
+                            .addComponent(jbVencido))))
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalir)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jbActivo)
-                                    .addGap(100, 100, 100)
-                                    .addComponent(jbVencido))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jbBuscar)
-                                    .addGap(61, 61, 61)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(jbSalir)
-                        .addGap(129, 129, 129)
-                        .addComponent(jButton1)))
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbBuscar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbActivo)
-                    .addComponent(jbVencido))
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalir)
-                    .addComponent(jButton1))
-                .addGap(24, 24, 24))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-         int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION){
-            this.dispose();
-        }
-    }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
@@ -172,13 +199,15 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
          "Fecha_Realizacion: " + contratoEncontrado.getFecha_Realizacion() + "\n" +
          "Marca: " + contratoEncontrado.getMarca() + "\n" +
          "Propiedad: " + contratoEncontrado.getPropiedad().getID_Local() + "\n" +
-         "Vendedor: " + contratoEncontrado.getVendedor());    
+         "Vendedor: " + contratoEncontrado.getVendedor()+ "\n" +
+         "Propietario: "+ contratoEncontrado.getPropietario().getIdPropietario());
           
             jTextField1.setText("");
          }
                
      } catch(NullPointerException ex){
-         JOptionPane.showMessageDialog(this,"Error al Buscar");
+         JOptionPane.showMessageDialog(this,ex);
+         System.out.println(ex);
      }
          
      //Funciona correctamente 
@@ -188,43 +217,91 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         jbVencido.setSelected(false);
         borrarFilas();
-        
-        if (jbActivo.isSelected() == true) {
-            for (ContratoAlquiler al : caD.obtenerLosContratos()) {
-                modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
+        //System.out.println(caD.obtenerLosContratos());
+        List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
+        contratoAlquiler = caD.obtenerLosContratos(); 
+       // if (jbActivo.isSelected() == true) {  
+        for (ContratoAlquiler al : contratoAlquiler) {
+            modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),
+                al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),
+                al.getMarca(),al.getPropiedad(),al.getVendedor(),
+                al.getPropietario()});
                 
-            }
-    }     
-
+           // }
+        }     
     }//GEN-LAST:event_jbActivoActionPerformed
 
     private void jbVencidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVencidoActionPerformed
         // TODO add your handling code here:
-         jbActivo.setSelected(false);
+        jbActivo.setSelected(false);
          borrarFilas();
 
-        if (jbVencido.isSelected() == true) {
-            for (ContratoAlquiler al : caD.obtenerContratosdeBaja()) {
-                modelo.addRow(new Object[]{al.getInquilino(),al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),al.getMarca(),al.getPropiedad(),al.getVendedor()});
-            }
-    } 
+         List<ContratoAlquiler> contratoAlquiler= new ArrayList<>();
+         contratoAlquiler = caD.obtenerContratosdeBaja(); 
+        //if (jbVencido.isSelected() == true) {
+         for (ContratoAlquiler al : contratoAlquiler) {
+            modelo.addRow(new Object[]{al.getID_Contrato(),al.getInquilino(),
+                al.getFecha_Final(),al.getFecha_Inicio(),al.getFecha_Realizacion(),
+                al.getMarca(),al.getPropiedad(),al.getVendedor(),
+                al.getPropietario()});
+            //}
+          } 
     }//GEN-LAST:event_jbVencidoActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+        int fs = jTable1.getSelectedRow(); 
+        ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), 
+            (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), 
+            (LocalDate) modelo.getValueAt(fs, 3),(LocalDate) modelo.getValueAt(fs, 4),
+            (char) modelo.getValueAt(fs, 5),(PropiedadInmueble) modelo.getValueAt(fs, 6),
+            (String) modelo.getValueAt(fs, 7), true,(Propietario)modelo.getValueAt(fs,8));
+            int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres dar de Baja a este Contrato", "Dar de Baja", JOptionPane.YES_NO_OPTION);
+            
+            if (resp == JOptionPane.YES_OPTION){                
+                caD.cancelacion(con1.getID_Contrato()); } 
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "No hay nada seleccionado");
+        } //Funciona !
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+         setVisible(false);
     
     // Muestra la nueva ventana
        Contrato_Alquiler nombre = new Contrato_Alquiler();   
        JDesktopPane desktopPane = getDesktopPane(); 
        desktopPane.add(nombre);
-       nombre.setVisible(true);
+       nombre.setVisible(true); //Por algun motivo no me esta abriendo la ventana
 //     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(jTextField1.getText().length() >= 8)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_jTextField1KeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -235,6 +312,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ArmarCabecera(){
+    modelo.addColumn("Codigo");
     modelo.addColumn("Inquilino");
     modelo.addColumn("Fecha Final");
     modelo.addColumn("Fecha Inicio");
@@ -242,9 +320,11 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
     modelo.addColumn("Marca");
     modelo.addColumn("Propiedades");
     modelo.addColumn("Vendedor");
-    //modelo.addColumn("Estado");
+    modelo.addColumn("Propietario");
+    
 
     jTable1.setModel(modelo);
+    //jTable1.setDefaultEditor(Object.class, null);
 
     }
     

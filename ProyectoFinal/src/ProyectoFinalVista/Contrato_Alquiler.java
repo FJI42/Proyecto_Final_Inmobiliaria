@@ -1,6 +1,7 @@
 package ProyectoFinalVista;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import proyectofinal.accesoADatos.*;
 import proyectofinal.Entidades.*;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -30,6 +32,8 @@ private Connection con= null;
         con= Conexion.getConexion();
         cargarCombo();
         cargarCombo2(); 
+        cargarComboGarante();
+        cPropietario(); 
     }
 
     /**
@@ -41,18 +45,24 @@ private Connection con= null;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jDateChooser6 = new com.toedter.calendar.JDateChooser();
+        jlID = new javax.swing.JLabel();
+        jtID = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jtMarca = new javax.swing.JTextField();
+        jtVendedor = new javax.swing.JTextField();
         jbCrearContrato = new javax.swing.JButton();
         jbRenovarContrato = new javax.swing.JButton();
-        jbCancelarContrato = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jbSalir = new javax.swing.JButton();
         jcInquilinos = new javax.swing.JComboBox<>();
@@ -60,15 +70,45 @@ private Connection con= null;
         jrbEstado = new javax.swing.JRadioButton();
         jDateChooser4 = new com.toedter.calendar.JDateChooser();
         jDateChooser5 = new com.toedter.calendar.JDateChooser();
-        jDateChooser6 = new com.toedter.calendar.JDateChooser();
-        jlID = new javax.swing.JLabel();
-        jtID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 102, 255));
+        setClosable(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jlID.setText("ID:");
+
+        jtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIDActionPerformed(evt);
+            }
+        });
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
+
+        jButton1.setText("Nuevo garante");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Inquilino:");
 
+        jLabel1.setText("Garante: ");
+
         jLabel4.setText("Fecha Final:");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Fecha Inicio:");
 
@@ -80,20 +120,20 @@ private Connection con= null;
 
         jLabel9.setText("Vendedor:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jtMarcaActionPerformed(evt);
+            }
+        });
+        jtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMarcaKeyTyped(evt);
             }
         });
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5KeyTyped(evt);
+                jtVendedorKeyTyped(evt);
             }
         });
 
@@ -108,13 +148,6 @@ private Connection con= null;
         jbRenovarContrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbRenovarContratoActionPerformed(evt);
-            }
-        });
-
-        jbCancelarContrato.setText("Cancelar");
-        jbCancelarContrato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarContratoActionPerformed(evt);
             }
         });
 
@@ -135,135 +168,219 @@ private Connection con= null;
 
         jcPropiedades.setToolTipText("");
 
-        jlID.setText("ID:");
+        jrbEstado.setText("Activo");
+        jrbEstado.setToolTipText("");
+
+        jLabel2.setText("Propietario:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(43, 43, 43)
+                                            .addComponent(jlID))
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel8)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addGap(2, 2, 2)))
+                        .addGap(22, 22, 22)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(61, 61, 61)
+                                .addComponent(jbRenovarContrato)))
+                        .addGap(71, 71, 71))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrbEstado)
+                            .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(210, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jbCrearContrato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(94, 94, 94)
+                .addComponent(jbSalir)
+                .addGap(35, 35, 35))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlID)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbRenovarContrato)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jtVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jrbEstado))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jbSalir)
+                    .addComponent(jbCrearContrato))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jlID))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcPropiedades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcInquilinos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbEstado)
-                                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 14, Short.MAX_VALUE)))
-                        .addGap(90, 90, 90))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbCrearContrato)
-                        .addGap(76, 76, 76)
-                        .addComponent(jbRenovarContrato)
-                        .addGap(60, 60, 60)
-                        .addComponent(jbCancelarContrato)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addComponent(jbSalir)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlID)
-                            .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel3)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jcInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jDateChooser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jDateChooser6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jcPropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10)
-                    .addComponent(jrbEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCrearContrato)
-                    .addComponent(jbRenovarContrato)
-                    .addComponent(jbCancelarContrato)
-                    .addComponent(jbSalir))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jbRenovarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarContratoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+        try {
+            if (!jtID.getText().isEmpty() && jComboBox1.getSelectedItem()!=null && jComboBox2.getSelectedItem()!=null && jcInquilinos.getSelectedItem()!= null  && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
 
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
-         int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
-        if (resp == JOptionPane.YES_OPTION){
-            this.dispose();
+                int ID = parseInt(jtID.getText());
+                Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+                //Garante garant = (Garante)jComboBox1.getSelectedItem();
+                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                char marca = jtMarca.getText().charAt(0);
+                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
+                String vendedor= jtVendedor.getText();                              
+                boolean estado = jrbEstado.isSelected();
+                Propietario propietario = (Propietario)jComboBox2.getSelectedItem();
+                
+            ContratoAlquiler cal = new ContratoAlquiler(ID,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado,propietario);
+            caD.renovacion(cal); 
+                
+            } else if(jtID.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
+            }
+            else if (jtVendedor.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del Vendedor vacio!");
+            } else if (jDateChooser4.getDate() == null) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Final!");
+            } else if (jDateChooser5.getDate()==null){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Inicio!");    
+            } else if (jDateChooser4.getDate()==null){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha de Realizacion!");
+            } else if (jtMarca.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "¡No debe dejar la Marca vacia!");
+            } 
+             else if (jtVendedor.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "¡No debe dejar el Vendedor vacio!");
+            }
+            else if (jrbEstado.isSelected() == false) {
+                JOptionPane.showMessageDialog(this, "¡Debe dejar sin marcar el campo estado!");
+            } else if(jComboBox1.getSelectedItem()==null){
+                JOptionPane.showMessageDialog(this, "Inquilino sin garante ¡No puede renovar!");
+            }
+
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
         }
-    }//GEN-LAST:event_jbSalirActionPerformed
-
-    private void jcInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcInquilinosActionPerformed
-        // TODO add your handling code here:
         
-    }//GEN-LAST:event_jcInquilinosActionPerformed
+        
+            jtID.setText("");
+            jDateChooser4.setDate(null);
+            jDateChooser5.setDate(null);
+            jDateChooser6.setDate(null);
+        
+            jtMarca.setText("");
+            jtVendedor.setText("");
+    }//GEN-LAST:event_jbRenovarContratoActionPerformed
 
     private void jbCrearContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearContratoActionPerformed
         // TODO add your handling code here:
-        
-        
         guardar(); 
         jDateChooser4.setDate(null);
         jDateChooser5.setDate(null);
         jDateChooser6.setDate(null);
         
-        jTextField3.setText("");
-        jTextField5.setText("");
+        jtMarca.setText("");
+        jtVendedor.setText("");
        
          //int id = Integer.parseInt(jTextField1.getText());
 //        Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
@@ -285,110 +402,91 @@ private Connection con= null;
 //        jrbEstado.setSelected(true);
 //        jTextField3.setText("");
 //        jTextField5.setText("");
-
-        
     }//GEN-LAST:event_jbCrearContratoActionPerformed
 
-    private void jTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyTyped
+    private void jcInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcInquilinosActionPerformed
+        // TODO add your handling code here:
+       cargarComboGarante();
+        //jComboBox1.setSelectedItem("");
+        //no funciona, aparecen los garantes duplicados conforme si selecciona 
+        //nuevamente al inquilino 
+        
+    }//GEN-LAST:event_jcInquilinosActionPerformed
+   
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+         int resp = JOptionPane.showConfirmDialog(this, "Estás seguro que quieres salir?", "Cerrar Ventana", JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         setVisible(false);
+    
+    // Muestra la nueva ventana
+       GaranteNuevo nombre = new GaranteNuevo();   
+       JDesktopPane desktopPane = getDesktopPane(); 
+       desktopPane.add(nombre);
+       nombre.setVisible(true);
+    //     dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMarcaActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtMarcaActionPerformed
+
+    private void jtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIDActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtIDActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        cargarComboGarante();
+        //Me esta devolviendo los garantes que tienen el mismo id que el inquilino
+        //no los garantes de tal inquilino
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMarcaKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
        if(!Character.isLetter(c) && c != ' ') {
         evt.consume();
        }
-    }//GEN-LAST:event_jTextField5KeyTyped
+    }//GEN-LAST:event_jtMarcaKeyTyped
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+        char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(jtID.getText().length() >= 8)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_jtIDKeyTyped
 
-    private void jbRenovarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarContratoActionPerformed
+    private void jtVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtVendedorKeyTyped
         // TODO add your handling code here:
-        
-        try {
-            if (!jtID.getText().isEmpty() && jcInquilinos.getSelectedItem()!= null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jTextField3.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jTextField5.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
-
-                int ID = parseInt(jtID.getText());
-                Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
-                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                char marca = jTextField3.getText().charAt(0);
-                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
-                String vendedor= jTextField5.getText();                              
-                boolean estado = jrbEstado.isSelected();
-                
-            ContratoAlquiler cal = new ContratoAlquiler(ID,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
-            
-            //ContratoAlquiler co= new ContratoAlquiler(8,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
-            caD.renovacion(cal); 
-            
-            jtID.setText("");
-            jDateChooser4.setDate(null);
-            jDateChooser5.setDate(null);
-            jDateChooser6.setDate(null);
-        
-            jTextField3.setText("");
-            jTextField5.setText("");
-                
-            } else if(jtID.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
-            }
-            else if (jTextField5.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del Vendedor vacio!");
-            } else if (jDateChooser4.getDate() == null) {
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Final!");
-            } else if (jDateChooser5.getDate()==null){
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha Inicio!");    
-            } else if (jDateChooser4.getDate()==null){
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo Fecha de Realizacion!");
-            } else if (jTextField3.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "¡No debe dejar la Marca vacia!");
-            } 
-             else if (jTextField5.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "¡No debe dejar el Vendedor vacio!");
-            }
-            else if (jrbEstado.isSelected() == false) {
-                JOptionPane.showMessageDialog(this, "¡Debe dejar sin marcar el campo estado!");
-            }
-
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
-        }
-
-    }//GEN-LAST:event_jbRenovarContratoActionPerformed
-
-    private void jbCancelarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarContratoActionPerformed
-        // TODO add your handling code here:
-        
-        int id= Integer.parseInt(jtID.getText());
-        caD.cancelacion(id);
-         //Limpio campos
-                jtID.setText("");
-         //Deshabilito botones luego de ejecutar acccion!
-         desHabilitarBotones();
-         
-//        try {
-//            if (!jtID.getText().isEmpty()){
-//                int ID = parseInt(jtID.getText());
-//            ContratoAlquiler cal = new ContratoAlquiler(ID);
-//                caD.cancelacion(ID);
-//                jtID.setText("");
-//            } else if(jtID.getText().isEmpty()){
-//                JOptionPane.showMessageDialog(this, "¡No debe dejar el campo del ID vacio!");
-//            }}
-//            catch (NullPointerException e) {
-//            JOptionPane.showMessageDialog(this, "¡No debe dejar campos vacios!");
-//        }
-            
-                 
-    }//GEN-LAST:event_jbCancelarContratoActionPerformed
+        char c = evt.getKeyChar();
+       if(!Character.isLetter(c) && c != ' ') {
+        evt.consume();
+       }
+    }//GEN-LAST:event_jtVendedorKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<Garante> jComboBox1;
+    private javax.swing.JComboBox<Propietario> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private com.toedter.calendar.JDateChooser jDateChooser5;
     private com.toedter.calendar.JDateChooser jDateChooser6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -396,9 +494,7 @@ private Connection con= null;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JButton jbCancelarContrato;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbCrearContrato;
     private javax.swing.JButton jbRenovarContrato;
     private javax.swing.JButton jbSalir;
@@ -407,6 +503,8 @@ private Connection con= null;
     private javax.swing.JLabel jlID;
     private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtID;
+    private javax.swing.JTextField jtMarca;
+    private javax.swing.JTextField jtVendedor;
     // End of variables declaration//GEN-END:variables
 
 
@@ -418,7 +516,6 @@ private Connection con= null;
         for (Inquilino inqui : inqD.obtenerInquilinosdeBaja()) {
             inquilino.add(inqui);
             jcInquilinos.addItem(inqui);
-            //System.out.println(inqui);
         }
 
     }
@@ -428,35 +525,64 @@ private Connection con= null;
         PropiedadInmuebleData piD = new PropiedadInmuebleData();
         ArrayList<PropiedadInmueble> propiedad = new ArrayList<>();
 
-        // System.out.println(piD.obtenerLasPropiedades());
-        for (PropiedadInmueble prop : piD.obtenerLasPropiedades()) {
+        for (PropiedadInmueble prop : piD.obtenerLasPropiedadesActivas()) {
             propiedad.add(prop);
-            jcPropiedades.addItem(prop);
-  
+            jcPropiedades.addItem(prop);  
         }
     }
      
+    private void cargarComboGarante(){ 
+   
+        GaranteData garD = new GaranteData();
+        ArrayList<Garante> garante= new ArrayList<>();  
+        Inquilino inq = (Inquilino)jcInquilinos.getSelectedItem();
+        jComboBox1.removeAllItems();
+        
+         for (Garante gar : garD.obtenerGaranteID(inq.getId_Inquilino())) {
+            garante.add(gar);           
+            jComboBox1.addItem(gar);                                
+         } 
+    
+    } 
+    
+
+    private void cPropietario(){ 
+        PropietarioData pD= new PropietarioData();
+        ArrayList<Propietario> propietario= new ArrayList<>();  
+        Propietario pro = (Propietario)jComboBox2.getSelectedItem();
+        //jComboBox2.removeAllItems();
+        
+        for (Propietario po : pD.obtenerLosPropietarios()) {
+            propietario.add(po);           
+            jComboBox2.addItem(po);                                
+         }
+
+    }
+
+    
+    
      public void guardar() {
         try {
-            if (jcInquilinos.getSelectedItem()!= null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jTextField3.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jTextField5.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
-
+            if (jcInquilinos.getSelectedItem()!= null && jComboBox2.getSelectedItem()!=null  && jComboBox1.getSelectedItem()!=null && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
                 
                 Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+                //Garante garante = (Garante)jComboBox1.getSelectedItem();
                 LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                char marca = jTextField3.getText().charAt(0);
+                char marca = jtMarca.getText().charAt(0);
                 PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
-                String vendedor= jTextField5.getText();                              
+                String vendedor= jtVendedor.getText();                              
                 boolean estado = jrbEstado.isSelected();
+                Propietario propietario = (Propietario)jComboBox2.getSelectedItem();
                 
-            ContratoAlquiler cal = new ContratoAlquiler(10,inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
+            ContratoAlquiler cal = new ContratoAlquiler(inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado,propietario);
             
             //ContratoAlquiler co= new ContratoAlquiler(8,inq, LocalDate.of(2028,8,23),LocalDate.of(2021,8,12),LocalDate.of(2013,10,10),'B',mi,"Alberto",true);
             caD.crearContrato(cal); 
                 
             } 
-            else if (jTextField5.getText().isEmpty()) {
+            else if (jtVendedor.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No debe dejar el campo del Vendedor vacio");
             } else if (jDateChooser4.getDate() == null) {
                 JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha Final");
@@ -464,17 +590,18 @@ private Connection con= null;
                 JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha Inicio");    
             } else if (jDateChooser4.getDate()==null){
                 JOptionPane.showMessageDialog(this, "No debe dejar el campo Fecha de Realizacion");
-            } else if (jTextField3.getText().isEmpty()) {
+            } else if (jtMarca.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No debe dejar la Marca vacia");
             } 
-            //else if (jcPropiedades.getSelectedItem()==null){
-                //JOptionPane.showMessageDialog(this, "Debe seleccionar una Propiedad");
-            //} 
-             else if (jTextField5.getText().isEmpty()){
+          
+             else if (jtVendedor.getText().isEmpty()){
                 JOptionPane.showMessageDialog(this, "No debe dejar el Vendedor vacio");
             }
             else if (jrbEstado.isSelected() == false) {
                 JOptionPane.showMessageDialog(this, "Debe dejar activado el campo estado");
+            } else if(jComboBox1.getSelectedItem()==null){
+                JOptionPane.showMessageDialog(this, "Inquilino sin garante ¡No puede contratar!");
+            
             }
 
         } catch (NullPointerException e) {
@@ -482,17 +609,115 @@ private Connection con= null;
         }
     }
 
-     public void habilitarBotones() {
+//    public void estado(Inquilino inquilino){
+//        String sql="UPDATE inquilino SET Estado=? WHERE ID_Inquilino=?";
+//            
+//        try {
+//            try{
+//            PreparedStatement ps= con.prepareStatement(sql);
+//            ps.setBoolean(1,true);
+//           
+//            int exito= ps.executeUpdate();            
+//            if(exito==1){
+//      
+//                JOptionPane.showMessageDialog(null, "");
+//            }else{
+//                 JOptionPane.showMessageDialog(null, "No se encontro el inquilino que busca");
+//            }
+//            }catch(NumberFormatException n){
+//             JOptionPane.showMessageDialog(null, "Se produjo un error");
+//                     
+//         }          
+//                    
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Inquilino");
+//        }
+//            
+//      } 
+//    
+//    public boolean inquilinoTieneGarante(int idIn) {
+//    // Supongamos que tienes una conexión a la base de datos llamada 'con'.
+//    String consulta = "SELECT ID_Garante FROM garantes WHERE ID_Inquilino=?";
+//    try (PreparedStatement statement = con.prepareStatement(consulta)) {
+//        statement.setInt(1, idIn);
+//        try (ResultSet resultSet = statement.executeQuery()) {
+//            // Si hay resultados, significa que el inquilino tiene un garante asociado.
+//            return resultSet.next();
+//        }
+//    } catch (SQLException e) {
+//        JOptionPane.showMessageDialog(null, "Error al mostrar asociacion");
+//        // Manejo de errores de la base de datos, puedes mostrar un mensaje o registrar el error.
+//        e.printStackTrace();
+//    }
+//
+//    // Si ocurre un error o no se encuentra un garante, se asume que no tiene garante asociado.
+//    return false;
+//    }
+     
+
+    public void Guardar2(){
+        
+        
+        if (jComboBox1.getSelectedItem()!= null) {
+            // Haz algo si hay un elemento seleccionado en el JComboBox
+            Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
+               // Garante garante = (Garante)jComboBox1.getSelectedItem();
+                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                char marca = jtMarca.getText().charAt(0);
+                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
+                String vendedor= jtVendedor.getText();                              
+                boolean estado = jrbEstado.isSelected();
+                
+            ContratoAlquiler cal = new ContratoAlquiler(inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
+            
+            caD.crearContrato(cal); 
+            
+        } else {
+            // Haz algo si no hay un elemento seleccionado en el JComboBox
+            JOptionPane.showMessageDialog(this, "¡No se puede guardar un contrato sin garante!");
+            }
+        
+//        try {
+//        Inquilino inquilino = (Inquilino) jcInquilinos.getSelectedItem();
+//        Garante garante = (Garante) jComboBox1.getSelectedItem();
+//
+//        if (jcInquilinos.getSelectedItem()!= null && jComboBox1.getSelectedItem()!= null && jDateChooser4.getDate() != null && jDateChooser5.getDate() != null && jDateChooser6.getDate() != null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem() != null && !jtVendedor.getText().isEmpty() && jDateChooser4.getDate() != null && jrbEstado.isSelected()) {
+//            // Verificar si el inquilino tiene un garante asociado (puedes realizar esta verificación según tu lógica de negocio)
+//            
+//            if (inquilinoTieneGarante(inquilino.getId_Inquilino()) ) {
+//                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                char marca = jtMarca.getText().charAt(0);
+//                PropiedadInmueble propiedad = (PropiedadInmueble) jcPropiedades.getSelectedItem();
+//                String vendedor = jtVendedor.getText();
+//                boolean estado = jrbEstado.isSelected();
+//
+//                ContratoAlquiler cal = new ContratoAlquiler(inquilino, garante, fecha_final, fecha_inicio, fecha_realizacion, marca, propiedad, vendedor, estado);
+//                caD.crearContrato(cal);
+//            } else {
+//                JOptionPane.showMessageDialog(this, "El inquilino no tiene un garante asociado.");
+//            }
+//        } else {
+//            // Manejo de otros casos de campos vacíos o no seleccionados
+//        }
+//    } catch (NullPointerException e) {
+//        JOptionPane.showMessageDialog(this, "No debe dejar campos vacíos");
+//    }
+      
+   }
+             
+     public void habilitarBotones(){
        
-            jbCancelarContrato.setEnabled(true);
             jbCrearContrato.setEnabled(true);
             jbRenovarContrato.setEnabled(true);
         
     }
      
      public void desHabilitarBotones(){
-         
-         jbCancelarContrato.setEnabled(false);
+
             jbCrearContrato.setEnabled(false);
             jbRenovarContrato.setEnabled(false);
             

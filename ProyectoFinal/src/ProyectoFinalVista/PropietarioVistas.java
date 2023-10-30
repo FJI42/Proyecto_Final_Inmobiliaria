@@ -71,7 +71,7 @@ private PropietarioData id = new PropietarioData();
 
         setClosable(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,29 +93,32 @@ private PropietarioData id = new PropietarioData();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nro", "Apellido", "Nombre", "Dni", "Domicilio", "Telefono"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(120);
+        }
 
-        rdbIExistentes.setText("Inquilinos Existentes");
+        rdbIExistentes.setText("Propietarios Existentes");
         rdbIExistentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbIExistentesActionPerformed(evt);
             }
         });
 
-        rdbIbaja.setText("Inquilinos de Baja");
+        rdbIbaja.setText("Propietarios de Baja");
         rdbIbaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbIbajaActionPerformed(evt);
@@ -157,51 +160,49 @@ private PropietarioData id = new PropietarioData();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBuscar)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(rdbIExistentes)
-                                .addGap(133, 133, 133)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(rdbIbaja)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE))
-                            .addComponent(txtBuscar))
-                        .addGap(67, 67, 67))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btnNuevoPropietario)
-                        .addGap(67, 67, 67)
-                        .addComponent(ModificarPropietario1)
-                        .addGap(75, 75, 75)
-                        .addComponent(btnEliminarPropietario)
-                        .addGap(56, 56, 56)
-                        .addComponent(btnVerMas)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(108, 108, 108)))))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(btnNuevoPropietario)
+                .addGap(69, 69, 69)
+                .addComponent(ModificarPropietario1)
+                .addGap(77, 77, 77)
+                .addComponent(btnEliminarPropietario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVerMas)
+                .addGap(47, 47, 47))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(52, 52, 52)
+                    .addComponent(btnBuscar)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdbIbaja)
-                    .addComponent(rdbIExistentes))
-                .addGap(40, 40, 40)
+                    .addComponent(rdbIExistentes)
+                    .addComponent(rdbIbaja))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarPropietario)
-                    .addComponent(ModificarPropietario1)
                     .addComponent(btnNuevoPropietario)
+                    .addComponent(ModificarPropietario1)
+                    .addComponent(btnEliminarPropietario)
                     .addComponent(btnVerMas))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +213,7 @@ private PropietarioData id = new PropietarioData();
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -241,7 +242,10 @@ private PropietarioData id = new PropietarioData();
     }//GEN-LAST:event_ModificarPropietario1ActionPerformed
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
-        // TODO add your handling code here:
+    char c = evt.getKeyChar();
+    if(c<'0' || c>'9') evt.consume();
+    if(txtBuscar.getText().length() >= 8)
+    {evt.consume();}
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -294,8 +298,8 @@ private PropietarioData id = new PropietarioData();
             try{
         int buscar = parseInt(txtBuscar.getText());
         String ValidarDNI = txtBuscar.getText();
-        if (ValidarDNI.length() != 8) {
-            JOptionPane.showMessageDialog(null, "Para buscar debe ingresar el DNI del inquilino");
+        if (ValidarDNI.length() < 0) {
+            JOptionPane.showMessageDialog(null, "Para buscar debe ingresar el Dni del Propietario");
         } else {
             borrarFilas();
             if (id.BuscarPropietario(buscar).isEstado()) {
@@ -330,21 +334,18 @@ private PropietarioData id = new PropietarioData();
                try {
             int filaS = jTable1.getSelectedRow();
             
-            Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
-       
+          Propietario in = new Propietario((int) modelo.getValueAt(filaS, 0), (String) modelo.getValueAt(filaS, 1),(String) modelo.getValueAt(filaS, 2), (int) modelo.getValueAt(filaS, 3),(String) modelo.getValueAt(filaS, 4), (int) modelo.getValueAt(filaS, 5));
+           
           id.BuscarPropietario(in.getDni());
          JOptionPane.showMessageDialog(this,  
-    "Nro: " + in.getIdPropietario() + "\n" +
-    "Apellido: " + in.getApelidoPropietario()+ "\n" +
-    "Nombre: " + in.getNombrePropietario() +  "\n " +
-    "Dni: " + in.getDni() + "\n" +
-    "Domicilio: " + in.getDomicilio() + "\n" +
-    "Detalle: " + in.getTelefono() + "\n" +
-    "Estado: " + in.isEstado());  
-
-        
-            
-
+                 
+    "Nro: "       + in.getIdPropietario()     + "\n " +
+    "Apellido: "  + in.getApelidoPropietario()+ "\n " +
+    "Nombre: "    + in.getNombrePropietario() + "\n " +
+    "Dni: "       + in.getDni()               + "\n " +
+    "Domicilio: " + in.getDomicilio()         + "\n " +
+    "Telefono: "  + in.getTelefono()          + "\n "  );  
+         
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado nada, intentar nuevamente");
         }

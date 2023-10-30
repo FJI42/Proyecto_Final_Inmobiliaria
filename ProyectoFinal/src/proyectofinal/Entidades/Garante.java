@@ -95,5 +95,12 @@ public class Garante {
     public void setId_Inquilino(int Id_Inquilino) {
         this.Id_Inquilino = Id_Inquilino;
     }
+
+    @Override
+    public String toString() {
+        return "" + ID_Garante + ", " + Apellido + ", " + Nombre + ", " + DNI + ", " + CUIL + ", " + Detalle + ", " + Id_Inquilino ;
+    }
+    
+    
     
 }
