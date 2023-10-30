@@ -318,7 +318,7 @@ private Connection con= null;
     private void jbRenovarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarContratoActionPerformed
         // TODO add your handling code here:
         try {
-            if (!jtID.getText().isEmpty() && jComboBox2.getSelectedItem()!=null && jcInquilinos.getSelectedItem()!= null  && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
+            if (!jtID.getText().isEmpty() && jComboBox1.getSelectedItem()!=null && jComboBox2.getSelectedItem()!=null && jcInquilinos.getSelectedItem()!= null  && jDateChooser4.getDate()!= null &&jDateChooser5.getDate()!= null && jDateChooser6.getDate()!= null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem()!= null && !jtVendedor.getText().isEmpty() &&  jDateChooser4.getDate()!=null && jrbEstado.isSelected() == true ) {
 
                 int ID = parseInt(jtID.getText());
                 Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
@@ -354,6 +354,8 @@ private Connection con= null;
             }
             else if (jrbEstado.isSelected() == false) {
                 JOptionPane.showMessageDialog(this, "¡Debe dejar sin marcar el campo estado!");
+            } else if(jComboBox1.getSelectedItem()==null){
+                JOptionPane.showMessageDialog(this, "Inquilino sin garante ¡No puede renovar!");
             }
 
         } catch (NullPointerException e) {
