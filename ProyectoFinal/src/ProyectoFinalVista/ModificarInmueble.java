@@ -5,14 +5,14 @@
 package ProyectoFinalVista;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import proyectofinal.Entidades.Inquilino;
 import proyectofinal.Entidades.PropiedadInmueble;
 import proyectofinal.Entidades.Propietario;
 import proyectofinal.accesoADatos.Conexion;
+import proyectofinal.accesoADatos.InquilinoData;
 import proyectofinal.accesoADatos.PropiedadInmuebleData;
 import proyectofinal.accesoADatos.PropietarioData;
 
@@ -20,25 +20,25 @@ import proyectofinal.accesoADatos.PropietarioData;
  *
  * @author MCali
  */
-public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form NuevoPropiedadInmueble
-     */
+public class ModificarInmueble extends javax.swing.JInternalFrame {
     private Connection con = null;
     
     PropiedadInmuebleData propInmD = new PropiedadInmuebleData();
     
-    public NuevoPropiedadInmueble() {
+    /**
+     * Creates new form ModificarInmueble
+     */
+    public ModificarInmueble(PropiedadInmueble propiInm) {
         
+        System.out.println("pi a modif:::"+propiInm);
         initComponents();
         con=Conexion.getConexion();
         txtIdInm.enable(false);
-        cargar_cbPropietario();
-        traerID();
-        //cargar_cbTipoLocal();
-        
-    }
+        txtPropietario.enable(false);
+        txtInquilino.enable(false);
+        cargarInmueble(propiInm);
+       // cargar_cbPropietario();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,16 +49,9 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbIdInm = new javax.swing.JLabel();
-        lbAccesibilidad = new javax.swing.JLabel();
-        txtIdInm = new javax.swing.JTextField();
-        txtAccesibilidad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        lbCaracteristicas = new javax.swing.JLabel();
-        lbDireccion = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
+        cbTipoLocal = new javax.swing.JComboBox<>();
         lbPropietario = new javax.swing.JLabel();
+        txtForma = new javax.swing.JTextField();
         lbForma = new javax.swing.JLabel();
         lbPrecioTazado = new javax.swing.JLabel();
         lbSuperficie = new javax.swing.JLabel();
@@ -69,45 +62,29 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         txtCaracteristicas = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
-        btnAgregarPropInm = new javax.swing.JButton();
+        btnAceptarPropInm = new javax.swing.JButton();
         lbTipoLocal = new javax.swing.JLabel();
+        lbIdInm = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        lbAccesibilidad = new javax.swing.JLabel();
         lbZona = new javax.swing.JLabel();
+        txtIdInm = new javax.swing.JTextField();
         txtZona = new javax.swing.JTextField();
+        txtAccesibilidad = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        lbCaracteristicas = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        cbPropietarios = new javax.swing.JComboBox<>();
-        cbTipoLocal = new javax.swing.JComboBox<>();
-        btnAgregarPropietario = new javax.swing.JButton();
-        txtForma = new javax.swing.JTextField();
+        lbDireccion = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
+        txtPropietario = new javax.swing.JTextField();
+        lbInquilino = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        txtInquilino = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setTitle("Propiedad inmueble -Nueva-");
-        setMinimumSize(new java.awt.Dimension(400, 600));
-        setPreferredSize(new java.awt.Dimension(400, 600));
-
-        lbIdInm.setText("ID Nuevo Inmueble");
-
-        lbAccesibilidad.setText("Accesibilidad");
-
-        txtIdInm.setEditable(false);
-        txtIdInm.setPreferredSize(new java.awt.Dimension(100, 22));
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("jLabel2");
-
-        lbCaracteristicas.setText("Caracteristicas");
-
-        lbDireccion.setText("Direccion");
-
-        jLabel8.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("jLabel2");
+        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
 
         lbPropietario.setText("Propietario:");
 
@@ -130,78 +107,112 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         jLabel16.setText("jLabel2");
 
         btnCancelar.setText("Cancelar");
-
-        btnAgregarPropInm.setText("Agregar");
-        btnAgregarPropInm.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPropInmActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnAceptarPropInm.setText("Aceptar");
+        btnAceptarPropInm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarPropInmActionPerformed(evt);
             }
         });
 
         lbTipoLocal.setText("Tipo de Local");
 
+        lbIdInm.setText("ID Nuevo Inmueble");
+
         jLabel18.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(102, 102, 102));
         jLabel18.setText("jLabel2");
 
+        lbAccesibilidad.setText("Accesibilidad");
+
         lbZona.setText("Zona");
+
+        txtIdInm.setEditable(false);
+        txtIdInm.setPreferredSize(new java.awt.Dimension(100, 22));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(102, 102, 102));
         jLabel20.setText("jLabel2");
 
-        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
+        jLabel5.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("jLabel2");
 
-        btnAgregarPropietario.setText("Nuevo Propietario");
-        btnAgregarPropietario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPropietarioActionPerformed(evt);
-            }
-        });
+        lbCaracteristicas.setText("Caracteristicas");
+
+        lbDireccion.setText("Direccion");
+
+        jLabel8.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("jLabel2");
+
+        txtPropietario.setEditable(false);
+        txtPropietario.setPreferredSize(new java.awt.Dimension(100, 22));
+
+        lbInquilino.setText("Inquilino");
+
+        txtInquilino.setEditable(false);
+        txtInquilino.setPreferredSize(new java.awt.Dimension(100, 22));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbIdInm)
-                    .addComponent(lbPropietario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarPropietario)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtIdInm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbPropietarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbPropietario)
+                            .addComponent(lbIdInm))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtIdInm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addComponent(txtPropietario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lbInquilino)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(28, 28, 28)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addComponent(lbCaracteristicas)
+                                .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbCaracteristicas)
-                                        .addGap(60, 60, 60)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbAccesibilidad)
-                                            .addComponent(lbDireccion)
-                                            .addComponent(lbForma))
-                                        .addGap(66, 66, 66)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtForma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel15)
-                                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel13)
-                                            .addComponent(txtAccesibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5)))))
+                                    .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbAccesibilidad)
+                                    .addComponent(lbDireccion)
+                                    .addComponent(lbForma))
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtForma, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(txtAccesibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbPrecioTazado)
@@ -219,43 +230,39 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel20))
                                 .addGap(5, 5, 5))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAgregarPropInm)
+                        .addGap(117, 117, 117)
+                        .addComponent(btnAceptarPropInm)
                         .addGap(49, 49, 49)
-                        .addComponent(btnCancelar)
-                        .addGap(118, 118, 118))))
+                        .addComponent(btnCancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbIdInm)
                     .addComponent(txtIdInm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbPropietario)
-                    .addComponent(cbPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAgregarPropietario)
-                .addGap(9, 9, 9)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbInquilino))
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(lbAccesibilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbAccesibilidad, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                     .addComponent(txtAccesibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(jLabel5)
@@ -268,24 +275,24 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
                         .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbForma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbForma, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(txtForma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(lbPrecioTazado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbPrecioTazado, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
                     .addComponent(txtPrecioTazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel16)
@@ -293,7 +300,7 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                     .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
@@ -304,111 +311,97 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(lbZona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(41, 41, 41))
+                        .addComponent(lbZona, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnAgregarPropInm))
-                .addGap(75, 75, 75))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnAceptarPropInm))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPropietarioActionPerformed
-        // TODO add your handling code here:
-                                                         
-
-   // private void nuevoPropietario(){ 
-     //setVisible(false);
-     
-         // Muestra la nueva ventana
-        NuevoPropietario nombre = new NuevoPropietario();   
-        JDesktopPane desktopPane = getDesktopPane(); 
-        desktopPane.add(nombre);
-        nombre.setVisible(true);
-        
-        
-        setVisible(false);
-    
-         // Muestra la nueva ventana
-        NuevoPropiedadInmueble nombre1 = new NuevoPropiedadInmueble();   
-        JDesktopPane desktopPane1 = getDesktopPane(); 
-        desktopPane1.add(nombre1);
-        nombre1.setVisible(true);
-        
-    }//GEN-LAST:event_btnAgregarPropietarioActionPerformed
-   
-    /***********************************************************************************************************
-     * PREGUNTAR COMO HACER PARA VOLVER AL MENU DE ADMINISTRACION DE INMUEBLE DESPUES DE AGREGAR AL PROPIETARIO*
-     ***********************************************************************************************************/  
-    
-    private void btnAgregarPropInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPropInmActionPerformed
+    private void btnAceptarPropInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarPropInmActionPerformed
         // TODO add your handling code here:
         try{
             String acces = txtAccesibilidad.getText();
             String carac = txtCaracteristicas.getText();
             String direc = txtDireccion.getText();
-
-            Propietario prop = (Propietario)cbPropietarios.getSelectedItem();
-
+            System.out.println(acces+carac+direc+"muestra a c d");
+           
+            int propid = Integer.parseInt(txtPropietario.getText());
+            PropietarioData prop = new PropietarioData();
+            //prop.BuscarPropietario(propid);
+            
+            
+            int inquid =Integer.parseInt(txtInquilino.getText());
+            InquilinoData inq = new InquilinoData();
+            //inq.BuscarInquilinoId(inquid);
+            
             String forma = txtForma.getText();
             float precio = Float.parseFloat(txtPrecioTazado.getText());
             int superf = Integer.parseInt(txtSuperficie.getText()) ;
             String tipo = (String) cbTipoLocal.getSelectedItem();
             String zona = txtZona.getText();
-          
-            PropiedadInmueble propinm = new PropiedadInmueble(acces,carac,direc,prop,true,forma,precio,superf,tipo,zona);
-            propInmD.AgregarPropiedadInmueble(propinm);
+
+            PropiedadInmueble propinm = new PropiedadInmueble(acces,carac,direc,prop.BuscarPropietario(propid),true,forma,inq.BuscarInquilinoId(inquid),precio,superf,tipo,zona);
+            propInmD.ModificarPropiedadInmueble(propinm);
+            
             System.out.println("prop inmueble a cargar: "+propinm);
-        
+
         }catch(NumberFormatException E){
             JOptionPane.showMessageDialog(null, "Debe completar todas las casillas");
         }
-        
-    }//GEN-LAST:event_btnAgregarPropInmActionPerformed
-    
-    
-    private void cargar_cbPropietario(){ //carga los comoboBox con dni y nombre de los propietario
 
-        
-        PropietarioData propD = new PropietarioData();
-        ArrayList<Propietario> propietario = new ArrayList<>();
+    }//GEN-LAST:event_btnAceptarPropInmActionPerformed
 
-        for (Propietario prop : propD.obtenerLosPropietarios()) {
-            propietario.add(prop);
-           // cbPropietarios.addItem(prop.getDni()+" "+prop.getApelidoPropietario()+", "+prop.getNombrePropietario());
-            cbPropietarios.addItem(prop);
-        }
-
-    }
-
-    private void traerID(){
-        PropiedadInmuebleData propInmD = new PropiedadInmuebleData();
-        ArrayList<PropiedadInmueble> propInm =new ArrayList<>();
-        
-        for(PropiedadInmueble pInm : propInmD.obtenerLasPropiedades()){
-            propInm.add(pInm);
-            
-        }
-        PropiedadInmueble ultimoPropInm = propInm.get(propInm.size()-1);
-        System.out.println("el  ultimo"+ultimoPropInm);
-        System.out.println("ojo");
-        txtIdInm.setText(ultimoPropInm.getID_Local()+1+"");
+     private void cargarInmueble(PropiedadInmueble propieInm){
+        System.out.println("carga");
+        txtIdInm.setText(propieInm.getID_Local()+"");
+        txtAccesibilidad.setText(propieInm.getAccesibilidad());
+        txtCaracteristicas.setText(propieInm.getCaracteristicas());
+        txtDireccion.setText(propieInm.getDireccion());
+        txtPropietario.setText(propieInm.getDuenio().getIdPropietario()+"");
+        txtInquilino.setText(propieInm.getOcupante().getId_Inquilino() +"");
+        txtForma.setText(propieInm.getForma());
+        txtPrecioTazado.setText(propieInm.getPrecioTazado()+"");
+        txtSuperficie.setText(propieInm.getSuperficieMinima()+"");
+        txtZona.setText(propieInm.getZona());
     }
     
-    
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        PropiedadInmuebleVista nombre = new PropiedadInmuebleVista();   
+        JDesktopPane desktopPane = getDesktopPane(); 
+        desktopPane.add(nombre);
+        nombre.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+//     private void cargar_cbPropietario(){ //carga los comoboBox con dni y nombre de los propietario
+//
+//        
+//        PropietarioData propD = new PropietarioData();
+//        ArrayList<Propietario> propietario = new ArrayList<>();
+//
+//        for (Propietario prop : propD.obtenerLosPropietarios()) {
+//            propietario.add(prop);
+//           // cbPropietarios.addItem(prop.getDni()+" "+prop.getApelidoPropietario()+", "+prop.getNombrePropietario());
+//            cbPropietarios.addItem(prop);
+//        }
+//
+//    }
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarPropInm;
-    private javax.swing.JButton btnAgregarPropietario;
+    private javax.swing.JButton btnAceptarPropInm;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<Propietario> cbPropietarios;
     private javax.swing.JComboBox<String> cbTipoLocal;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -419,11 +412,13 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lbAccesibilidad;
     private javax.swing.JLabel lbCaracteristicas;
     private javax.swing.JLabel lbDireccion;
     private javax.swing.JLabel lbForma;
     private javax.swing.JLabel lbIdInm;
+    private javax.swing.JLabel lbInquilino;
     private javax.swing.JLabel lbPrecioTazado;
     private javax.swing.JLabel lbPropietario;
     private javax.swing.JLabel lbSuperficie;
@@ -434,7 +429,9 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtForma;
     private javax.swing.JTextField txtIdInm;
+    private javax.swing.JTextField txtInquilino;
     private javax.swing.JTextField txtPrecioTazado;
+    private javax.swing.JTextField txtPropietario;
     private javax.swing.JTextField txtSuperficie;
     private javax.swing.JTextField txtZona;
     // End of variables declaration//GEN-END:variables

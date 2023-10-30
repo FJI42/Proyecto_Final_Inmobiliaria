@@ -8,6 +8,10 @@ package proyectofinal.Entidades;
  *
  * @author MCali
  */
+
+
+
+
 public class PropiedadInmueble {
     private int ID_Local; 
     private String accesibilidad ; 
@@ -27,13 +31,6 @@ public class PropiedadInmueble {
     public PropiedadInmueble() {
     }
 
-
-    public PropiedadInmueble(int ID_Local) {
-        this.ID_Local = ID_Local;
-    }
-    
-
-    
 
     public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
 
@@ -66,7 +63,8 @@ public class PropiedadInmueble {
         this.zona = zona;
     }
 
-    public PropiedadInmueble(String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+    public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+        this.ID_Local = ID_Local;
         this.accesibilidad = accesibilidad;
         this.caracteristicas = caracteristicas;
         this.direccion = direccion;
@@ -79,6 +77,18 @@ public class PropiedadInmueble {
         this.zona = zona;
     }
 
+    public PropiedadInmueble(String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+        this.accesibilidad = accesibilidad;
+        this.caracteristicas = caracteristicas;
+        this.direccion = direccion;
+        this.duenio = duenio;
+        this.estadoLocal = estadoLocal;
+        this.forma = forma;
+        this.precioTazado = precioTazado;
+        this.superficieMinima = superficieMinima;
+        this.tipoLocal = tipoLocal;
+        this.zona = zona;
+    }
     public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
         this.ID_Local = ID_Local;
         this.accesibilidad = accesibilidad;

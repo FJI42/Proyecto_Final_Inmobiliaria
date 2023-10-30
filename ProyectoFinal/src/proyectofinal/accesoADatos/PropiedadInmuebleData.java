@@ -33,24 +33,23 @@ public class PropiedadInmuebleData {
     FijarPrecios(float)*/
     
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
-                
-        String sql="INSERT INTO `propiedadinmueble`(`ID_Local`,`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-        
-        try{
-            PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+       
+        String sql="INSERT INTO `propiedadinmueble`(`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    
+        try(PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             
-            ps.setInt(1, propInmueble.getID_Local());
-            ps.setString(2, propInmueble.getAccesibilidad());
-            ps.setString(3, propInmueble.getCaracteristicas());
-            ps.setString(4, propInmueble.getDireccion());
-            ps.setInt(5, propInmueble.getDuenio().getIdPropietario());
-            ps.setBoolean(6, propInmueble.isEstadoLocal());
-            ps.setString(7, propInmueble.getForma());
-            ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
-            ps.setFloat(9, propInmueble.getPrecioTazado());
-            ps.setInt(10, propInmueble.getSuperficieMinima());
-            ps.setString(11, propInmueble.getTipoLocal());
-            ps.setString(12, propInmueble.getZona());
+           // ps.setInt(1, propInmueble.getID_Local());
+            ps.setString(1, propInmueble.getAccesibilidad());
+            ps.setString(2, propInmueble.getCaracteristicas());
+            ps.setString(3, propInmueble.getDireccion());
+            ps.setInt(4, propInmueble.getDuenio().getIdPropietario());
+            ps.setBoolean(5, propInmueble.isEstadoLocal());
+            ps.setString(6, propInmueble.getForma());
+            //ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
+            ps.setFloat(7, propInmueble.getPrecioTazado());
+            ps.setInt(8, propInmueble.getSuperficieMinima());
+            ps.setString(9, propInmueble.getTipoLocal());
+            ps.setString(10, propInmueble.getZona());
             
             ps.executeUpdate();
             
@@ -63,14 +62,15 @@ public class PropiedadInmuebleData {
             ps.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+            
+            JOptionPane.showMessageDialog(null, ex);
         }
         
         
     }
     
     public void EliminarPropiedadInmueble(int idLocal){
-       String sql="UPDATE `propiedadinmueble` SET Estado=0 WHERE ID_Local=? AND Estado= 1";  
+       String sql="UPDATE `propiedadinmueble` SET EstadoLocal=0 WHERE ID_Local=? AND EstadoLocal= 1";  
        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -88,10 +88,44 @@ public class PropiedadInmuebleData {
     }
     
     public void ModificarPropiedadInmueble(PropiedadInmueble propInmueble){
-        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `EstadoLocal`=?, `Forma`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+//        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, propInmueble.getID_Local());
+            ps.setString(2, propInmueble.getAccesibilidad());
+            ps.setString(3, propInmueble.getCaracteristicas());
+            ps.setString(4, propInmueble.getDireccion());
+          ps.setInt(5, propInmueble.getDuenio().getIdPropietario());
+            ps.setBoolean(6, propInmueble.isEstadoLocal());
+            ps.setString(7, propInmueble.getForma());
+            ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
+            ps.setFloat(9, propInmueble.getPrecioTazado());
+            ps.setInt(10, propInmueble.getSuperficieMinima());
+            ps.setString(11, propInmueble.getTipoLocal());
+            ps.setString(12, propInmueble.getZona());
+            
+            int res=ps.executeUpdate();
+            
+            if (res>0){
+                JOptionPane.showMessageDialog(null, "Propiedad Imnueble modificada exitosamente!");
+            }else{
+                JOptionPane.showMessageDialog(null, res+"No se pudo modificar Propiedad Imnueble");
+            }
+            ps.close();
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+        }
+    }
+     public void ModificarPropiedadInmuebleNull(PropiedadInmueble propInmueble){
+        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+       
+        try {
+            
+            PreparedStatement ps=con.prepareStatement(sql);
+            
             ps.setString(2, propInmueble.getAccesibilidad());
             ps.setString(3, propInmueble.getCaracteristicas());
             ps.setString(4, propInmueble.getDireccion());
@@ -119,7 +153,7 @@ public class PropiedadInmuebleData {
     }
     
     public PropiedadInmueble buscarPropInmueble(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -127,11 +161,14 @@ public class PropiedadInmuebleData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet res = ps.executeQuery();
-            
+            System.out.println("buscando"+codigo);
             if (res.next()){
+                
+                System.out.println("en if de bpi");
                 propiedadInmueble =new PropiedadInmueble();
                 propiedadInmueble.setID_Local(codigo);
-                int idPropietario = res.getInt("Dueño");
+                
+                int idPropietario = res.getInt("Duenio");
                 int idInquilino = res.getInt("Ocupante");
                 
                 //obtener duenio y ocupante
@@ -152,10 +189,11 @@ public class PropiedadInmuebleData {
                 propiedadInmueble.setSuperficieMinima(res.getInt("SuperficieMin"));
                 propiedadInmueble.setTipoLocal(res.getString("TipoLocal"));
                 propiedadInmueble.setZona(res.getString("Zona"));
-          
+               
+                System.out.println("prop buscada::"+propiedadInmueble);    
                 
             }else{
-                JOptionPane.showMessageDialog(null, "No exite Propiedad");
+                JOptionPane.showMessageDialog(null, "No existe Propiedad");
             }
             
             ps.close();
@@ -186,8 +224,7 @@ public class PropiedadInmuebleData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
         }
-        
-        
+                
         return nPrecio;
     }
     
@@ -214,7 +251,7 @@ public class PropiedadInmuebleData {
         return idInq;
     }
 
-    public PropiedadInmueble buscarPropInmuebleLibre(int codigo){
+        public PropiedadInmueble buscarPropInmuebleLibre(int codigo){
         String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =? AND Ocupante IS NULL";
         
         PropiedadInmueble propiedadInmueble =null;
@@ -223,49 +260,60 @@ public class PropiedadInmuebleData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, codigo);
             ResultSet res = ps.executeQuery();
+            
+            System.out.println("1 llegada");
+            
             if (res.next()){
-                propiedadInmueble =new PropiedadInmueble();
-                propiedadInmueble.setID_Local(codigo);
-                int idPropietario = res.getInt("Duenio");
-                //obtener duenio y ocupante
-                PropietarioData pD= new PropietarioData();
+            
+                System.out.println("entre if");
                 
+                propiedadInmueble =new PropiedadInmueble();
+                
+                propiedadInmueble.setID_Local(codigo);
+                
+                int idPropietario = res.getInt("Duenio");
+                //obtener duenio 
+                PropietarioData pD= new PropietarioData();
                 Propietario prop=pD.BuscarPropietario(idPropietario);
                 
-                propiedadInmueble.setAccesibilidad(res.getString("accesobilidad"));
-                propiedadInmueble.setCaracteristicas(res.getString("caracteristicas"));
-                propiedadInmueble.setDireccion(res.getString("direccion"));
+                System.out.println(prop);
+                
+                propiedadInmueble.setAccesibilidad(res.getString("Accesibilidad"));
+                propiedadInmueble.setCaracteristicas(res.getString("Caracteristicas"));
+                propiedadInmueble.setDireccion(res.getString("Direccion"));
                 propiedadInmueble.setDuenio(prop);
-                propiedadInmueble.setEstadoLocal(res.getBoolean("estadoLocal"));
-                propiedadInmueble.setForma(res.getString("forma"));
-                propiedadInmueble.setPrecioTazado(res.getFloat("precioTazado"));
-                propiedadInmueble.setSuperficieMinima(res.getInt("superficieMinima"));
-                propiedadInmueble.setTipoLocal(res.getString("tipoLocal"));
-                propiedadInmueble.setZona(res.getString("zona"));
+                propiedadInmueble.setEstadoLocal(res.getBoolean("EstadoLocal"));
+                propiedadInmueble.setForma(res.getString("Forma"));
+                propiedadInmueble.setPrecioTazado(res.getFloat("PrecioTazado"));
+                propiedadInmueble.setSuperficieMinima(res.getInt("SuperficieMin"));
+                propiedadInmueble.setTipoLocal(res.getString("TipoLocal"));
+                propiedadInmueble.setZona(res.getString("Zona"));
+                
+                System.out.println("la prop "+propiedadInmueble);
           
             }else{
-                JOptionPane.showMessageDialog(null, "No exite Propiedad");
+                JOptionPane.showMessageDialog(null, "No existe Propiedad");
             }
             
             ps.close();
                         
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+            JOptionPane.showMessageDialog(null, "Error al acceder busc inm a tabla Propiedad Inmueble");
         }
         
         return propiedadInmueble;
     }
     
-    public List<PropiedadInmueble> obtenerLasPropiedades(){
+        public List<PropiedadInmueble> obtenerLasPropiedades(){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
-        String sql="SELECT * FROM propiedadinmueble";
+        String sql="SELECT * FROM `propiedadinmueble`WHERE EstadoLocal=TRUE";
          
         try {   
                 PreparedStatement ps= con.prepareStatement(sql);
                 ResultSet rs= ps.executeQuery();
 
                 while(rs.next()){
-                     int idPropietario= rs.getInt("Dueño");
+                     int idPropietario= rs.getInt("Duenio");
                      int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
@@ -306,5 +354,375 @@ public class PropiedadInmuebleData {
         
         return propiedad; 
        }  
+    
+        public List<PropiedadInmueble> obtenerLasPropiedadeslibres(){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE Ocupante IS NULL";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ResultSet rs= ps.executeQuery();
 
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+        
+        public List<PropiedadInmueble> obtenerLasPropiedadesOcupadas(){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE Ocupante IS NOT NULL";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+        public List<PropiedadInmueble> obtenerLasPropiedadesTipoCasa(String casa){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=?";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, casa);
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+        
+        public List<PropiedadInmueble> obtenerLasPropiedadesTipoTerreno(String terreno){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Terreno´";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, terreno);
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+                
+        public List<PropiedadInmueble> obtenerLasPropiedadesTipoLC(String localC){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Local Comerdial´";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, localC);
+
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+                        
+        public List<PropiedadInmueble> obtenerLasPropiedadesTipoGalpon(String galpon){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Galpon´";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, galpon);
+
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }  
+
+                                
+        public List<PropiedadInmueble> obtenerLasPropiedadesTipoGarage(String garage){
+        ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Garage´";
+         
+        try {   
+                PreparedStatement ps= con.prepareStatement(sql);
+                ps.setString(1, garage);
+
+                ResultSet rs= ps.executeQuery();
+
+                while(rs.next()){
+                     int idPropietario= rs.getInt("Duenio");
+                     int idInquilino = rs.getInt("Ocupante");
+                
+                    PropiedadInmueble prop =new PropiedadInmueble(); 
+                    InquilinoData inD = new InquilinoData();
+                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    
+                    PropietarioData poD = new PropietarioData(); 
+                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    
+                    
+                    prop.setID_Local(rs.getInt("ID_Local"));
+                    
+                    prop.setAccesibilidad(rs.getString("Accesibilidad"));
+                    prop.setCaracteristicas(rs.getString("Caracteristicas"));
+                    prop.setDireccion(rs.getString("Direccion"));
+                    prop.setDuenio(propi);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
+                    prop.setForma(rs.getString("Forma"));
+         
+                    prop.setOcupante(inquilino);
+                    //prop.setOcupante(rs.getInt("Ocupante"));
+                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
+                    prop.setTipoLocal(rs.getString("TipoLocal"));
+                    prop.setZona(rs.getString("Zona"));
+                    
+                    
+                    propiedad.add(prop);
+                    
+                }
+                
+                ps.close(); 
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                
+            }
+        
+        return propiedad; 
+       }                                   
+                                               
 }
