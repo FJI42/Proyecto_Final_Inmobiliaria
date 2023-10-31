@@ -4,6 +4,7 @@
  */
 package ProyectoFinalVista;
 
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
@@ -28,16 +29,16 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
     /**
      * Creates new form ModificarInmueble
      */
-    public ModificarInmueble(PropiedadInmueble propiInm) {
+    public ModificarInmueble() {
         
-        System.out.println("pi a modif:::"+propiInm);
+//        System.out.println("pi a modif:::"+propiInm);
         initComponents();
         con=Conexion.getConexion();
-        txtIdInm.enable(false);
-        txtPropietario.enable(false);
-        txtInquilino.enable(false);
-        cargarInmueble(propiInm);
-       // cargar_cbPropietario();
+//        txtIdInm.enable(false);
+//        txtPropietario.enable(false);
+//        txtInquilino.enable(false);
+//        cargarInmueble(propiInm);
+//        cargar_cbPropietario();
 }
 
     /**
@@ -80,11 +81,9 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         txtPropietario = new javax.swing.JTextField();
-        lbInquilino = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        txtInquilino = new javax.swing.JTextField();
 
-        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
+        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Campo", "Local Comercial", "Galpon", "Garage" }));
 
         lbPropietario.setText("Propietario:");
 
@@ -132,7 +131,6 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
 
         lbZona.setText("Zona");
 
-        txtIdInm.setEditable(false);
         txtIdInm.setPreferredSize(new java.awt.Dimension(100, 22));
 
         jLabel20.setFont(new java.awt.Font("Verdana", 2, 8)); // NOI18N
@@ -151,13 +149,7 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("jLabel2");
 
-        txtPropietario.setEditable(false);
         txtPropietario.setPreferredSize(new java.awt.Dimension(100, 22));
-
-        lbInquilino.setText("Inquilino");
-
-        txtInquilino.setEditable(false);
-        txtInquilino.setPreferredSize(new java.awt.Dimension(100, 22));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +159,8 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,27 +172,42 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34))
-                            .addComponent(txtPropietario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(lbInquilino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPropietario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbCaracteristicas)
-                                .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)))
+                                    .addComponent(lbPrecioTazado)
+                                    .addComponent(lbSuperficie)
+                                    .addComponent(lbTipoLocal)
+                                    .addComponent(lbZona))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel18)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel20)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPrecioTazado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbTipoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbCaracteristicas)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel8))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(55, 55, 55)
+                                        .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbAccesibilidad)
@@ -212,23 +220,10 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
                                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13)
                                     .addComponent(txtAccesibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbPrecioTazado)
-                                    .addComponent(lbSuperficie)
-                                    .addComponent(lbTipoLocal)
-                                    .addComponent(lbZona))
-                                .addGap(66, 66, 66)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18)
-                                    .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPrecioTazado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16)
-                                    .addComponent(cbTipoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtZona, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20))
-                                .addGap(5, 5, 5))))
+                                    .addComponent(jLabel5)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addComponent(btnAceptarPropInm)
@@ -252,13 +247,8 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
                         .addComponent(txtPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbInquilino))
-                .addGap(10, 10, 10)
+                .addGap(38, 38, 38)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
@@ -275,39 +265,37 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
                         .addComponent(txtCaracteristicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                        .addComponent(lbDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbForma, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(lbForma, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                     .addComponent(txtForma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lbPrecioTazado, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbPrecioTazado, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(txtPrecioTazado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel16)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                     .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTipoLocal)
                     .addComponent(cbTipoLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -331,19 +319,20 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
     private void btnAceptarPropInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarPropInmActionPerformed
         // TODO add your handling code here:
         try{
+            int id = parseInt(txtIdInm.getText());
             String acces = txtAccesibilidad.getText();
             String carac = txtCaracteristicas.getText();
             String direc = txtDireccion.getText();
-            System.out.println(acces+carac+direc+"muestra a c d");
+//            System.out.println(acces+carac+direc+"muestra a c d");
            
             int propid = Integer.parseInt(txtPropietario.getText());
             PropietarioData prop = new PropietarioData();
-            //prop.BuscarPropietario(propid);
+            Propietario p = new Propietario(prop.BuscarPropietarioID(propid).getIdPropietario(),prop.BuscarPropietarioID(propid).getApelidoPropietario(),prop.BuscarPropietarioID(propid).getNombrePropietario(),prop.BuscarPropietarioID(propid).getDni(),prop.BuscarPropietarioID(propid).getDomicilio(),prop.BuscarPropietarioID(propid).getTelefono());
             
             
-            int inquid =Integer.parseInt(txtInquilino.getText());
-            InquilinoData inq = new InquilinoData();
-            //inq.BuscarInquilinoId(inquid);
+//            int inquid =Integer.parseInt(txtInquilino.getText());
+//            InquilinoData inq = new InquilinoData();
+//            inq.BuscarInquilinoId(inquid);
             
             String forma = txtForma.getText();
             float precio = Float.parseFloat(txtPrecioTazado.getText());
@@ -351,10 +340,10 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
             String tipo = (String) cbTipoLocal.getSelectedItem();
             String zona = txtZona.getText();
 
-            PropiedadInmueble propinm = new PropiedadInmueble(acces,carac,direc,prop.BuscarPropietario(propid),true,forma,inq.BuscarInquilinoId(inquid),precio,superf,tipo,zona);
+            PropiedadInmueble propinm = new PropiedadInmueble(id,acces,carac,direc,p,true,forma,precio,superf,tipo,zona);
             propInmD.ModificarPropiedadInmueble(propinm);
             
-            System.out.println("prop inmueble a cargar: "+propinm);
+//            System.out.println("prop inmueble a cargar: "+propinm);
 
         }catch(NumberFormatException E){
             JOptionPane.showMessageDialog(null, "Debe completar todas las casillas");
@@ -369,7 +358,7 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
         txtCaracteristicas.setText(propieInm.getCaracteristicas());
         txtDireccion.setText(propieInm.getDireccion());
         txtPropietario.setText(propieInm.getDuenio().getIdPropietario()+"");
-        txtInquilino.setText(propieInm.getOcupante().getId_Inquilino() +"");
+//        txtInquilino.setText(propieInm.getOcupante().getId_Inquilino() +"");
         txtForma.setText(propieInm.getForma());
         txtPrecioTazado.setText(propieInm.getPrecioTazado()+"");
         txtSuperficie.setText(propieInm.getSuperficieMinima()+"");
@@ -418,7 +407,6 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbDireccion;
     private javax.swing.JLabel lbForma;
     private javax.swing.JLabel lbIdInm;
-    private javax.swing.JLabel lbInquilino;
     private javax.swing.JLabel lbPrecioTazado;
     private javax.swing.JLabel lbPropietario;
     private javax.swing.JLabel lbSuperficie;
@@ -429,7 +417,6 @@ public class ModificarInmueble extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtForma;
     private javax.swing.JTextField txtIdInm;
-    private javax.swing.JTextField txtInquilino;
     private javax.swing.JTextField txtPrecioTazado;
     private javax.swing.JTextField txtPropietario;
     private javax.swing.JTextField txtSuperficie;

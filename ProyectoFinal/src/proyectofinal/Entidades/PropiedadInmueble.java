@@ -32,7 +32,7 @@ public class PropiedadInmueble {
     }
 
 
-    public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma, int idLocal, Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
+    public PropiedadInmueble(int ID_Local, String accesibilidad, String caracteristicas, String direccion, Propietario duenio, boolean estadoLocal, String forma,  Inquilino ocupante, float precioTazado, int superficieMinima, String tipoLocal, String zona) {
 
         this.ID_Local = ID_Local;
         this.accesibilidad = accesibilidad;

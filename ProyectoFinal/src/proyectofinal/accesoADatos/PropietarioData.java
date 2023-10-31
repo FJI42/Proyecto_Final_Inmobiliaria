@@ -118,6 +118,7 @@ public class PropietarioData {
         return propietario;             
 }
         
+        
         public Propietario BuscarPropietarioID(int id){
      String sql= "SELECT * FROM `propietario` WHERE ID_Propietario=? AND Estado=1";
             Propietario propietario=null; 
@@ -190,14 +191,14 @@ public class PropietarioData {
                 in.setNombrePropietario(rs.getString("Nombre"));
                 in.setDni(rs.getInt("DNI"));
                 in.setDomicilio(rs.getString("Domicilio"));
-                in.setTelefono(rs.getInt("Telefono"));
+                in.setTelefono(rs.getLong("Telefono"));
                 propietario.add(in);
                 }
                 
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex+"OLP Error al acceder a la tabla Propietario");
+                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propietario");
             }
         
         return propietario; 

@@ -81,7 +81,6 @@
                           <Component id="rbCasa" min="-2" max="-2" attributes="0"/>
                           <Component id="rbInmAlquilado" min="-2" max="-2" attributes="0"/>
                           <Component id="rbInmDisponible" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnModificarInmueble" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -89,7 +88,10 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAlquilarInmueble" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="btnActualizarPrecio" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -102,7 +104,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -114,16 +116,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAgregarInmueble" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAlquilarInmueble" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnActualizarPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnModificarInmueble" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnActualizarPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEliminarInmueble" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnEliminarInmueble" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="rbInmDisponible" min="-2" max="-2" attributes="0"/>
@@ -143,7 +143,7 @@
                       <Component id="rbGarage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnFiltrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace pref="82" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -175,14 +175,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarInmuebleActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnAlquilarInmueble">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Alquilar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlquilarInmuebleActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnActualizarPrecio">
@@ -224,14 +216,20 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Casa"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbCasaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbTerreno">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="Grupo2"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Terreno"/>
+                <Property name="text" type="java.lang.String" value="Campo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbTerrenoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbLocalComercial">
               <Properties>
@@ -240,6 +238,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Local Comercial"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbLocalComercialActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbGalpon">
               <Properties>
@@ -248,6 +249,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Galpon"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbGalponActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbGarage">
               <Properties>
@@ -256,6 +260,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Garage"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbGarageActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnFiltrar">
               <Properties>

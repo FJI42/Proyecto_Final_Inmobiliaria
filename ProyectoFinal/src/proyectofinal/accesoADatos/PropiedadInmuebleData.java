@@ -114,27 +114,27 @@ public class PropiedadInmuebleData {
     }
     
     public void ModificarPropiedadInmueble(PropiedadInmueble propInmueble){
-        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `EstadoLocal`=?, `Forma`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
-//        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+//        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `EstadoLocal`=?, `Forma`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Dueño`=?, `EstadoLocal`=?, `Forma`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, propInmueble.getID_Local());
-            ps.setString(2, propInmueble.getAccesibilidad());
-            ps.setString(3, propInmueble.getCaracteristicas());
-            ps.setString(4, propInmueble.getDireccion());
-          ps.setInt(5, propInmueble.getDuenio().getIdPropietario());
-            ps.setBoolean(6, propInmueble.isEstadoLocal());
-            ps.setString(7, propInmueble.getForma());
-            ps.setInt(8, propInmueble.getOcupante().getId_Inquilino());
-            ps.setFloat(9, propInmueble.getPrecioTazado());
-            ps.setInt(10, propInmueble.getSuperficieMinima());
-            ps.setString(11, propInmueble.getTipoLocal());
-            ps.setString(12, propInmueble.getZona());
             
+            ps.setString(1, propInmueble.getAccesibilidad());
+            ps.setString(2, propInmueble.getCaracteristicas());
+            ps.setString(3, propInmueble.getDireccion());
+          ps.setInt(4, propInmueble.getDuenio().getIdPropietario());
+            ps.setBoolean(5, propInmueble.isEstadoLocal());
+            ps.setString(6, propInmueble.getForma());
+//            ps.setInt(7, propInmueble.getOcupante().getId_Inquilino());
+            ps.setFloat(7, propInmueble.getPrecioTazado());
+            ps.setInt(8, propInmueble.getSuperficieMinima());
+            ps.setString(9, propInmueble.getTipoLocal());
+            ps.setString(10, propInmueble.getZona());
+            ps.setInt(11, propInmueble.getID_Local());
             int res=ps.executeUpdate();
             
-            if (res>0){
+            if (res==1){
                 JOptionPane.showMessageDialog(null, "Propiedad Imnueble modificada exitosamente!");
             }else{
                 JOptionPane.showMessageDialog(null, res+"No se pudo modificar Propiedad Imnueble");
@@ -204,7 +204,7 @@ public class PropiedadInmuebleData {
                 
                 Propietario prop=pD.BuscarPropietarioID(idPropietario);
                 Inquilino inq= inD.BuscarInquilinoId(idInquilino);
-                
+                System.out.println("AAAA" + prop);
                 propiedadInmueble.setAccesibilidad(res.getString("Accesibilidad"));
                 propiedadInmueble.setCaracteristicas(res.getString("Caracteristicas"));
                 propiedadInmueble.setDireccion(res.getString("Direccion"));
@@ -236,7 +236,7 @@ public class PropiedadInmuebleData {
     }
     
     public float FijarPrecio(int idProp, Float nPrecio){
-        String sql="UPDATE `propiedadinmueble` SET nPrecio=? WHERE idProp = ?";
+        String sql="UPDATE `propiedadinmueble` SET PrecioTazado=? WHERE ID_Local = ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -552,28 +552,28 @@ public class PropiedadInmuebleData {
                 ResultSet rs= ps.executeQuery();
 
                 while(rs.next()){
-                     int idPropietario= rs.getInt("Duenio");
-                     int idInquilino = rs.getInt("Ocupante");
+//                     int idPropietario= rs.getInt("Duenio");
+//                     int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
+//                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
+//                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                    
-                    System.out.println("no esxiste:::?? "+propi+idPropietario);
+//                    System.out.println("no esxiste:::?? "+propi+idPropietario);
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
                     
                     prop.setAccesibilidad(rs.getString("Accesibilidad"));
                     prop.setCaracteristicas(rs.getString("Caracteristicas"));
                     prop.setDireccion(rs.getString("Direccion"));
-                    prop.setDuenio(propi);
+//                    prop.setDuenio(propi);
                     prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
                     prop.setForma(rs.getString("Forma"));
          
-                    prop.setOcupante(inquilino);
+//                    prop.setOcupante(inquilino);
                     //prop.setOcupante(rs.getInt("Ocupante"));
                     prop.setPrecioTazado(rs.getInt("PrecioTazado"));
                     prop.setSuperficieMinima(rs.getInt("SuperficieMin"));

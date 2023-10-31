@@ -35,7 +35,7 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         con=Conexion.getConexion();
         txtIdInm.enable(false);
         cargar_cbPropietario();
-        traerID();
+//        traerID();
         //cargar_cbTipoLocal();
         
     }
@@ -150,7 +150,13 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         jLabel20.setForeground(new java.awt.Color(102, 102, 102));
         jLabel20.setText("jLabel2");
 
-        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Terreno", "Local Comercial", "Galpon", "Garage" }));
+        cbPropietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPropietariosActionPerformed(evt);
+            }
+        });
+
+        cbTipoLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Seleccione-", "Casa", "Campo", "Local Comercial", "Galpon", "Garage" }));
 
         btnAgregarPropietario.setText("Nuevo Propietario");
         btnAgregarPropietario.addActionListener(new java.awt.event.ActionListener() {
@@ -373,6 +379,11 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_btnAgregarPropInmActionPerformed
+
+    private void cbPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPropietariosActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_cbPropietariosActionPerformed
     
     
     private void cargar_cbPropietario(){ //carga los comoboBox los propietario
@@ -387,21 +398,21 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
         }
     }
 
-    private void traerID(){
-        PropiedadInmuebleData propInmD = new PropiedadInmuebleData();
-        ArrayList<PropiedadInmueble> propInm =new ArrayList<>();
-        
-        for(PropiedadInmueble pInm : propInmD.obtenerLasPropiedades()){
-            propInm.add(pInm);
-            
-        }
-        PropiedadInmueble ultimoPropInm = propInm.get(propInm.size()-1);
-       
-        System.out.println("el  ultimo"+ ultimoPropInm);
-        System.out.println("ojo");
-        
-        txtIdInm.setText(ultimoPropInm.getID_Local()+1+"");
-    }
+//    private void traerID(){
+//        PropiedadInmuebleData propInmD = new PropiedadInmuebleData();
+//        ArrayList<PropiedadInmueble> propInm =new ArrayList<>();
+//        
+//        for(PropiedadInmueble pInm : propInmD.obtenerLasPropiedades()){
+//            propInm.add(pInm);
+//            
+//        }
+//        PropiedadInmueble ultimoPropInm = propInm.get(propInm.size()-1);
+//       
+//        System.out.println("el  ultimo"+ ultimoPropInm);
+//        System.out.println("ojo");
+//        
+//        txtIdInm.setText(ultimoPropInm.getID_Local()+1+"");
+//    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

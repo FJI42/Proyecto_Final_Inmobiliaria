@@ -4,10 +4,14 @@
  */
 package ProyectoFinalVista;
 
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import javax.swing.JDesktopPane;
 import proyectofinal.Entidades.Inquilino;
 import proyectofinal.Entidades.PropiedadInmueble;
 import proyectofinal.accesoADatos.InquilinoData;
+import proyectofinal.accesoADatos.PropiedadInmuebleData;
 
 /**
  *
@@ -19,12 +23,11 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
     /**
      * Creates new form AlquilarInmueble
      */
-    public AlquilarInmueble(final PropiedadInmueble propieInm) {
-        System.out.println("trae"+propieInm);
+    public AlquilarInmueble() {
+//        System.out.println("trae"+propieInm);
         initComponents();
        // this.propieInm = propieInm;
-        cargarcbInquilino();
-        cargar_Inmueble(propieInm);
+    
     }
 
     /**
@@ -38,30 +41,12 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lbIdInm = new javax.swing.JLabel();
-        lbPropietario = new javax.swing.JLabel();
-        lbAccesibilidad = new javax.swing.JLabel();
-        lbCaracteristicas = new javax.swing.JLabel();
-        lbDireccion = new javax.swing.JLabel();
-        lbForma = new javax.swing.JLabel();
         lbPrecioTazado = new javax.swing.JLabel();
-        lbSuperficie = new javax.swing.JLabel();
-        lbTipoLocal = new javax.swing.JLabel();
-        lbZona = new javax.swing.JLabel();
-        lbIdInm1 = new javax.swing.JLabel();
-        lbPropietario1 = new javax.swing.JLabel();
-        lbAccesibilidad1 = new javax.swing.JLabel();
-        lbCaracteristicas1 = new javax.swing.JLabel();
-        lbDireccion1 = new javax.swing.JLabel();
         lbPrecioTazado1 = new javax.swing.JLabel();
-        lbSuperficie1 = new javax.swing.JLabel();
-        lbForma1 = new javax.swing.JLabel();
-        lbTipoLocal1 = new javax.swing.JLabel();
-        lbZona1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        cbInquilinos = new javax.swing.JComboBox<>();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -72,70 +57,14 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbIdInm.setText("ID Nuevo Inmueble");
+        lbIdInm.setText("ID Inmueble");
         jPanel1.add(lbIdInm, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        lbPropietario.setText("Propietario:");
-        jPanel1.add(lbPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        lbAccesibilidad.setText("Accesibilidad");
-        jPanel1.add(lbAccesibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        lbCaracteristicas.setText("Caracteristicas");
-        jPanel1.add(lbCaracteristicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-
-        lbDireccion.setText("Direccion");
-        jPanel1.add(lbDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
-
-        lbForma.setText("Forma");
-        jPanel1.add(lbForma, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-
-        lbPrecioTazado.setText("Precio Tazado");
-        jPanel1.add(lbPrecioTazado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-
-        lbSuperficie.setText("Superficie");
-        jPanel1.add(lbSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
-
-        lbTipoLocal.setText("Tipo de Local");
-        jPanel1.add(lbTipoLocal, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
-
-        lbZona.setText("Zona");
-        jPanel1.add(lbZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-
-        lbIdInm1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbIdInm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 220, 16));
-
-        lbPropietario1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbPropietario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 220, 16));
-
-        lbAccesibilidad1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbAccesibilidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 220, 16));
-
-        lbCaracteristicas1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbCaracteristicas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 220, 16));
-
-        lbDireccion1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 220, 16));
+        lbPrecioTazado.setText("Precio Nuevo");
+        jPanel1.add(lbPrecioTazado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         lbPrecioTazado1.setPreferredSize(new java.awt.Dimension(220, 16));
         jPanel1.add(lbPrecioTazado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 220, 16));
-
-        lbSuperficie1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbSuperficie1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 220, 16));
-
-        lbForma1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbForma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 220, 16));
-
-        lbTipoLocal1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbTipoLocal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 220, 16));
-
-        lbZona1.setPreferredSize(new java.awt.Dimension(220, 16));
-        jPanel1.add(lbZona1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 220, 16));
-
-        jLabel1.setText("Inquilino");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 90, -1));
-
-        jPanel1.add(cbInquilinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 230, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,13 +72,29 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, -1, -1));
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
         btnCancelar.setText("Cancelar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 540, -1, -1));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
-        jButton1.setText("Generar Contrato");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, -1, -1));
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 160, -1));
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +104,7 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -167,66 +112,56 @@ public class AlquilarInmueble extends javax.swing.JInternalFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        PropiedadInmueble propieInm =new PropiedadInmueble();
-        System.out.println("prop a cargar en new prop: "+ propieInm);
-        
+        PropiedadInmuebleData propieInm =new PropiedadInmuebleData();
+     int id = parseInt( txtId.getText());
+     float precio = parseFloat(txtPrecio.getText());
+     propieInm.FijarPrecio(id, precio);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        
+       PropiedadInmuebleVista nombre = new PropiedadInmuebleVista();   
+        JDesktopPane desktopPane = getDesktopPane(); 
+        desktopPane.add(nombre);
+        nombre.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void cargarcbInquilino(){
-        InquilinoData propD = new InquilinoData();
-        ArrayList<Inquilino> inqui = new ArrayList<>();
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtId.getText().length() >= 10)
+    {
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtIdKeyTyped
 
-        for (Inquilino inq : propD.obtenerLosInquilinos()) {
-            inqui.add(inq);
-           // cbPropietarios.addItem(prop.getDni()+" "+prop.getApelidoPropietario()+", "+prop.getNombrePropietario());
-            cbInquilinos.addItem(inq);
-        }
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+          char c = evt.getKeyChar();
+        if(c<'0' || c>'9') evt.consume();
+        if(txtPrecio.getText().length() >= 10)
+    {
+        evt.consume();
     }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+
     
     
-    private void cargar_Inmueble(PropiedadInmueble propieInm){
-        System.out.println("carga");
-        lbIdInm1.setText(propieInm.getID_Local()+"");
-        lbAccesibilidad1.setText(propieInm.getAccesibilidad());
-        lbCaracteristicas1.setText(propieInm.getCaracteristicas());
-        lbDireccion1.setText(propieInm.getDireccion());
-        lbPropietario1.setText(propieInm.getDuenio().getApelidoPropietario()+", "+propieInm.getDuenio().getNombrePropietario());
-        lbForma1.setText(propieInm.getForma());
-        lbPrecioTazado1.setText(propieInm.getPrecioTazado()+"");
-        lbSuperficie1.setText(propieInm.getSuperficieMinima()+"");
-        lbTipoLocal1.setText(propieInm.getTipoLocal());
-        lbZona1.setText(propieInm.getZona());
-    }
-    
+   
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<Inquilino> cbInquilinos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lbAccesibilidad;
-    private javax.swing.JLabel lbAccesibilidad1;
-    private javax.swing.JLabel lbCaracteristicas;
-    private javax.swing.JLabel lbCaracteristicas1;
-    private javax.swing.JLabel lbDireccion;
-    private javax.swing.JLabel lbDireccion1;
-    private javax.swing.JLabel lbForma;
-    private javax.swing.JLabel lbForma1;
     private javax.swing.JLabel lbIdInm;
-    private javax.swing.JLabel lbIdInm1;
     private javax.swing.JLabel lbPrecioTazado;
     private javax.swing.JLabel lbPrecioTazado1;
-    private javax.swing.JLabel lbPropietario;
-    private javax.swing.JLabel lbPropietario1;
-    private javax.swing.JLabel lbSuperficie;
-    private javax.swing.JLabel lbSuperficie1;
-    private javax.swing.JLabel lbTipoLocal;
-    private javax.swing.JLabel lbTipoLocal1;
-    private javax.swing.JLabel lbZona;
-    private javax.swing.JLabel lbZona1;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

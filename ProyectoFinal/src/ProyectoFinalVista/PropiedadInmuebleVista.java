@@ -57,7 +57,6 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
         btnAgregarInmueble = new javax.swing.JButton();
         btnModificarInmueble = new javax.swing.JButton();
         btnEliminarInmueble = new javax.swing.JButton();
-        btnAlquilarInmueble = new javax.swing.JButton();
         btnActualizarPrecio = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         rbInmDisponible = new javax.swing.JRadioButton();
@@ -105,13 +104,6 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
             }
         });
 
-        btnAlquilarInmueble.setText("Alquilar");
-        btnAlquilarInmueble.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlquilarInmuebleActionPerformed(evt);
-            }
-        });
-
         btnActualizarPrecio.setText("Actualizar Precio");
         btnActualizarPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,18 +129,43 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
 
         Grupo2.add(rbCasa);
         rbCasa.setText("Casa");
+        rbCasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCasaActionPerformed(evt);
+            }
+        });
 
         Grupo2.add(rbTerreno);
-        rbTerreno.setText("Terreno");
+        rbTerreno.setText("Campo");
+        rbTerreno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbTerrenoActionPerformed(evt);
+            }
+        });
 
         Grupo2.add(rbLocalComercial);
         rbLocalComercial.setText("Local Comercial");
+        rbLocalComercial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbLocalComercialActionPerformed(evt);
+            }
+        });
 
         Grupo2.add(rbGalpon);
         rbGalpon.setText("Galpon");
+        rbGalpon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbGalponActionPerformed(evt);
+            }
+        });
 
         Grupo2.add(rbGarage);
         rbGarage.setText("Garage");
+        rbGarage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbGarageActionPerformed(evt);
+            }
+        });
 
         btnFiltrar.setText("Filtrar");
         btnFiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,14 +188,15 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                     .addComponent(rbCasa)
                     .addComponent(rbInmAlquilado)
                     .addComponent(rbInmDisponible)
-                    .addComponent(btnEliminarInmueble)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnModificarInmueble)
                             .addComponent(btnAgregarInmueble))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAlquilarInmueble)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnEliminarInmueble))
                             .addComponent(btnActualizarPrecio)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnFiltrar)
@@ -186,7 +204,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,14 +214,12 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregarInmueble)
-                    .addComponent(btnAlquilarInmueble))
+                    .addComponent(btnActualizarPrecio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificarInmueble)
-                    .addComponent(btnActualizarPrecio))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminarInmueble)
-                .addGap(11, 11, 11)
+                    .addComponent(btnEliminarInmueble))
+                .addGap(45, 45, 45)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbInmDisponible)
@@ -223,7 +239,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
                 .addComponent(rbGarage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFiltrar)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         backG.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 570));
@@ -284,33 +300,6 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
         nombre.setVisible(true);
     }//GEN-LAST:event_btnAgregarInmuebleActionPerformed
 
-    private void btnAlquilarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarInmuebleActionPerformed
-        
-        if(tablaInmuebles.getSelectedRow()!= -1){
-            Integer idInmueble = (Integer) modelo.getValueAt(tablaInmuebles.getSelectedRow(), 0);
-            System.out.println(idInmueble);
-            
-            int idIn= idInmueble ;
-       
-            PropiedadInmuebleData PID = new PropiedadInmuebleData();
-       
-            PropiedadInmueble pid = PID.buscarPropInmuebleLibre(idIn);
-            
-            System.out.println(pid);
-            
-             setVisible(true);
-    
-            // Muestra la nueva ventana
-            AlquilarInmueble nombre = new AlquilarInmueble(pid);   
-            JDesktopPane desktopPane = getDesktopPane(); 
-            desktopPane.add(nombre);
-            nombre.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione Inmueble de tabla");
-        }
-        
-    }//GEN-LAST:event_btnAlquilarInmuebleActionPerformed
-
     private void rbInmDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbInmDisponibleActionPerformed
         // TODO add your handling code here:
         
@@ -356,7 +345,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
             borrarFilas();
             lbTitulo.setText("Lista completa de propiedades");
             PropiedadInmuebleData id= new PropiedadInmuebleData();
-            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoTerreno("Terreno")){                  
+            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoCasa("Campo")){                  
                 System.out.println(prop);
                 modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
                 //modelo.addRow(new Object []{2, "xx","ww", "ss",12000,20,"ee","q"});
@@ -366,7 +355,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
              borrarFilas();
             lbTitulo.setText("Lista completa de propiedades");
             PropiedadInmuebleData id= new PropiedadInmuebleData();
-            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoLC("Local Comercial")){                  
+            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoCasa("Local Comercial")){                  
                 System.out.println(prop);
                 modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
                 //modelo.addRow(new Object []{2, "xx","ww", "ss",12000,20,"ee","q"});
@@ -376,7 +365,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
             borrarFilas();
             lbTitulo.setText("Lista completa de propiedades");
             PropiedadInmuebleData id= new PropiedadInmuebleData();
-            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoGalpon("Galpon")){                  
+            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoCasa("Galpon")){                  
                 System.out.println(prop);
                 modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
                 //modelo.addRow(new Object []{2, "xx","ww", "ss",12000,20,"ee","q"});
@@ -386,7 +375,7 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
             borrarFilas();
             lbTitulo.setText("Lista completa de propiedades");
             PropiedadInmuebleData id= new PropiedadInmuebleData();
-            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoGarage("garage")){                  
+            for(PropiedadInmueble prop:id.obtenerLasPropiedadesTipoCasa("garage")){                  
                 System.out.println(prop);
                 modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
                 //modelo.addRow(new Object []{2, "xx","ww", "ss",12000,20,"ee","q"});
@@ -398,32 +387,32 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
 
     private void btnModificarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarInmuebleActionPerformed
         // TODO add your handling code here:
-        if(tablaInmuebles.getSelectedRow()!= -1){
-            Integer idInmueble = (Integer) modelo.getValueAt(tablaInmuebles.getSelectedRow(), 0);
-            System.out.println(idInmueble);
-            
-            int idIn= idInmueble ;
-       
-            PropiedadInmuebleData PID = new PropiedadInmuebleData();
-            PropiedadInmueble pid = PID.buscarPropInmueble(idIn);
-            
-            
-//            if (pid.getOcupante()==null){
-//                PropiedadInmueble pid2 = PID.buscarPropInmuebleLibre(idIn);
+//        if(tablaInmuebles.getSelectedRow()!= -1){
+//            Integer idInmueble = (Integer) modelo.getValueAt(tablaInmuebles.getSelectedRow(), 0);
+//            System.out.println(idInmueble);
 //            
-//            }
-            System.out.println("id de inm: "+idInmueble+"para modificar"+pid);
-            
-             setVisible(true);
+//            int idIn= idInmueble ;
+//       
+//            PropiedadInmuebleData PID = new PropiedadInmuebleData();
+//            PropiedadInmueble pid = PID.buscarPropInmueble(idIn);
+//            
+//            
+////            if (pid.getOcupante()==null){
+////                PropiedadInmueble pid2 = PID.buscarPropInmuebleLibre(idIn);
+////            
+////            }
+//            System.out.println("id de inm: "+idInmueble+"para modificar"+pid);
+//            
+//             setVisible(true);
     
             // Muestra la nueva ventana
-            ModificarInmueble nombre = new ModificarInmueble(pid);   
+            ModificarInmueble nombre = new ModificarInmueble();   
             JDesktopPane desktopPane = getDesktopPane(); 
             desktopPane.add(nombre);
             nombre.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione Inmueble de tabla");
-        }
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Seleccione Inmueble de tabla");
+//        }
     }//GEN-LAST:event_btnModificarInmuebleActionPerformed
 
     private void btnEliminarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInmuebleActionPerformed
@@ -451,26 +440,93 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
 
     private void btnActualizarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPrecioActionPerformed
         // TODO add your handling code here:
-         if(tablaInmuebles.getSelectedRow()!= -1){
-            Integer idInmueble = (Integer) modelo.getValueAt(tablaInmuebles.getSelectedRow(), 0);
-            System.out.println(idInmueble);
-            
-            int idIn= idInmueble ;
-       
-            PropiedadInmuebleData PID = new PropiedadInmuebleData();
-            PropiedadInmueble pid = PID.buscarPropInmueble(idIn);
-            
-           // JOptionPane.
-//            if (pid.getOcupante()==null){
-//                PropiedadInmueble pid2 = PID.buscarPropInmuebleLibre(idIn);
-//            
-//            }
-            System.out.println("id de inm: "+idInmueble+"para modificar PRECIO"+pid);
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione Inmueble de tabla");
-        }
+         AlquilarInmueble nombre = new AlquilarInmueble();   
+        JDesktopPane desktopPane = getDesktopPane(); 
+        desktopPane.add(nombre);
+        nombre.setVisible(true);
+        dispose();
+                   
     }//GEN-LAST:event_btnActualizarPrecioActionPerformed
+
+    private void rbCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCasaActionPerformed
+        // TODO add your handling code here:
+         borrarFilas();
+        rbGalpon.setSelected(false);
+        rbGarage.setSelected(false);
+        rbInmAlquilado.setSelected(false);
+        rbInmDisponible.setSelected(false);
+        rbLocalComercial.setSelected(false);
+        rbTerreno.setSelected(false);
+//          for(PropiedadInmueble prop: piD.obtenerLasPropiedadesTipoCasa("casa")){                  
+//            System.out.println(prop);
+//            modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
+//           
+//        }
+    }//GEN-LAST:event_rbCasaActionPerformed
+
+    private void rbTerrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTerrenoActionPerformed
+        // TODO add your handling code here:
+          borrarFilas();
+        rbGalpon.setSelected(false);
+        rbGarage.setSelected(false);
+        rbInmAlquilado.setSelected(false);
+        rbInmDisponible.setSelected(false);
+        rbLocalComercial.setSelected(false);
+        rbCasa.setSelected(false);
+//          for(PropiedadInmueble prop: piD.obtenerLasPropiedadesTipoCasa("Campo")){                  
+//            System.out.println(prop);
+//            modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
+//           
+//        }
+    }//GEN-LAST:event_rbTerrenoActionPerformed
+
+    private void rbLocalComercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbLocalComercialActionPerformed
+        // TODO add your handling code here:
+         borrarFilas();
+        rbGalpon.setSelected(false);
+        rbGarage.setSelected(false);
+        rbInmAlquilado.setSelected(false);
+        rbInmDisponible.setSelected(false);
+        rbCasa.setSelected(false);
+        rbTerreno.setSelected(false);
+//          for(PropiedadInmueble prop: piD.obtenerLasPropiedadesTipoCasa("Local Comercial")){                  
+//            System.out.println(prop);
+//            modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
+//           
+//        }
+    }//GEN-LAST:event_rbLocalComercialActionPerformed
+
+    private void rbGalponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGalponActionPerformed
+        // TODO add your handling code here:
+           borrarFilas();
+        rbCasa.setSelected(false);
+        rbGarage.setSelected(false);
+        rbInmAlquilado.setSelected(false);
+        rbInmDisponible.setSelected(false);
+        rbLocalComercial.setSelected(false);
+        rbTerreno.setSelected(false);
+//          for(PropiedadInmueble prop: piD.obtenerLasPropiedadesTipoCasa("Galpon")){                  
+//            System.out.println(prop);
+//            modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
+//           
+//        }
+    }//GEN-LAST:event_rbGalponActionPerformed
+
+    private void rbGarageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGarageActionPerformed
+        // TODO add your handling code here:
+          borrarFilas();
+        rbGalpon.setSelected(false);
+        rbCasa.setSelected(false);
+        rbInmAlquilado.setSelected(false);
+        rbInmDisponible.setSelected(false);
+        rbLocalComercial.setSelected(false);
+        rbTerreno.setSelected(false);
+//          for(PropiedadInmueble prop: piD.obtenerLasPropiedadesTipoCasa("Garage")){                  
+//            System.out.println(prop);
+//            modelo.addRow(new Object []{prop.getID_Local(), prop.getAccesibilidad(),prop.getCaracteristicas(), prop.getDireccion(),prop.getPrecioTazado(),prop.getSuperficieMinima(),prop.getTipoLocal(),prop.getZona()});
+//           
+//        }
+    }//GEN-LAST:event_rbGarageActionPerformed
 /**/
     private void mostrarDatosPropiedadInmueble(){
         
@@ -512,7 +568,6 @@ public class PropiedadInmuebleVista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel backG;
     private javax.swing.JButton btnActualizarPrecio;
     private javax.swing.JButton btnAgregarInmueble;
-    private javax.swing.JButton btnAlquilarInmueble;
     private javax.swing.JButton btnEliminarInmueble;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnModificarInmueble;
