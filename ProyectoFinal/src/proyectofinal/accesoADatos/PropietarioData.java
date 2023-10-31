@@ -101,7 +101,7 @@ public class PropietarioData {
                 propietario.setIdPropietario(rs.getInt("ID_Propietario"));
                 propietario.setApelidoPropietario(rs.getString("Apellido"));
                 propietario.setNombrePropietario(rs.getString("Nombre"));
-                propietario.setDni(rs.getInt("DNI"));
+                propietario.setDni(id);
                 propietario.setDomicilio(rs.getString("Domicilio"));
                 propietario.setTelefono(rs.getLong("Telefono"));
                 propietario.setEstado(true); 
@@ -131,7 +131,7 @@ public class PropietarioData {
                 propietario.setIdPropietario(id);
                 propietario.setApelidoPropietario(rs.getString("Apellido"));
                 propietario.setNombrePropietario(rs.getString("Nombre"));
-                propietario.setDni(id);
+                propietario.setDni(rs.getInt("DNI"));
                 propietario.setDomicilio(rs.getString("Domicilio"));
                 propietario.setTelefono(rs.getLong("Telefono"));
                 propietario.setEstado(true); 
