@@ -253,7 +253,7 @@ private PropietarioData id = new PropietarioData();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void rdbIExistentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbIExistentesActionPerformed
-                  rdbIbaja.setSelected(false);
+        rdbIbaja.setSelected(false);
         borrarFilas();
       
     

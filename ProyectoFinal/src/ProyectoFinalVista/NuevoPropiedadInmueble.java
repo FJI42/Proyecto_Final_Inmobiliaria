@@ -375,18 +375,16 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAgregarPropInmActionPerformed
     
     
-    private void cargar_cbPropietario(){ //carga los comoboBox con dni y nombre de los propietario
-
-        
+    private void cargar_cbPropietario(){ //carga los comoboBox los propietario
+                
         PropietarioData propD = new PropietarioData();
         ArrayList<Propietario> propietario = new ArrayList<>();
-
+        
         for (Propietario prop : propD.obtenerLosPropietarios()) {
             propietario.add(prop);
            // cbPropietarios.addItem(prop.getDni()+" "+prop.getApelidoPropietario()+", "+prop.getNombrePropietario());
             cbPropietarios.addItem(prop);
         }
-
     }
 
     private void traerID(){
@@ -398,8 +396,10 @@ public class NuevoPropiedadInmueble extends javax.swing.JInternalFrame {
             
         }
         PropiedadInmueble ultimoPropInm = propInm.get(propInm.size()-1);
-        System.out.println("el  ultimo"+ultimoPropInm);
+       
+        System.out.println("el  ultimo"+ ultimoPropInm);
         System.out.println("ojo");
+        
         txtIdInm.setText(ultimoPropInm.getID_Local()+1+"");
     }
     

@@ -178,17 +178,17 @@ public class PropietarioData {
       }
         public List<Propietario> obtenerLosPropietarios(){
         ArrayList<Propietario> propietario= new ArrayList<>();   
-        String sql="SELECT * FROM propietario WHERE estado=1";
+        String sql="SELECT * FROM propietario WHERE Estado=1";
          try {
                 PreparedStatement ps= con.prepareStatement(sql);
 //                ps.setInt(1,id); 
                 ResultSet rs= ps.executeQuery();
                 while(rs.next()){
                 Propietario in =new Propietario(); 
-                in.setIdPropietario(rs.getInt("iD_Propietario"));
-                in.setApelidoPropietario(rs.getString("apellido"));
-                in.setNombrePropietario(rs.getString("nombre"));
-                in.setDni(rs.getInt("dni"));
+                in.setIdPropietario(rs.getInt("ID_Propietario"));
+                in.setApelidoPropietario(rs.getString("Apellido"));
+                in.setNombrePropietario(rs.getString("Nombre"));
+                in.setDni(rs.getInt("DNI"));
                 in.setDomicilio(rs.getString("Domicilio"));
                 in.setTelefono(rs.getInt("Telefono"));
                 propietario.add(in);
@@ -197,7 +197,7 @@ public class PropietarioData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propietario");
+                JOptionPane.showMessageDialog(null, ex+"OLP Error al acceder a la tabla Propietario");
             }
         
         return propietario; 

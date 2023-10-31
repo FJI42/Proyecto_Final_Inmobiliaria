@@ -60,10 +60,10 @@ public class PropiedadInmuebleData {
     
     public void AgregarPropiedadInmueble(PropiedadInmueble propInmueble){
        
-        String sql="INSERT INTO `propiedadinmueble`(`Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO `propiedadinmueble`(`Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona`) VALUES (?,?,?,?,?,?,?,?,?,?)";
                     
         try(PreparedStatement ps=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-            
+            System.out.println("Agregando");
            // ps.setInt(1, propInmueble.getID_Local());
             ps.setString(1, propInmueble.getAccesibilidad());
             ps.setString(2, propInmueble.getCaracteristicas());
@@ -89,7 +89,7 @@ public class PropiedadInmuebleData {
             
         } catch (SQLException ex) {
             
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex+"Error acceder tabla Prop Inm");
         }
         
         
@@ -145,8 +145,9 @@ public class PropiedadInmuebleData {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
         }
     }
-     public void ModificarPropiedadInmuebleNull(PropiedadInmueble propInmueble){
-        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Duenio`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
+    
+    public void ModificarPropiedadInmuebleNull(PropiedadInmueble propInmueble){
+        String sql="UPDATE `propiedadinmueble` SET `Accesibilidad`=?, `Caracteristicas`=?, `Direccion`=?, `Dueño`=?, `EstadoLocal`=?, `Forma`=?, `Ocupante`=?, `PrecioTazado`=?, `SuperficieMin`=?, `TipoLocal`=?, `Zona`=? WHERE ID_Local=?";
        
         try {
             
@@ -164,9 +165,9 @@ public class PropiedadInmuebleData {
             ps.setString(11, propInmueble.getTipoLocal());
             ps.setString(12, propInmueble.getZona());
             
-            int res=ps.executeUpdate();
+            int exito=ps.executeUpdate();
             
-            if (res>0){
+            if (exito==1){
                 JOptionPane.showMessageDialog(null, "Propiedad Imnueble modificada exitosamente!");
             }else{
                 JOptionPane.showMessageDialog(null, "No se pudo modificar Propiedad Imnueble");
@@ -179,7 +180,7 @@ public class PropiedadInmuebleData {
     }
     
     public PropiedadInmueble buscarPropInmueble(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `Ocupante`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =?";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -278,7 +279,7 @@ public class PropiedadInmuebleData {
     }
 
         public PropiedadInmueble buscarPropInmuebleLibre(int codigo){
-        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Duenio`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =? AND Ocupante IS NULL";
+        String sql="SELECT `Accesibilidad`, `Caracteristicas`, `Direccion`, `Dueño`, `EstadoLocal`, `Forma`, `PrecioTazado`, `SuperficieMin`, `TipoLocal`, `Zona` FROM `propiedadinmueble` WHERE ID_Local =? AND Ocupante IS NULL";
         
         PropiedadInmueble propiedadInmueble =null;
         
@@ -347,7 +348,7 @@ public class PropiedadInmuebleData {
                     Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idInquilino);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
@@ -356,12 +357,12 @@ public class PropiedadInmuebleData {
                     prop.setCaracteristicas(rs.getString("Caracteristicas"));
                     prop.setDireccion(rs.getString("Direccion"));
                     prop.setDuenio(propi);
-                    prop.setEstadoLocal(true);
+                    prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
                     prop.setForma(rs.getString("Forma"));
          
                     prop.setOcupante(inquilino);
                     //prop.setOcupante(rs.getInt("Ocupante"));
-                    prop.setPrecioTazado(rs.getInt("PrecioTazado"));
+                    prop.setPrecioTazado(rs.getFloat("PrecioTazado"));
                     prop.setSuperficieMinima(rs.getInt("SuperficieMin"));
                     prop.setTipoLocal(rs.getString("TipoLocal"));
                     prop.setZona(rs.getString("Zona"));
@@ -374,7 +375,7 @@ public class PropiedadInmuebleData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                JOptionPane.showMessageDialog(null,"obt prop Error al acceder a la tabla Propiedad Inmueble");
                 
             }
         
@@ -397,7 +398,7 @@ public class PropiedadInmuebleData {
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                    
                     InquilinoData inD = new InquilinoData();
                     Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
@@ -410,7 +411,7 @@ public class PropiedadInmuebleData {
                     prop.setDireccion(rs.getString("Direccion"));
                     prop.setDuenio(propi);
                     prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
-                    prop.setEstadoLocal(true);
+                    //prop.setEstadoLocal(true);
                     prop.setForma(rs.getString("Forma"));
          
                     prop.setOcupante(inquilino);
@@ -448,8 +449,9 @@ public class PropiedadInmuebleData {
                      int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
+                    
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
                     Propietario propi = poD.BuscarPropietario(idPropietario);
@@ -462,7 +464,7 @@ public class PropiedadInmuebleData {
                     prop.setDireccion(rs.getString("Direccion"));
                     prop.setDuenio(propi);
                     prop.setEstadoLocal(rs.getBoolean("EstadoLocal"));
-                    prop.setEstadoLocal(true);
+                    //prop.setEstadoLocal(true);
                     prop.setForma(rs.getString("Forma"));
          
                     prop.setOcupante(inquilino);
@@ -480,14 +482,13 @@ public class PropiedadInmuebleData {
                 ps.close(); 
                 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Propiedad Inmueble");
+                JOptionPane.showMessageDialog(null,"OLPACTIVAS Error al acceder a la tabla Propiedad Inmueble");
                 
             }
         
         return propiedad; 
        }  
 
-        
         public List<PropiedadInmueble> obtenerLasPropiedadesOcupadas(){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
         String sql="SELECT * FROM `propiedadinmueble` WHERE Ocupante IS NOT NULL";
@@ -497,10 +498,11 @@ public class PropiedadInmuebleData {
                 ResultSet rs= ps.executeQuery();
 
                 while(rs.next()){
-                     int idPropietario= rs.getInt("Duenio");
+                     int idPropietario= rs.getInt("Dueño");
                      int idInquilino = rs.getInt("Ocupante");
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
+                   
                     InquilinoData inD = new InquilinoData();
                     Inquilino inquilino = inD.BuscarInquilino(idInquilino);
                     
@@ -554,11 +556,12 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
-                    
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
+                   
+                    System.out.println("no esxiste:::?? "+propi+idPropietario);
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
                     
@@ -590,7 +593,6 @@ public class PropiedadInmuebleData {
         
         return propiedad; 
        }  
-
         
         public List<PropiedadInmueble> obtenerLasPropiedadesTipoTerreno(String terreno){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
@@ -607,10 +609,10 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
@@ -643,11 +645,10 @@ public class PropiedadInmuebleData {
         
         return propiedad; 
        }  
-
                 
         public List<PropiedadInmueble> obtenerLasPropiedadesTipoLC(String localC){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
-        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Local Comerdial´";
+        String sql="SELECT * FROM `propiedadinmueble` WHERE TipoLocal=´Local Comercial´";
          
         try {   
                 PreparedStatement ps= con.prepareStatement(sql);
@@ -661,10 +662,10 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
@@ -697,7 +698,6 @@ public class PropiedadInmuebleData {
         
         return propiedad; 
        }  
-
                         
         public List<PropiedadInmueble> obtenerLasPropiedadesTipoGalpon(String galpon){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
@@ -715,10 +715,10 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
@@ -751,7 +751,6 @@ public class PropiedadInmuebleData {
         
         return propiedad; 
        }  
-
                                 
         public List<PropiedadInmueble> obtenerLasPropiedadesTipoGarage(String garage){
         ArrayList<PropiedadInmueble> propiedad= new ArrayList<>();        
@@ -769,10 +768,10 @@ public class PropiedadInmuebleData {
                 
                     PropiedadInmueble prop =new PropiedadInmueble(); 
                     InquilinoData inD = new InquilinoData();
-                    Inquilino inquilino = inD.BuscarInquilino(idInquilino);
+                    Inquilino inquilino = inD.BuscarInquilinoId(idInquilino);
                     
                     PropietarioData poD = new PropietarioData(); 
-                    Propietario propi = poD.BuscarPropietario(idPropietario);
+                    Propietario propi = poD.BuscarPropietarioID(idPropietario);
                     
                     
                     prop.setID_Local(rs.getInt("ID_Local"));
