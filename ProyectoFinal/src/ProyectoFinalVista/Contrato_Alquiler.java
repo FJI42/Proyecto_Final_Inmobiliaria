@@ -375,41 +375,20 @@ private Connection con= null;
     private void jbCrearContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearContratoActionPerformed
         // TODO add your handling code here:
         guardar(); 
+        
         jDateChooser4.setDate(null);
         jDateChooser5.setDate(null);
         jDateChooser6.setDate(null);
         
         jtMarca.setText("");
         jtVendedor.setText("");
-       
-         //int id = Integer.parseInt(jTextField1.getText());
-//        Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
-//        
-//        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
-//        String fecha_final = formatoFecha.format(jDateChooser4.getDate());
-//        LocalDate fechFin = LocalDate.parse(fecha_final, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-//        String fecha_inicio = formatoFecha.format(jDateChooser5.getDate());
-//        LocalDate fechIn = LocalDate.parse(fecha_inicio, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-//        String fecha_realizacion = formatoFecha.format(jDateChooser6.getDate());
-//        LocalDate fechRea = LocalDate.parse(fecha_realizacion, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-//        char marca = jTextField3.getText().charAt(0);
-//        PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();
-//        String vendedor= jTextField5.getText();
-//        
-//               
-//       ContratoAlquiler cal = new ContratoAlquiler(inquilino, fechFin, fechIn, fechRea, marca,propiedad, vendedor,true);
-//        caD.crearContrato(cal);
-//        jrbEstado.setSelected(true);
-//        jTextField3.setText("");
-//        jTextField5.setText("");
+
     }//GEN-LAST:event_jbCrearContratoActionPerformed
 
     private void jcInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcInquilinosActionPerformed
         // TODO add your handling code here:
        cargarComboGarante();
-        //jComboBox1.setSelectedItem("");
-        //no funciona, aparecen los garantes duplicados conforme si selecciona 
-        //nuevamente al inquilino 
+        
         
     }//GEN-LAST:event_jcInquilinosActionPerformed
    
@@ -446,8 +425,7 @@ private Connection con= null;
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         cargarComboGarante();
-        //Me esta devolviendo los garantes que tienen el mismo id que el inquilino
-        //no los garantes de tal inquilino
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMarcaKeyTyped
@@ -607,107 +585,10 @@ private Connection con= null;
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "No debe dejar campos vacios");
         }
+    
     }
-
-//    public void estado(Inquilino inquilino){
-//        String sql="UPDATE inquilino SET Estado=? WHERE ID_Inquilino=?";
-//            
-//        try {
-//            try{
-//            PreparedStatement ps= con.prepareStatement(sql);
-//            ps.setBoolean(1,true);
-//           
-//            int exito= ps.executeUpdate();            
-//            if(exito==1){
-//      
-//                JOptionPane.showMessageDialog(null, "");
-//            }else{
-//                 JOptionPane.showMessageDialog(null, "No se encontro el inquilino que busca");
-//            }
-//            }catch(NumberFormatException n){
-//             JOptionPane.showMessageDialog(null, "Se produjo un error");
-//                     
-//         }          
-//                    
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null,"Error al acceder a la tabla Inquilino");
-//        }
-//            
-//      } 
-//    
-//    public boolean inquilinoTieneGarante(int idIn) {
-//    // Supongamos que tienes una conexión a la base de datos llamada 'con'.
-//    String consulta = "SELECT ID_Garante FROM garantes WHERE ID_Inquilino=?";
-//    try (PreparedStatement statement = con.prepareStatement(consulta)) {
-//        statement.setInt(1, idIn);
-//        try (ResultSet resultSet = statement.executeQuery()) {
-//            // Si hay resultados, significa que el inquilino tiene un garante asociado.
-//            return resultSet.next();
-//        }
-//    } catch (SQLException e) {
-//        JOptionPane.showMessageDialog(null, "Error al mostrar asociacion");
-//        // Manejo de errores de la base de datos, puedes mostrar un mensaje o registrar el error.
-//        e.printStackTrace();
-//    }
-//
-//    // Si ocurre un error o no se encuentra un garante, se asume que no tiene garante asociado.
-//    return false;
-//    }
-     
-
-    public void Guardar2(){
-        
-        
-        if (jComboBox1.getSelectedItem()!= null) {
-            // Haz algo si hay un elemento seleccionado en el JComboBox
-            Inquilino inquilino = (Inquilino)jcInquilinos.getSelectedItem();
-               // Garante garante = (Garante)jComboBox1.getSelectedItem();
-                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                char marca = jtMarca.getText().charAt(0);
-                PropiedadInmueble propiedad= (PropiedadInmueble)jcPropiedades.getSelectedItem();        
-                String vendedor= jtVendedor.getText();                              
-                boolean estado = jrbEstado.isSelected();
-                
-            ContratoAlquiler cal = new ContratoAlquiler(inquilino,fecha_final,fecha_inicio,fecha_realizacion, marca, propiedad, vendedor, estado);
-            
-            caD.crearContrato(cal); 
-            
-        } else {
-            // Haz algo si no hay un elemento seleccionado en el JComboBox
-            JOptionPane.showMessageDialog(this, "¡No se puede guardar un contrato sin garante!");
-            }
-        
-//        try {
-//        Inquilino inquilino = (Inquilino) jcInquilinos.getSelectedItem();
-//        Garante garante = (Garante) jComboBox1.getSelectedItem();
-//
-//        if (jcInquilinos.getSelectedItem()!= null && jComboBox1.getSelectedItem()!= null && jDateChooser4.getDate() != null && jDateChooser5.getDate() != null && jDateChooser6.getDate() != null && !jtMarca.getText().isEmpty() && jcPropiedades.getSelectedItem() != null && !jtVendedor.getText().isEmpty() && jDateChooser4.getDate() != null && jrbEstado.isSelected()) {
-//            // Verificar si el inquilino tiene un garante asociado (puedes realizar esta verificación según tu lógica de negocio)
-//            
-//            if (inquilinoTieneGarante(inquilino.getId_Inquilino()) ) {
-//                LocalDate fecha_final = jDateChooser4.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                LocalDate fecha_inicio = jDateChooser5.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                LocalDate fecha_realizacion = jDateChooser6.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                char marca = jtMarca.getText().charAt(0);
-//                PropiedadInmueble propiedad = (PropiedadInmueble) jcPropiedades.getSelectedItem();
-//                String vendedor = jtVendedor.getText();
-//                boolean estado = jrbEstado.isSelected();
-//
-//                ContratoAlquiler cal = new ContratoAlquiler(inquilino, garante, fecha_final, fecha_inicio, fecha_realizacion, marca, propiedad, vendedor, estado);
-//                caD.crearContrato(cal);
-//            } else {
-//                JOptionPane.showMessageDialog(this, "El inquilino no tiene un garante asociado.");
-//            }
-//        } else {
-//            // Manejo de otros casos de campos vacíos o no seleccionados
-//        }
-//    } catch (NullPointerException e) {
-//        JOptionPane.showMessageDialog(this, "No debe dejar campos vacíos");
-//    }
       
-   }
+   
              
      public void habilitarBotones(){
        

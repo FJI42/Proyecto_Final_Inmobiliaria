@@ -187,7 +187,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-        ContratoAlquiler contratoEncontrado= caD.buscarContrato(parseInt(jTextField1.getText()));
+       ContratoAlquiler contratoEncontrado= caD.buscarContrato(parseInt(jTextField1.getText()));
      try { 
          if(contratoEncontrado!=null){ 
             JOptionPane.showMessageDialog(
@@ -207,7 +207,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
                
      } catch(NullPointerException ex){
          JOptionPane.showMessageDialog(this,ex);
-         System.out.println(ex);
+         //System.out.println(ex);
      }
          
      //Funciona correctamente 
@@ -258,7 +258,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try {
+       try {
         int fs = jTable1.getSelectedRow(); 
         ContratoAlquiler con1 = new ContratoAlquiler((int) modelo.getValueAt(fs, 0), 
             (Inquilino)modelo.getValueAt(fs, 1), (LocalDate)modelo.getValueAt(fs, 2), 
@@ -277,7 +277,7 @@ public class ContratoBuscar extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         setVisible(false);
+        setVisible(false);
     
     // Muestra la nueva ventana
        Contrato_Alquiler nombre = new Contrato_Alquiler();   

@@ -195,7 +195,7 @@ public class PropiedadInmuebleData {
                 propiedadInmueble =new PropiedadInmueble();
                 propiedadInmueble.setID_Local(codigo);
                 
-                int idPropietario = res.getInt("Duenio");
+                int idPropietario = res.getInt("Dueño");
                 int idInquilino = res.getInt("Ocupante");
                 
                 //obtener duenio y ocupante
@@ -227,6 +227,7 @@ public class PropiedadInmuebleData {
                         
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Propiedad Inmueble");
+                    
             
         }
         

@@ -90,7 +90,7 @@ public class PropietarioData {
         }
         }  
         public Propietario BuscarPropietario(int id){
-     String sql= "SELECT * FROM `propietario` WHERE Dni=? ";
+     String sql= "SELECT * FROM `propietario` WHERE DNI=? ";
             Propietario propietario=null; 
      try {
             PreparedStatement ps= con.prepareStatement(sql);
@@ -101,14 +101,14 @@ public class PropietarioData {
                 propietario.setIdPropietario(rs.getInt("ID_Propietario"));
                 propietario.setApelidoPropietario(rs.getString("Apellido"));
                 propietario.setNombrePropietario(rs.getString("Nombre"));
-                propietario.setDni(rs.getInt("Dni"));
+                propietario.setDni(rs.getInt("DNI"));
                 propietario.setDomicilio(rs.getString("Domicilio"));
-                propietario.setTelefono(rs.getInt("Telefono"));
+                propietario.setTelefono(rs.getLong("Telefono"));
                 propietario.setEstado(true); 
-                                   
-             }else {                 
-                JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
-            }             
+            }                  
+//             }else {                 
+//                JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
+//            }             
              ps.close();
                                                    
         } catch (SQLException ex) {
@@ -130,12 +130,12 @@ public class PropietarioData {
                 propietario.setIdPropietario(id);
                 propietario.setApelidoPropietario(rs.getString("Apellido"));
                 propietario.setNombrePropietario(rs.getString("Nombre"));
-                propietario.setDni(rs.getInt("Dni"));
+                propietario.setDni(id);
                 propietario.setDomicilio(rs.getString("Domicilio"));
-                propietario.setTelefono(rs.getInt("Telefono"));
+                propietario.setTelefono(rs.getLong("Telefono"));
                 propietario.setEstado(true); 
                                    
-             }else {                 
+             } else {                 
                 JOptionPane.showMessageDialog(null,"No existe ese Propietario");                
             }             
              ps.close();
@@ -255,5 +255,5 @@ public class PropietarioData {
         
         return propietario; 
        }
-        }
+ }
 
